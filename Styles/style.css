@@ -19,7 +19,7 @@ body {
       justify-content: space-around;
 }
 
-input {
+.input-search {
   background: none;
   outline: none;
   border: none;
@@ -34,11 +34,64 @@ input {
           justify-content: space-between;
   border: 1px solid #CCCCCC;
   border-radius: 3.5px;
-  border-radius: 3.5px;
   width: 502px;
-  height: 41px;
+  height: 200pxpx;
   margin-left: 29.5px;
   margin-right: 0;
+}
+
+#article2 {
+  position: absolute;
+  background: white;
+  margin-top: -76px;
+}
+
+.expand {
+  border: 1px solid #CCCCCC;
+  border-radius: 2px;
+  width: 503px;
+  height: 375px;
+  margin-left: 29.5px;
+  margin-right: 0;
+}
+
+.expand select {
+  height: 35.5px;
+  width: 190px;
+  border-radius: 3.5px;
+  border: 1px solid #CCCCCC;
+  text-align: center;
+}
+
+.expand div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1em;
+}
+
+.expand label {
+  margin: 0;
+}
+
+.expand input {
+  border: none;
+  border-bottom: 1px solid;
+  background: none;
+  color: #CCCCCC;
+  margin: 0;
+  width: 59%;
+}
+
+select {
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 2px;
+  background-size: 11%;
+  background-position-x: 101%;
+  background-position-y: 36%;
 }
 
 #arrow {
@@ -80,6 +133,7 @@ main h1 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin-bottom: 6%;
 }
 
 .container-arrowUp {
@@ -185,6 +239,7 @@ thead {
 
 thead tr {
   height: 4em;
+  max-width: 1310px;
 }
 
 table {
@@ -195,17 +250,54 @@ table {
 }
 
 thead th {
-  width: 30%;
+  width: 18%;
   text-align: initial;
   font-weight: lighter;
 }
 
-thead th:nth-child(7) {
-  width: 20%;
+thead th:nth-child(2) {
+  width: 35%;
+}
+
+thead th:nth-child(8) {
+  width: 14%;
+}
+
+thead th:nth-child(1), thead tr:nth-child(1) {
+  width: 5%;
 }
 
 th, td {
   padding: 10px;
+}
+
+th i {
+  font-size: 13px;
+  padding: 0;
+}
+
+td img {
+  width: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+td p {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+}
+
+.contact {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.name {
+  margin: 8px;
 }
 
 :root {

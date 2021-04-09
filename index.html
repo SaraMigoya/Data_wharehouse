@@ -30,15 +30,16 @@
 
             <h1>Contactos</h1>
             <div class="container2">
-           
-                    <div class="search">
-                        <input type="text" name="" id="input">
-                        <i class="fas fa-caret-down" id="arrow"></i>                       
-                    </div>
-                    <div class="container-lupa">
-                        <i class="fas fa-search" id="search"></i>
-                    </div>
-           
+
+                <div class="search">
+                    <input type="text" name="" id="input" class="input-search">
+                    <i class="fas fa-caret-down" id="arrow"></i>
+                </div>
+             
+                <div class="container-lupa">
+                    <i class="fas fa-search" id="search"></i>
+                </div>
+
                 <div class="inline-dos">
                     <div class="container-arrowUp">
                         <div class="spanArrow">
@@ -51,68 +52,217 @@
                         <p>Exportar contactos</p>
                         <i class="fas fa-caret-down" id="arrowExportar"></i>
                     </div>
-                    <button id="button-new-contact">Agregar contacto</button>
+                    <a href="./newContact.html"><button id="button-new-contact">Agregar contacto</button></a>
                 </div>
             </div>
         </article>
-
+        <article id="article2">
+            <div class="expand">
+                <form action="../form-result.php" method="GET" target="_blank" rel="noopener noreferrer">
+         
+                 <div>
+                     <label for="GET-name">Nombre del contacto</label>
+                     <input id="GET-name" type="text" name="name" placeholder="Introduce el nombre del contacto">
+                 </div>
+                 <div>
+                     <label for="GET-cargo">Cargo</label>
+                     <input id="GET-cargo" type="text" name="cargo" placeholder="Introduce el cargo del contacto">
+                 </div>
+                 <div>
+                     <label for="country">País/Región</label>
+                     <select name="country" id="country">
+                         <option value="country1">Argentina</option>
+                         <option value="country1">Colombia</option>0
+                         <option value="country1">Chile</option>
+                         <option value="country1">Uruguay</option>
+                         <option value="country1">España</option>
+                     </select>
+                  
+                 </div>
+                 <div>
+                     <label for="company" >Compañía</label>
+                    <select name="company" id="company">
+                        <option value="company1">Globant</option>
+                        <option value="company2">Mercado Libre</option>
+                        <option value="company3">Accenture</option>
+                        <option value="company4">Pedidos Ya</option>
+                        <option value="company5">Ualá</option>
+                    </select>
+                 </div>
+                 <div>
+                     <label for="canal" >Canal favorito</label>
+                 <select name="canal" id="canal">
+                     <option value="canal1">Whatsapp</option>
+                     <option value="canal2">Slack</option>
+                     <option value="canal3">Facebook</option>
+                     <option value="canal4">Email</option>
+                     <option value="canal5">Mensaje</option>
+                 </select>
+                 </div>
+                 <div>
+                     <label for="interes" >Interés</label>
+                     <select name="interes" id="interes">
+                         <option value="interes1">poco</option>
+                         <option value="interes2">medio</option>
+                         <option value="interes3">mucho</option>
+                
+                     </select>
+                  
+                 </div>
+              </form>
+            </div>
+        </article>
         <article>
             <section>
                 <table>
                     <thead>
-                    <tr>
-              
-                        <th>Contacto  <span><i class="fas fa-long-arrow-alt-up"></i></span> <span><i class="fas fa-long-arrow-alt-down"></i></span></th>
-                       
-                        <th>País/Región  <span><i class="fas fa-long-arrow-alt-up"></i></span> <span><i class="fas fa-long-arrow-alt-down"></i></span></th>
-                        <th>Compañía  <span><i class="fas fa-long-arrow-alt-up"></i></span> <span><i class="fas fa-long-arrow-alt-down"></i></span></th>
-                        <th>Cargo  <span><i class="fas fa-long-arrow-alt-up"></i></span> <span><i class="fas fa-long-arrow-alt-down"></i></span></th>
-                        <th>Canal preferido  <span><i class="fas fa-long-arrow-alt-up"></i></span> <span><i class="fas fa-long-arrow-alt-down"></i></span></th>
-                        <th>Interés  <span><i class="fas fa-long-arrow-alt-up"></i></span> <span><i class="fas fa-long-arrow-alt-down"></i></span></th>
-                        <th>Acciones  <span><i class="fas fa-long-arrow-alt-up"></i></span> <span><i class="fas fa-long-arrow-alt-down"></i></span></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-            
-                        <td>sara@gmail.com</td>
-                        <td>Argentina</td>
-                        <td>Globant</td>
-                        <td>developer</td>
-                        <td>Slack</td>
-                        <td>100</td>
-                        <td>...</td>
-            
-                    </tr>
-                    <tr>
-            
-                        <td>sara@gmail.com</td>
-                        <td>Argentina</td>
-                        <td>Globant</td>
-                        <td>developer</td>
-                        <td>Slack</td>
-                        <td>100</td>
-                        <td>...</td>
-            
-                    </tr>
-                    <tr>
-            
-                        <td>sara@gmail.com</td>
-                        <td>Argentina</td>
-                        <td>Globant</td>
-                        <td>developer</td>
-                        <td>Slack</td>
-                        <td>100</td>
-                        <td>...</td>
-            
-                    </tr>
+                        <tr>
+
+                            <th><input type="checkbox"></th>
+
+                            <th>Contacto <span><i class="fas fa-long-arrow-alt-up"></i><i
+                                class="fas fa-long-arrow-alt-down"></i></span> 
+                            </th>
+                            <th>País/Región <span><i class="fas fa-long-arrow-alt-up"></i><i
+                                class="fas fa-long-arrow-alt-down"></i></span>
+                            </th>
+                            <th>Compañía <span><i class="fas fa-long-arrow-alt-up"></i><i
+                                class="fas fa-long-arrow-alt-down"></i></span>
+                            </th>
+                            <th>Cargo <span><i class="fas fa-long-arrow-alt-up"></i><i
+                                class="fas fa-long-arrow-alt-down"></i></span>
+                                    </th>
+                            <th>Canal preferido</th>
+                            <th>Interés <span><i class="fas fa-long-arrow-alt-up"></i><i
+                                class="fas fa-long-arrow-alt-down"></i></span>
+                                    </th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox"></td>
+
+                            <td>
+                                <div class="contact">
+                                    <img src="./images/group-81.svg" alt="">
+                                    <div class="name">
+                                        Sofia Gonzalez
+                                        <p>saramigoy@fff.com</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Argentina</td>
+                            <td>Globant</td>
+                            <td>developer</td>
+                            <td>Slack</td>
+                            <td>100</td>
+                            <td>...</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>
+                                <div class="contact">
+                                    <img src="./images/group-81.svg" alt="">
+                                    <div class="name">
+                                        Sofia Gonzalez
+                                        <p>sofiagonzalez12@gmail.com</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Argentina</td>
+                            <td>Globant</td>
+                            <td>developer</td>
+                            <td>Slack</td>
+                            <td>100</td>
+                            <td>...</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>
+                                <div class="contact">
+                                    <img src="./images/group-81.svg" alt="">
+                                    <div class="name">
+                                        Sofia Gonzalez
+                                        <p>saramigoy@fff.com</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Argentina</td>
+                            <td>Globant</td>
+                            <td>developer</td>
+                            <td>Slack</td>
+                            <td>100</td>
+                            <td>...</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>
+                                <div class="contact">
+                                    <img src="./images/group-81.svg" alt="">
+                                    <div class="name">
+                                        Sofia Gonzalez
+                                        <p>saramigoy@fff.com</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Argentina</td>
+                            <td>Globant</td>
+                            <td>developer</td>
+                            <td>Slack</td>
+                            <td>100</td>
+                            <td>...</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>
+                                <div class="contact">
+                                    <img src="./images/group-81.svg" alt="">
+                                    <div class="name">
+                                        Sofia Gonzalez
+                                        <p>saramigoy@fff.com</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Argentina</td>
+                            <td>Globant</td>
+                            <td>developer</td>
+                            <td>Slack</td>
+                            <td>100</td>
+                            <td>...</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>
+                                <div class="contact">
+                                    <img src="./images/group-81.svg" alt="">
+                                    <div class="name">
+                                        Sofia Gonzalez
+                                        <p>saramigoy@fff.com</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Argentina</td>
+                            <td>Globant</td>
+                            <td>developer</td>
+                            <td>Slack</td>
+                            <td>100</td>
+                            <td>...</td>
+
+                        </tr>
 
 
-                </tbody>
+                    </tbody>
                 </table>
             </section>
         </article>
     </main>
+    <script src="./JavaScript/index.js"></script>
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 </body>
 
