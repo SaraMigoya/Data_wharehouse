@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Styles/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h2 class="logotipo">LOGO</h2>
+            <div>
+                <nav>
+                    <div>
+                        <a href="./index.html">Contactos</a>
+                        <span></span>
+                    </div>
+
+                    <div>
+                        <a href="./company.html">Compañias</a>
+                        <span></span>
+                    </div>
+
+                    <div>
+                        <a href="./users.html">Usuarios</a>
+                        <span></span>
+                    </div>
+                    <div>
+
+                        <a href="#" class="activo"> Región / Ciudad</a>
+                        <span></span>
+
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="section-city">
+
+        <div class="flex-container">
+            <div>
+            	<span><i class="far fa-flag"></i></span>
+            	<h1>Regiones y ciudades</h1> 
+            </div>
+            <a href="#"><button id="button-new-region">Agregar región</button></a>
+        </div>
+        <ul id="myUL">
+            <li><span class="caret">Sudamérica</span>
+              <ul class="nested">
+                <li><span class="caret">Argentina</span>
+                    <ul class="nested">
+                    <li>Buenos Aires</li>
+                    <li>Cordoba</li>
+                    <li>Rosario</li>
+                    </ul>
+                </li>
+       
+                <li><span class="caret">Colombia</span>
+                  <ul class="nested">
+                    <li>Bogotá</li>
+                    <li>Medellin</li>
+                    <li>Barranquilla</li>
+  
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        <ul id="myUL">
+            <li><span class="caret">Norteamérica</span>
+              <ul class="nested">
+                <li><span class="caret">México</span>
+                    <ul class="nested">
+                    <li> Ciudad de México</li>
+                    <li>Tijuana</li>
+                 
+                    </ul>
+                </li>
+       
+                <li><span class="caret">Estados Unidos</span>
+                  <ul class="nested">
+                    <li>Nueva York</li>
+              
+  
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+    </main>
+    <script src="./JavaScript/city.js"></script>
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+</body>
+</html>

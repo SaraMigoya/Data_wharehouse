@@ -4,10 +4,27 @@
 
 }
 
+header nav {
+	display: flex;
+	align-items: center;
+}
 .container {
     width: 90%;
 	margin: auto;
 
+}
+
+header .container span {
+width: 76px;
+height: 1px;	
+border: 1px solid #FFFFFF;
+display: block;
+margin: 0;
+display: none;
+}
+
+.container span:nth-child(3) {
+	width: 60px;
 }
 
 header .container div {

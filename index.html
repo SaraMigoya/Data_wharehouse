@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Contact</title>
 </head>
 
 <body>
@@ -16,10 +17,26 @@
             <h2 class="logotipo">LOGO</h2>
             <div>
                 <nav>
-                    <a href="#" class="activo">Contactos</a>
-                    <a href="#">Compañias</a>
-                    <a href="#">Usuarios</a>
-                    <a href="#"> Región/Ciudad</a>
+                    <div>
+                        <a href="#" class="activo">Contactos</a>
+                        <span></span>
+                    </div>
+
+                    <div>
+                        <a href="./company.html">Compañias</a>
+                        <span></span>
+                    </div>
+
+                    <div>
+                        <a href="./users.html">Usuarios</a>
+                        <span></span>
+                    </div>
+                    <div>
+
+                        <a href="./city.html"> Región / Ciudad</a>
+                        <span></span>
+
+                    </div>
                 </nav>
             </div>
         </div>
@@ -28,14 +45,14 @@
     <main>
         <article>
 
-            <h1>Contactos</h1>
+            <h1 class="contact">Contactos</h1>
             <div class="container2">
 
                 <div class="search">
                     <input type="text" name="" id="input" class="input-search">
                     <i class="fas fa-caret-down" id="arrow"></i>
                 </div>
-             
+
                 <div class="container-lupa">
                     <i class="fas fa-search" id="search"></i>
                 </div>
@@ -57,59 +74,60 @@
             </div>
         </article>
         <article id="article2">
-            <div class="expand">
+            <div id="expand" class="none">
                 <form action="../form-result.php" method="GET" target="_blank" rel="noopener noreferrer">
-         
-                 <div>
-                     <label for="GET-name">Nombre del contacto</label>
-                     <input id="GET-name" type="text" name="name" placeholder="Introduce el nombre del contacto">
-                 </div>
-                 <div>
-                     <label for="GET-cargo">Cargo</label>
-                     <input id="GET-cargo" type="text" name="cargo" placeholder="Introduce el cargo del contacto">
-                 </div>
-                 <div>
-                     <label for="country">País/Región</label>
-                     <select name="country" id="country">
-                         <option value="country1">Argentina</option>
-                         <option value="country1">Colombia</option>0
-                         <option value="country1">Chile</option>
-                         <option value="country1">Uruguay</option>
-                         <option value="country1">España</option>
-                     </select>
-                  
-                 </div>
-                 <div>
-                     <label for="company" >Compañía</label>
-                    <select name="company" id="company">
-                        <option value="company1">Globant</option>
-                        <option value="company2">Mercado Libre</option>
-                        <option value="company3">Accenture</option>
-                        <option value="company4">Pedidos Ya</option>
-                        <option value="company5">Ualá</option>
-                    </select>
-                 </div>
-                 <div>
-                     <label for="canal" >Canal favorito</label>
-                 <select name="canal" id="canal">
-                     <option value="canal1">Whatsapp</option>
-                     <option value="canal2">Slack</option>
-                     <option value="canal3">Facebook</option>
-                     <option value="canal4">Email</option>
-                     <option value="canal5">Mensaje</option>
-                 </select>
-                 </div>
-                 <div>
-                     <label for="interes" >Interés</label>
-                     <select name="interes" id="interes">
-                         <option value="interes1">poco</option>
-                         <option value="interes2">medio</option>
-                         <option value="interes3">mucho</option>
-                
-                     </select>
-                  
-                 </div>
-              </form>
+
+                    <div>
+                        <label for="GET-name">Nombre del contacto</label>
+                        <input id="GET-name" type="text" name="name" id="input-form"
+                            placeholder="Introduce el nombre del contacto">
+                    </div>
+                    <div>
+                        <label for="GET-cargo">Cargo</label>
+                        <input id="GET-cargo" type="text" name="cargo" placeholder="Introduce el cargo del contacto">
+                    </div>
+                    <div>
+                        <label for="country">País/Región</label>
+                        <select name="country" id="country">
+                            <option value="country1">Argentina</option>
+                            <option value="country1">Colombia</option>0
+                            <option value="country1">Chile</option>
+                            <option value="country1">Uruguay</option>
+                            <option value="country1">España</option>
+                        </select>
+
+                    </div>
+                    <div>
+                        <label for="company">Compañía</label>
+                        <select name="company" id="company">
+                            <option value="company1">Globant</option>
+                            <option value="company2">Mercado Libre</option>
+                            <option value="company3">Accenture</option>
+                            <option value="company4">Pedidos Ya</option>
+                            <option value="company5">Ualá</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="canal">Canal favorito</label>
+                        <select name="canal" id="canal">
+                            <option value="canal1">Whatsapp</option>
+                            <option value="canal2">Slack</option>
+                            <option value="canal3">Facebook</option>
+                            <option value="canal4">Email</option>
+                            <option value="canal5">Mensaje</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="interes">Interés</label>
+                        <select name="interes" id="interes">
+                            <option value="interes1">poco</option>
+                            <option value="interes2">medio</option>
+                            <option value="interes3">mucho</option>
+
+                        </select>
+
+                    </div>
+                </form>
             </div>
         </article>
         <article>
@@ -121,21 +139,21 @@
                             <th><input type="checkbox"></th>
 
                             <th>Contacto <span><i class="fas fa-long-arrow-alt-up"></i><i
-                                class="fas fa-long-arrow-alt-down"></i></span> 
+                                        class="fas fa-long-arrow-alt-down"></i></span>
                             </th>
                             <th>País/Región <span><i class="fas fa-long-arrow-alt-up"></i><i
-                                class="fas fa-long-arrow-alt-down"></i></span>
+                                        class="fas fa-long-arrow-alt-down"></i></span>
                             </th>
                             <th>Compañía <span><i class="fas fa-long-arrow-alt-up"></i><i
-                                class="fas fa-long-arrow-alt-down"></i></span>
+                                        class="fas fa-long-arrow-alt-down"></i></span>
                             </th>
                             <th>Cargo <span><i class="fas fa-long-arrow-alt-up"></i><i
-                                class="fas fa-long-arrow-alt-down"></i></span>
-                                    </th>
+                                        class="fas fa-long-arrow-alt-down"></i></span>
+                            </th>
                             <th>Canal preferido</th>
                             <th>Interés <span><i class="fas fa-long-arrow-alt-up"></i><i
-                                class="fas fa-long-arrow-alt-down"></i></span>
-                                    </th>
+                                        class="fas fa-long-arrow-alt-down"></i></span>
+                            </th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
