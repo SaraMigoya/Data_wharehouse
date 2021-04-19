@@ -1,97 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Styles/style.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./Styles/style.css">
+  <title>Document</title>
 </head>
+
 <body>
-    <header>
-        <div class="container">
-            <h2 class="logotipo">LOGO</h2>
-            <div>
-                <nav>
-                    <div>
-                        <a href="./index.html">Contactos</a>
-                        <span></span>
-                    </div>
+  <header>
+    <div class="container">
+      <h2 class="logotipo">LOGO</h2>
+      <div>
+        <nav>
+          <div>
+            <a href="./index.html">Contactos</a>
+            <span></span>
+          </div>
 
-                    <div>
-                        <a href="./company.html">Compañias</a>
-                        <span></span>
-                    </div>
+          <div>
+            <a href="./company.html">Compañias</a>
+            <span></span>
+          </div>
 
-                    <div>
-                        <a href="./users.html">Usuarios</a>
-                        <span></span>
-                    </div>
-                    <div>
+          <div>
+            <a href="./users.html">Usuarios</a>
+            <span></span>
+          </div>
+          <div>
 
-                        <a href="#" class="activo"> Región / Ciudad</a>
-                        <span></span>
+            <a href="#" class="activo"> Región / Ciudad</a>
+            <span></span>
 
-                    </div>
-                </nav>
-            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section id="section-city">
+
+      <div class="flex-container">
+        <div>
+          <span><i class="far fa-flag"></i></span>
+          <h1>Regiones y ciudades</h1>
         </div>
-    </header>
-    <main>
-        <section id="section-city">
+        <a href="#"><button id="button-new-region">Agregar región</button></a>
+      </div>
+    </section>
+    <section>
 
-        <div class="flex-container">
-            <div>
-            	<span><i class="far fa-flag"></i></span>
-            	<h1>Regiones y ciudades</h1> 
-            </div>
-            <a href="#"><button id="button-new-region">Agregar región</button></a>
-        </div>
-        <ul id="myUL">
-            <li><span class="caret">Sudamérica</span>
-              <ul class="nested">
-                <li><span class="caret">Argentina</span>
-                    <ul class="nested">
-                    <li>Buenos Aires</li>
-                    <li>Cordoba</li>
-                    <li>Rosario</li>
-                    </ul>
-                </li>
-       
-                <li><span class="caret">Colombia</span>
-                  <ul class="nested">
-                    <li>Bogotá</li>
-                    <li>Medellin</li>
-                    <li>Barranquilla</li>
-  
-                  </ul>
-                </li>
+
+      <ul id="myUL">
+        <div class="hola">
+        	<li class="region"><span class="caret" id ="region-title">Sudamérica</span>
+        <ul class="nested">
+   
+            <li><span class="caret country" >Argentina</span>
+              <button>Editar</button> <button>Eliminar</button>
+         
+                <button>Agregar Ciudad</button>
+         
+ 
+              <ul class="nested citys">
+                <div>
+                  <li>Buenos Aires</li>
+                  <button>Editar</button> <button>Eliminar</button>
+                </div>
+                <div>
+                  <li>Cordoba</li>
+                  <button>Editar</button> <button>Eliminar</button>
+                </div>
+                <div>
+                  <li>Rosario</li>
+                  <button>Editar</button> <button>Eliminar</button>
+                </div>
+
+              </ul>
+            </li>
+
+            <li><span class="caret country">Colombia</span>
+              <button>Editar</button> <button>Eliminar</button>
+              <ul class="nested citys">
+                <div>
+                  <li>Bogotá</li>
+                  <button>Editar</button> <button>Eliminar</button>
+                </div>
+                <div>
+                  <li>Medellin</li>
+                  <button>Editar</button> <button>Eliminar</button>
+                </div>
+
+              </ul>
+            </li>
+            <li><span class="caret country">Uruguay</span>
+              <button>Editar</button> <button>eliminar</button>
+              <ul class="nested citys">
+                <div>
+                  <li>Montevideo</li>
+                  <button>Editar</button> <button>Eliminar</button>
+                </div>
+                <div>
+                  <li>Medellin</li>
+                  <button>Editar</button> <button>Eliminar</button>
+                </div>
               </ul>
             </li>
           </ul>
-        <ul id="myUL">
-            <li><span class="caret">Norteamérica</span>
-              <ul class="nested">
-                <li><span class="caret">México</span>
-                    <ul class="nested">
-                    <li> Ciudad de México</li>
-                    <li>Tijuana</li>
-                 
-                    </ul>
-                </li>
-       
-                <li><span class="caret">Estados Unidos</span>
-                  <ul class="nested">
-                    <li>Nueva York</li>
-              
-  
-                  </ul>
-                </li>
+        </li>
+      </div>
+      </ul>
+
+      <ul id="myUL">
+        <li class="region"><span id ="region-title"class="caret">Norteamérica</span>
+          <ul class="nested">
+            <li><span class="caret country">México</span>
+              <button>Editar</button> <button>eliminar</button>
+              <ul class="nested citys">
+                <div>
+                  <li>Ciudad de México</li>
+                  <button>Editar</button> <button>Eliminar</button>
+                </div>
+                <div>
+                  <li>Tijuana</li>
+                  <button>Editar</button> <button>Eliminar</button>
+                </div>
+
+              </ul>
+            </li>
+            <li><span class="caret country">Estados Unidos</span>
+              <button>Editar</button> <button>Eliminar</button>
+              <ul class="nested citys">
+                <div>
+                  <li>Nueva York</li>
+                  <button>Editar</button> <button>Eliminar</button>
+                </div>
               </ul>
             </li>
           </ul>
-        </section>
-    </main>
-    <script src="./JavaScript/city.js"></script>
-    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+        </li>
+      </ul>
+
+      <ul id="myUL">
+        <li class="region"><span id ="region-title"class="caret">Europa</span>
+          <ul class="nested">
+            <li><span class="caret country">Francia</span>
+              <button>Editar</button> <button>Eliminar</button>
+              <ul class="nested citys">
+                <div>
+                	<li>Paris</li>
+                	<button>Editar</button> <button>Eliminar</button>
+                </div>
+
+              </ul>
+            </li>
+            <li><span class="caret country">España</span>
+              <button>Editar</button> <button>Eliminar</button>
+              <ul class="nested citys">
+                <div>
+                  <li>Barcelona</li>
+                  <button>Editar</button> <button>Eliminar</button>
+                </div>
+                <div>
+                  <li>Madrid</li>
+                  <button>Editar</button> <button>Eliminar</button>
+                </div>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+  <script src="./JavaScript/city.js"></script>
+  <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 </body>
+
 </html>

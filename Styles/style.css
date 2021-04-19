@@ -535,7 +535,7 @@ div .submit {
   color: #ffffff;
 }
 
-#section-city .flex-container {
+#section-city .flex-container, #section-company .flex-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -543,27 +543,92 @@ div .submit {
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 90%;
-  margin: 2em;
+  margin: 4em 2em;
 }
 
-#section-city h1, #section-city a, #section-city .flex-container span {
+#section-city .flex-container div, #section-company .flex-container div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+#section-city .flex-container span, #section-company span {
+  padding: 6px 10px;
+  background-color: #e4f0f6;
+  color: #0079bf;
+  border-radius: 3px;
+}
+
+#section-city h1, #section-company h1 {
+  padding-left: 10px;
+}
+
+.fab, .far {
+  /* font-weight: 400; */
+  font-size: 12px;
+}
+
+#section-city .flex-container span,
+#section-city h1,
+#section-company h1,
+#section-city a {
   margin: 0;
 }
 
-/* 
-#section-city li {
-    font-size: 1.5em;
-    font-weight: normal;
-} */
+.region {
+  margin: 1em;
+  font-size: 1.3em;
+}
+
 /* Remove default bullets */
-ul, #myUL {
+ul,
+#myUL {
   list-style-type: none;
+  height: 100%;
+}
+
+#myUl .hola {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#myUL button {
+  background-color: #e4f0f6;
+  color: #0079bf;
+  border-radius: 3px;
+  border: none;
+  width: 60px;
+  height: 31px;
+  margin: 0;
 }
 
 /* Remove margins and padding from the parent ul */
 #myUL {
   margin: 0;
   padding: 0;
+}
+
+li {
+  padding: 0.6em;
+  font-size: 16px;
+}
+
+#region-title:hover {
+  background-color: #e4f0f6;
+  color: #0079bf;
+  border-radius: 3px;
+  padding: 10px;
 }
 
 /* Style the caret/arrow */
@@ -579,7 +644,7 @@ ul, #myUL {
 /* Create the caret/arrow with a unicode, and style it */
 .caret::before {
   content: "\25B6";
-  color: black;
+  color: #e2050559;
   display: inline-block;
   margin-right: 6px;
 }
@@ -595,8 +660,43 @@ ul, #myUL {
   display: none;
 }
 
+.nested.active .region {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.country {
+  margin-left: 50px;
+}
+
+.citys li {
+  margin-left: 100px;
+  margin-right: 0;
+}
+
+.citys div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 3em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 /* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
 .active {
   display: block;
+}
+
+.wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 /*# sourceMappingURL=style.css.map */
