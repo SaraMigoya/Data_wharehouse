@@ -49,92 +49,123 @@
         <a href="#"><button id="button-new-region">Agregar región</button></a>
       </div>
     </section>
+
+
     <section>
 
-
       <ul id="myUL">
-        <div class="hola">
-        	<li class="region"><span class="caret" id ="region-title">Sudamérica</span>
-        <ul class="nested">
-   
-            <li><span class="caret country" >Argentina</span>
-              <button>Editar</button> <button>Eliminar</button>
-         
-                <button>Agregar Ciudad</button>
-         
- 
-              <ul class="nested citys">
-                <div>
-                  <li>Buenos Aires</li>
-                  <button>Editar</button> <button>Eliminar</button>
+       
+          <li class="region"><span class="caret" id="region-title">Sudamérica</span>
+          
+            <ul class="nested">
+              <button>Agregar País</button>
+              <li><span class="caret country">Argentina</span>
+                <div class="button-flex-direccion">
+        
+                    <button>Editar</button> 
+                    <button>Eliminar</button>
+          
+                  <button class="button-add-city">Agregar Ciudad</button>
                 </div>
-                <div>
-                  <li>Cordoba</li>
-                  <button>Editar</button> <button>Eliminar</button>
-                </div>
-                <div>
-                  <li>Rosario</li>
-                  <button>Editar</button> <button>Eliminar</button>
-                </div>
+                <ul class="nested citys">
+                  <div>
+                    <li>Buenos Aires</li>
+                    <button>Editar</button> 
+                    <button>Eliminar</button>
+                  </div>
+                  <div>
+                    <li>Cordoba</li>
+                    <button>Editar</button> 
+                    <button>Eliminar</button>
+                  </div>
+                  <div>
+                    <li>Rosario</li>
+                    <button>Editar</button> 
+                    <button>Eliminar</button>
+                
+                  </div>
 
-              </ul>
-            </li>
+                </ul>
+              </li>
 
-            <li><span class="caret country">Colombia</span>
-              <button>Editar</button> <button>Eliminar</button>
-              <ul class="nested citys">
-                <div>
-                  <li>Bogotá</li>
-                  <button>Editar</button> <button>Eliminar</button>
-                </div>
-                <div>
-                  <li>Medellin</li>
-                  <button>Editar</button> <button>Eliminar</button>
-                </div>
+              <li><span class="caret country">Colombia</span>
+                <button>Editar</button>
+                <button>Eliminar</button>
+                <button class="button-add-city">Agregar Ciudad</button>
+                <ul class="nested citys">
+                  <div>
+                    <li>Bogotá</li>
+                    <button>Editar</button> 
+                    <button>Eliminar</button>
+                  
+                  </div>
+                  <div>
+                    <li>Medellin</li>
+                    <button>Editar</button> 
+                    <button>Eliminar</button>
+               
+                  </div>
 
-              </ul>
-            </li>
-            <li><span class="caret country">Uruguay</span>
-              <button>Editar</button> <button>eliminar</button>
-              <ul class="nested citys">
-                <div>
-                  <li>Montevideo</li>
-                  <button>Editar</button> <button>Eliminar</button>
-                </div>
-                <div>
-                  <li>Medellin</li>
-                  <button>Editar</button> <button>Eliminar</button>
-                </div>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </div>
+                </ul>
+              </li>
+              <li><span class="caret country">Uruguay</span>
+                <button>Editar</button> 
+                <button>Eliminar</button>
+                <button class="button-add-city">Agregar Ciudad</button>
+                <ul class="nested citys">
+                  <div>
+                    <li>Montevideo</li>
+                    <button>Editar</button> 
+                    <button>Eliminar</button>
+                
+                  </div>
+                  <div>
+                    <li>Medellin</li>
+                    <button>Editar</button>
+                    <button>Eliminar</button>
+                 
+                  </div>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
       </ul>
 
       <ul id="myUL">
-        <li class="region"><span id ="region-title"class="caret">Norteamérica</span>
+        <li class="region"><span id="region-title" class="caret">Norteamérica</span>
           <ul class="nested">
+            <button>Agregar País</button>
             <li><span class="caret country">México</span>
-              <button>Editar</button> <button>eliminar</button>
+              <button>Editar</button> 
+              <button>Eliminar</button>
+
               <ul class="nested citys">
                 <div>
                   <li>Ciudad de México</li>
-                  <button>Editar</button> <button>Eliminar</button>
+                  <button>Editar</button> 
+                  <button>Eliminar</button>
+
                 </div>
                 <div>
                   <li>Tijuana</li>
-                  <button>Editar</button> <button>Eliminar</button>
+                  <button>Editar</button> 
+                  <button>Eliminar</button>
+
                 </div>
 
               </ul>
             </li>
             <li><span class="caret country">Estados Unidos</span>
-              <button>Editar</button> <button>Eliminar</button>
+              <button>Editar</button> 
+              <button>Eliminar</button>
+              <button class="button-add-city">Agregar Ciudad</button>
               <ul class="nested citys">
                 <div>
                   <li>Nueva York</li>
-                  <button>Editar</button> <button>Eliminar</button>
+                  <button>Editar</button> 
+                  <button>Eliminar</button>
+         
                 </div>
               </ul>
             </li>
@@ -143,28 +174,39 @@
       </ul>
 
       <ul id="myUL">
-        <li class="region"><span id ="region-title"class="caret">Europa</span>
+        <li class="region"><span id="region-title" class="caret">Europa</span>
           <ul class="nested">
+            <button>Agregar País</button>
             <li><span class="caret country">Francia</span>
-              <button>Editar</button> <button>Eliminar</button>
+              <button>Editar</button> 
+              <button>Eliminar</button>
+
               <ul class="nested citys">
                 <div>
-                	<li>Paris</li>
-                	<button>Editar</button> <button>Eliminar</button>
+                  <li>Paris</li>
+                  <button>Editar</button> 
+                  <button>Eliminar</button>
+              
                 </div>
 
               </ul>
             </li>
             <li><span class="caret country">España</span>
-              <button>Editar</button> <button>Eliminar</button>
+              <button>Editar</button> 
+              <button>Eliminar</button>
+              <button class="button-add-city">Agregar Ciudad</button>
               <ul class="nested citys">
                 <div>
                   <li>Barcelona</li>
-                  <button>Editar</button> <button>Eliminar</button>
+                  <button>Editar</button> 
+                  <button>Eliminar</button>
+                  <button class="button-add-city">Agregar Ciudad</button>
                 </div>
                 <div>
                   <li>Madrid</li>
-                  <button>Editar</button> <button>Eliminar</button>
+                  <button>Editar</button> 
+                  <button>Eliminar</button>
+                  <button class="button-add-city">Agregar Ciudad</button>
                 </div>
               </ul>
             </li>

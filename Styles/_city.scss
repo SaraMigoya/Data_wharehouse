@@ -1,53 +1,55 @@
-#section-city .flex-container, #section-company .flex-container {
+#section-city .flex-container,
+#title-section-company .flex-container {
   display: flex;
   justify-content: space-between;
   width: 90%;
   margin: 4em 2em;
 }
-#section-city  .flex-container div, #section-company .flex-container div {
+#section-city .flex-container div,
+#title-section-company .flex-container div {
   display: flex;
   margin: 0;
   align-items: center;
   text-align: center;
 }
 
-#section-city .flex-container span, #section-company span {
+#section-city .flex-container span,
+#title-section-company .flex-container span,
+#title-section-contact .far {
   padding: 6px 10px;
   background-color: #e4f0f6;
   color: #0079bf;
   border-radius: 3px;
-  
 }
 
-#section-city h1, #section-company h1{
+#section-city h1,
+h1 {
   padding-left: 10px;
 }
-.fab, .far {
-  /* font-weight: 400; */
+/* .fab,
+.far {
+
   font-size: 12px;
-}
+} */
 #section-city .flex-container span,
 #section-city h1,
-#section-company h1,
-#section-city a {
+#section-city a,
+#title-section-company .flex-container span,
+#title-section-company h1,
+#title-section-company a,
+#title-section-contact h1,
+#title-section-contact span {
   margin: 0;
 }
 .region {
-margin: 1em;
+  margin: 1em;
   font-size: 1.3em;
-
 }
 /* Remove default bullets */
 ul,
 #myUL {
   list-style-type: none;
   height: 100%;
-}
-
-#myUl .hola {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
 }
 
 #myUL button {
@@ -58,6 +60,17 @@ ul,
   width: 60px;
   height: 31px;
   margin: 0;
+}
+#myUL .button-add-city {
+  width: 10%;
+}
+
+.flex-container .buttons {
+  display: flex;
+  align-items: center;
+  align-content: center;
+
+  justify-content: space-around;
 }
 /* Remove margins and padding from the parent ul */
 #myUL {
@@ -70,8 +83,7 @@ li {
   font-size: 16px;
 }
 
-
-#region-title:hover{
+#region-title:hover {
   background-color: #e4f0f6;
   color: #0079bf;
   border-radius: 3px;
@@ -82,7 +94,7 @@ li {
 .caret {
   cursor: pointer;
   user-select: none; /* Prevent text selection */
-  }
+}
 
 /* Create the caret/arrow with a unicode, and style it */
 .caret::before {
@@ -91,13 +103,11 @@ li {
 
   display: inline-block;
   margin-right: 6px;
-
 }
 
 /* Rotate the caret/arrow icon when clicked on (using JavaScript) */
 .caret-down::before {
   transform: rotate(90deg);
-
 }
 
 /* Hide the nested list */
@@ -105,26 +115,24 @@ li {
   display: none;
 }
 
-.nested.active{
-
-  & .region{
+.nested.active {
+  & .region {
     display: flex;
     flex-wrap: wrap;
   }
 }
 
 .country {
- margin-left: 50px;
-
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .citys li {
   margin-left: 100px;
   margin-right: 0;
- 
 }
 
-.citys div{
+.citys div {
   display: flex;
   height: 3em;
   align-items: center;
@@ -138,4 +146,9 @@ li {
 .wrap {
   display: flex;
   flex-wrap: wrap;
+}
+
+#myUL .button-flex-direccion,
+#myUL .button-flex-direccion span {
+  display: inline;
 }
