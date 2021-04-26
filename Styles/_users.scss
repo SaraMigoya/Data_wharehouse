@@ -17,12 +17,6 @@
     background-color: #ffffff;
 }
 
-.users-container h1{
-    font-size: 1.2em;
-    display: flex;
-    justify-content: center;
-    padding: 2em;
-}
 .users-container div {
     display: flex;
     align-items: center;
@@ -59,4 +53,16 @@ div .submit {
     margin: 2em;
     font-weight: bold;
     color: #ffffff;
+}
+
+.container1 span, .container1 h1 {
+    margin: 0;
+}
+
+.icon-user {
+    padding: 6px 10px;
+  
+    background-color:#2CF6F2;
+    color:rgb(85, 102, 9);
+    border-radius: 3px;
 }

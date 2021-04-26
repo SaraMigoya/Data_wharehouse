@@ -43,7 +43,7 @@
 
       <div class="flex-container">
         <div>
-          <span><i class="far fa-flag"></i></span>
+          <span class="icon-city"><i class="far fa-flag"></i></span>
           <h1>Regiones y ciudades</h1>
         </div>
         <a href="#"><button id="button-new-region">Agregar región</button></a>
@@ -59,29 +59,34 @@
           
             <ul class="nested">
               <button>Agregar País</button>
-              <li><span class="caret country">Argentina</span>
+              <li><span class="caret country" id="pais1">Argentina</span>
                 <div class="button-flex-direccion">
-        
-                    <button>Editar</button> 
-                    <button>Eliminar</button>
-          
-                  <button class="button-add-city">Agregar Ciudad</button>
+                      <button><i class="far fa-edit"></i></button> 
+                      <button><i class="far fa-trash-alt"></i></button>
+                      <button class="button-add-city">Agregar Ciudad</button>
                 </div>
                 <ul class="nested citys">
-                  <div>
+                  <div class="provinces">
                     <li>Buenos Aires</li>
-                    <button>Editar</button> 
-                    <button>Eliminar</button>
-                  </div>
-                  <div>
+                      <div class="button-flex-direccion">
+                        <button><i class="far fa-edit"></i></button> 
+                        <button><i class="far fa-trash-alt"></i></button>
+                      </div>
+                    </div>
+                  <div class="provinces">
                     <li>Cordoba</li>
-                    <button>Editar</button> 
-                    <button>Eliminar</button>
+                    <div class="button-flex-direccion">
+                      <button><i class="far fa-edit"></i></button> 
+                      <button><i class="far fa-trash-alt"></i></button>
+                    </div>
                   </div>
-                  <div>
+                  <div class="provinces">
                     <li>Rosario</li>
-                    <button>Editar</button> 
-                    <button>Eliminar</button>
+                    <div class="button-flex-direccion">
+
+                      <button><i class="far fa-edit"></i></button> 
+                      <button><i class="far fa-trash-alt"></i></button>
+                    </div>
                 
                   </div>
 
@@ -89,40 +94,78 @@
               </li>
 
               <li><span class="caret country">Colombia</span>
-                <button>Editar</button>
-                <button>Eliminar</button>
-                <button class="button-add-city">Agregar Ciudad</button>
+                <div class="button-flex-direccion">
+                  <button><i class="far fa-edit"></i></button>
+                  <button><i class="far fa-trash-alt"></i></button>
+                  <button class="button-add-city">Agregar Ciudad</button>
+                </div>
                 <ul class="nested citys">
                   <div>
                     <li>Bogotá</li>
-                    <button>Editar</button> 
-                    <button>Eliminar</button>
+                    <button><i class="far fa-edit"></i></button> 
+                    <button><i class="far fa-trash-alt"></i></button>
                   
                   </div>
                   <div>
                     <li>Medellin</li>
-                    <button>Editar</button> 
-                    <button>Eliminar</button>
+                    <button><i class="far fa-edit"></i></button> 
+                    <button><i class="far fa-trash-alt"></i></button>
+               
+                  </div>
+
+                </ul>
+              </li>
+              <li><span class="caret country">Chile</span>
+                <div class="button-flex-direccion chile">
+                  <button><i class="far fa-edit"></i></button>
+                  <button><i class="far fa-trash-alt"></i></button>
+                  <button class="button-add-city">Agregar Ciudad</button>
+                </div>
+                <ul class="nested citys">
+                  <div>
+                    <li>Atacama</li>
+                    <button><i class="far fa-edit"></i></button> 
+                    <button><i class="far fa-trash-alt"></i></button>
+                  
+                  </div>
+                  <div>
+                    <li>Santiago</li>
+                    <button><i class="far fa-edit"></i></button> 
+                    <button><i class="far fa-trash-alt"></i></button>
+               
+                  </div>
+                  <div>
+                    <li>Valparaíso</li>
+                    <button><i class="far fa-edit"></i></button> 
+                    <button><i class="far fa-trash-alt"></i></button>
                
                   </div>
 
                 </ul>
               </li>
               <li><span class="caret country">Uruguay</span>
-                <button>Editar</button> 
-                <button>Eliminar</button>
-                <button class="button-add-city">Agregar Ciudad</button>
+                <div class="button-flex-direccion uruguay">
+                  <button><i class="far fa-edit"></i></button> 
+                  <button><i class="far fa-trash-alt"></i></button>
+                  <button class="button-add-city">Agregar Ciudad</button>
+                </div>
                 <ul class="nested citys">
                   <div>
                     <li>Montevideo</li>
-                    <button>Editar</button> 
-                    <button>Eliminar</button>
+                    <button><i class="far fa-edit"></i></button> 
+                    <button><i class="far fa-trash-alt"></i></button>
                 
                   </div>
                   <div>
-                    <li>Medellin</li>
-                    <button>Editar</button>
-                    <button>Eliminar</button>
+                    <li>Maldonado</li>
+                    <button><i class="far fa-edit"></i></button>
+                    <button><i class="far fa-trash-alt"></i></button>
+                 
+                  </div>
+                  <div>
+                    <li>Canelones</li>
+                    <button><i class="far fa-edit"></i></button>
+                    <button><i class="far fa-trash-alt"></i></button>
                  
                   </div>
                 </ul>
@@ -137,34 +180,40 @@
           <ul class="nested">
             <button>Agregar País</button>
             <li><span class="caret country">México</span>
-              <button>Editar</button> 
-              <button>Eliminar</button>
-
+              <button><i class="far fa-edit"></i></button> 
+              <button><i class="far fa-trash-alt"></i></button>
+              <button class="button-add-city">Agregar Ciudad</button>
               <ul class="nested citys">
                 <div>
                   <li>Ciudad de México</li>
-                  <button>Editar</button> 
-                  <button>Eliminar</button>
-
+                  <button><i class="far fa-edit"></i></button> 
+                  <button><i class="far fa-trash-alt"></i></button>
+           
                 </div>
                 <div>
                   <li>Tijuana</li>
-                  <button>Editar</button> 
-                  <button>Eliminar</button>
-
+                  <button><i class="far fa-edit"></i></button> 
+                  <button><i class="far fa-trash-alt"></i></button>
+               
                 </div>
 
               </ul>
             </li>
             <li><span class="caret country">Estados Unidos</span>
-              <button>Editar</button> 
-              <button>Eliminar</button>
+              <button><i class="far fa-edit"></i></button> 
+              <button><i class="far fa-trash-alt"></i></button>
               <button class="button-add-city">Agregar Ciudad</button>
               <ul class="nested citys">
                 <div>
-                  <li>Nueva York</li>
-                  <button>Editar</button> 
-                  <button>Eliminar</button>
+                  <li>Florida</li>
+                  <button><i class="far fa-edit"></i></button> 
+                  <button><i class="far fa-trash-alt"></i></button>
+         
+                </div>
+                <div>
+                  <li>Texas</li>
+                  <button><i class="far fa-edit"></i></button> 
+                  <button><i class="far fa-trash-alt"></i></button>
          
                 </div>
               </ul>
@@ -178,13 +227,14 @@
           <ul class="nested">
             <button>Agregar País</button>
             <li><span class="caret country">Francia</span>
-              <button>Editar</button> 
+              <button><i class="far fa-edit"></i></button> 
               <button>Eliminar</button>
+              <button class="button-add-city">Agregar Ciudad</button>
 
               <ul class="nested citys">
                 <div>
                   <li>Paris</li>
-                  <button>Editar</button> 
+                  <button><i class="far fa-edit"></i></button> 
                   <button>Eliminar</button>
               
                 </div>
@@ -192,19 +242,19 @@
               </ul>
             </li>
             <li><span class="caret country">España</span>
-              <button>Editar</button> 
+              <button><i class="far fa-edit"></i></button> 
               <button>Eliminar</button>
               <button class="button-add-city">Agregar Ciudad</button>
               <ul class="nested citys">
                 <div>
                   <li>Barcelona</li>
-                  <button>Editar</button> 
+                  <button><i class="far fa-edit"></i></button> 
                   <button>Eliminar</button>
                   <button class="button-add-city">Agregar Ciudad</button>
                 </div>
                 <div>
                   <li>Madrid</li>
-                  <button>Editar</button> 
+                  <button><i class="far fa-edit"></i></button> 
                   <button>Eliminar</button>
                   <button class="button-add-city">Agregar Ciudad</button>
                 </div>
