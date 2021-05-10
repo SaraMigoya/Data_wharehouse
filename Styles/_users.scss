@@ -9,12 +9,14 @@
 .users-container {
     box-shadow: 0px 2px 2px 1px  #CCCCCC;
     border-radius: 3.5px;
-    width: 600px;
-    height: 600px;
+    width: 500px;
+    height: 500px;
     overflow: visible;
     border: 1px solid #CCCCCC;
     margin-top: 5em;
+    margin-bottom: 5em;
     background-color: #ffffff;
+
 }
 
 .users-container div {
@@ -35,7 +37,7 @@
 .users-container .required-field {
     padding: 1em;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 

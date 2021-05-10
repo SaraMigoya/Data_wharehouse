@@ -16,7 +16,7 @@
 .icon-city {
   padding: 6px 10px;
   background-color: #e64980;
-  color: rgb(85, 102, 9);
+  color: white;
   border-radius: 3px;
 }
 
@@ -36,7 +36,7 @@ h1 {
 #title-section-company h1,
 #title-section-company a,
 #title-section-contact h1,
-#title-section-contact span {
+#title-section-contact span, #section-new-region .flex-container-buttons {
   margin: 0;
 }
 .region {
@@ -109,7 +109,6 @@ li {
 .caret::before {
   content: "\25B6";
   color: #e2050559;
-
   display: inline-block;
   margin-right: 6px;
 }
@@ -160,22 +159,13 @@ li {
 
 #myUL .button-flex-direccion,
 #myUL .button-flex-direccion span {
-  margin-left: 67%;
+  margin-left: 71%;
   margin-top: -18px;
 }
-/* #myUL .button-flex-direccion {
-  position: absolute;
-}
- */
+
 #myUL .button-flex-direccion.citys {
   display: flex;
 }
 
-ul .provinces {
-  margin-top: 20px;
 
-}
-#pais1 {
-  display: flex;
-  align-items: center;
-}
+///////// new country

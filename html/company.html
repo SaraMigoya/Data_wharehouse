@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Styles/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+       <div id="black-company" class="none"></div>
+    <header>
+        <div class="container">
+            <h2 class="logotipo">LOGO</h2>
+            <div>
+                <nav>
+                    <div>
+                        <a href="./index.html">Contactos</a>
+                        <span></span>
+                    </div>
+
+                    <div>
+                        <a href="#" class="activo">Compañias</a>
+                        <span></span>
+                    </div>
+
+                    <div>
+                        <a href="./users.html">Usuarios</a>
+                        <span></span>
+                    </div>
+                    <div>
+
+                        <a href="./city.html"> Región / Ciudad</a>
+                        <span></span>
+
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="section-new-company" class="none add-new-item ">
+
+            <div class="flex-container">
+                <h2>Nueva compañía</h2>
+                <i class="fas fa-times" id="close-company"></i>
+
+            </div>
+            <form action="" method="POST">
+                <div class="container">
+                    <div class="container-input">
+                        <label for="POST-name">Nombre <span>* </span></label>
+                        <input id="POST-name" type="text" name="name" required>
+                    </div>
+
+                    <div class="container-input">
+                        <div>
+                            <label for="POST-email">Email <span>*</span> </label>
+                        </div>
+                        <input id="POST-email" type="text" name="email" required>
+                    </div>
+                    <div class="container-input">
+                        <label for="POST-company">Dirección <span>*</span> </label>
+                        <input id="POST-company" type="text" name="company" placeholder="ingresar nombre de la compañía"
+                            required>
+                    </div>
+                    <div class="container-input">
+                        <label for="city">Ciudad</label>
+                        <div>
+                            <select name="city" id="city">
+                                <option value="">Seleccione una ciudad</option>
+                                <option value="city1">Buenos Aires</option>
+                                <option value="city2">La Plata</option>0
+                                <option value="city3">Chile</option>
+                                <option value="city4">Uruguay</option>
+                                <option value="city5">España</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-new-company">
+                    <div class="flex-container-buttons" >
+                        <button>Cancelar</button>
+                        <input type="submit" value="Guardar compañía">
+                    </div>
+                </div>
+            </form>
+
+        </section>
+        <section id="title-section-company" >
+            <div class="flex-container">
+                <div>
+                    <span class="icon-company"><i class="far fa-building"></i></span>
+                    <h1>Compañías</h1>
+                </div>
+               <button id="button-new-company">Agregar compañía</button>
+            </div>
+        </section>
+
+
+        <section>
+            <table id="table-company">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Dirección</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Ciudad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td>Softtek</td>
+                        <td>xxxxx</td>
+                        <td>xxx@gmail.com</td>
+                        <td>111111111</td>
+                        <td>Tijuana</td>
+
+                    </tr>
+                    <tr>
+
+                        <td>Globant</td>
+                        <td>Argentina</td>
+                        <td>xxx@gmail.com</td>
+                        <td>11111111111</td>
+                        <td>Buenos Aires</td>
+
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </section>
+    </main>
+<script src="../JavaScript/company.js"></script>
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

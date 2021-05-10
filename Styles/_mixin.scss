@@ -1,0 +1,28 @@
+
+@mixin add-new-item {
+    border: 3px solid #0683F9;
+    border-radius: 6.5px;
+    box-shadow: #0683F9;
+    height: 131px;
+    width: 1172px;
+    top: -71px;
+    position: relative;
+    background: var(--white);
+    display: flex;
+    align-items:center;
+    justify-content: space-evenly;
+}
+
+@mixin  add-new-item2 {
+    border: 3px solid #0683F9;
+    border-radius: 6.5px;
+    box-shadow: #0683F9;
+    height: 131px;
+    width: 1172px;
+    top: -71px;
+    position: relative;
+    background: var(--white);
+    display: flex;
+    align-items:center;
+    justify-content: space-evenly;
+}

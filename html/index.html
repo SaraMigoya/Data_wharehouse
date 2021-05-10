@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Styles/style.css">
+    <link rel="stylesheet" href="../Styles/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
@@ -12,6 +12,8 @@
 </head>
 
 <body>
+    <div id="black" class="none"></div>
+
     <header>
         <div class="container">
             <h2 class="logotipo">LOGO</h2>
@@ -43,6 +45,153 @@
     </header>
 
     <main>
+  
+            <section id="section-new-contact" class="add-new-item none">
+                <div class="flex-container">
+                    <h2>Nuevo contacto</h2> 
+                <i class="fas fa-times" id="close"></i>
+
+                </div>
+                <form action="" method="POST" class="form-new-contact">
+                    <div class="container">
+        
+                            <div class="add-profile-photo">
+                                <i class="far fa-user icon-"></i>
+
+                            </div>
+                            <div class="container-input">
+                                <label for="POST-name">Nombre <span>* </span></label>
+                                <input id="POST-name" type="text" name="name" required>
+                            </div>
+                            <div class="container-input">
+                                <label for="POST-lastname">Apellido <span>*</span> </label>
+                                <input id="POST-lastname" type="text" name="lastname" required>
+                            </div>
+                            <div class="container-input">
+                                <label for="POST-cargo">Cargo <span>*</span> </label>
+                                <input id="POST-cargo" type="text" name="cargo" required>
+                            </div>
+        
+                            <div class="container-input">
+                                <label for="POST-email">Email <span>*</span> </label>
+                                <input id="POST-email" type="text" name="email" required>
+                            </div>
+                            <div class="container-input">
+                                <label for="POST-company">Compañía <span>*</span> </label>
+                                <input id="POST-company" type="text" name="company"
+                                    placeholder="ingresar nombre de la compañía" required>
+                            </div>
+                     
+                    </div>
+                    <div class="container-new-contact">
+        
+                        <div>
+                            <label for="region">Región</label>
+                            <div>
+                                <select name="region" id="region">
+                                    <option value="">Seleccione una región</option>
+                                    <option value="region1">Argentina</option>
+                                    <option value="region2">Colombia</option>0
+                                    <option value="region3">Chile</option>
+                                    <option value="region4">Uruguay</option>
+                                    <option value="region5">España</option>
+                                </select>
+                            </div>
+        
+                        </div>
+                        <div>
+                            <label for="country">País</label>
+                            <div>
+                                <select name="country" id="country">
+                                    <option value="">Seleccione un país</option>
+                                    <option value="country1">Argentina</option>
+                                    <option value="country2">Colombia</option>0
+                                    <option value="country3">Chile</option>
+                                    <option value="country4">Uruguay</option>
+                                    <option value="country5">España</option>
+                                </select>
+                            </div>
+        
+                        </div>
+                        <div>
+                            <label for="city">Ciudad</label>
+                            <div>
+                                <select name="city" id="city">
+                                    <option value="">Seleccione una ciudad</option>
+                                    <option value="city1">Buenos Aires</option>
+                                    <option value="city2">La Plata</option>0
+                                    <option value="city3">Chile</option>
+                                    <option value="city4">Uruguay</option>
+                                    <option value="city5">España</option>
+                                </select>
+                            </div>
+        
+                        </div>
+                        <div>
+                            <label for="POST-adress">Dirección</label>
+                            <div>
+                                <input id="POST-adress" type="text" name="adress" required>
+                            </div>
+                        </div>
+        
+                        <div>
+                            <label for="interes-new-contact">Interés</label>
+                            <div>
+                                <select name="interes-new-contact" id="interes-new-contact">
+                                    <option value="canal1">100%</option>
+                                    <option value="canal1">100%</option>
+                                    <option value="canal1">100%</option>
+                                    <option value="canal1">100%</option>
+                                    <option value="canal1">100%</option>
+            
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="canal">Canal de contacto</label>
+                            <div>
+                                <select name="canal" id="canal">
+                                    <option value="canal1">Whatsapp</option>
+                                    <option value="canal2">Slack</option>
+                                    <option value="canal3">Facebook</option>
+                                    <option value="canal4">Email</option>
+                                    <option value="canal5">Mensaje</option>
+                                </select>
+                            </div>
+                        </div>
+        
+                        <div>
+                            <label for="POST-user-account">Cuenta de usuario</label>
+                            <div>
+                                <input id="POST-user-account" type="text" name="user-account" placeholder="@ejemplo">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="canal">Preferencias</label>
+                            <div>
+                                <select name="canal" id="canal">
+                                    <option value="canal1">Whatsapp</option>
+                                    <option value="canal2">Slack</option>
+                                    <option value="canal3">Facebook</option>
+                                    <option value="canal4">Email</option>
+                                    <option value="canal5">Mensaje</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+
+                            <input type="text" placeholder="+ Agregar canal">
+                        </div>
+              
+                        <div class="flex-container-buttons">
+                            <button>Cancelar</button>
+                            <input type="submit" value="Guardar contacto">
+                        </div>
+                    </div>
+                </form>
+        
+            </section>
+
         <section id="title-section-contact">
             <div class="container1">
                 <span class="icon-contact"><i class="far fa-address-book"></i></span>
@@ -71,7 +220,7 @@
                         <p>Exportar contactos</p>
                         <i class="fas fa-caret-down" id="arrowExportar"></i>
                     </div>
-                    <a href="#"><button id="button-new-contact">Agregar contacto</button></a>
+                    <button id="button-new-contact">Agregar contacto</button>
                 </div>
             </div>
         </section>
@@ -133,127 +282,7 @@
                 </form>
             </div>
         </article>
-        <section id="section-new-contact">
-            <h2>Nuevo contacto</h2>
-            <form action="" method="POST">
-                <div class="container">
 
-                    <div class="hola">
-                        <div class="add-profile-photo">
-                            <i class="far fa-user icon-"></i>
-
-                        </div>
-                        <div class="container-input">
-                            <label for="POST-name">Nombre <span>* </span></label>
-                            <input id="POST-name" type="text" name="name" required>
-                        </div>
-                        <div class="container-input">
-                            <label for="POST-lastname">Apellido <span>*</span> </label>
-                            <input id="POST-lastname" type="text" name="lastname" required>
-                        </div>
-                        <div class="container-input">
-                            <label for="POST-cargo">Cargo <span>*</span> </label>
-                            <input id="POST-cargo" type="text" name="cargo" required>
-                        </div>
-
-                        <div class="container-input">
-                            <label for="POST-email">Email <span>*</span> </label>
-                            <input id="POST-email" type="text" name="email" required>
-                        </div>
-                        <div class="container-input">
-                            <label for="POST-company">Compañía <span>*</span> </label>
-                            <input id="POST-company" type="text" name="company"
-                                placeholder="ingresar nombre de la compañía" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="container-new-contact">
-
-                    <div>
-                        <label for="region">Región</label>
-                        <select name="region" id="region">
-                            <option value="">Seleccione una región</option>
-                            <option value="region1">Argentina</option>
-                            <option value="region2">Colombia</option>0
-                            <option value="region3">Chile</option>
-                            <option value="region4">Uruguay</option>
-                            <option value="region5">España</option>
-                        </select>
-
-                    </div>
-                    <div>
-                        <label for="country">País</label>
-                        <select name="country" id="country">
-                            <option value="">Seleccione un país</option>
-                            <option value="country1">Argentina</option>
-                            <option value="country2">Colombia</option>0
-                            <option value="country3">Chile</option>
-                            <option value="country4">Uruguay</option>
-                            <option value="country5">España</option>
-                        </select>
-
-                    </div>
-                    <div>
-                        <label for="city">Ciudad</label>
-                        <select name="city" id="city">
-                            <option value="">Seleccione una ciudad</option>
-                            <option value="city1">Buenos Aires</option>
-                            <option value="city2">La Plata</option>0
-                            <option value="city3">Chile</option>
-                            <option value="city4">Uruguay</option>
-                            <option value="city5">España</option>
-                        </select>
-
-                    </div>
-                    <div>
-                        <label for="POST-adress">Dirección</label>
-                        <input id="POST-adress" type="text" name="adress" required>
-                    </div>
-
-                    <div>
-                        <label for="canal">Interés</label>
-                        <select name="canal" id="canal">
-                            <option value="canal1">100%</option>
-                            <option value="canal1">100%</option>
-                            <option value="canal1">100%</option>
-                            <option value="canal1">100%</option>
-                            <option value="canal1">100%</option>
-
-                        </select>
-                    </div>
-                    <div>
-                        <label for="canal">Canal de contacto</label>
-                        <select name="canal" id="canal">
-                            <option value="canal1">Whatsapp</option>
-                            <option value="canal2">Slack</option>
-                            <option value="canal3">Facebook</option>
-                            <option value="canal4">Email</option>
-                            <option value="canal5">Mensaje</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="POST-user-account">Cuenta de usuario</label>
-                        <input id="POST-user-account" type="text" name="user-account" placeholder="@ejemplo">
-                    </div>
-                    <div>
-                        <label for="canal">Preferencias</label>
-                        <select name="canal" id="canal">
-                            <option value="canal1">Whatsapp</option>
-                            <option value="canal2">Slack</option>
-                            <option value="canal3">Facebook</option>
-                            <option value="canal4">Email</option>
-                            <option value="canal5">Mensaje</option>
-                        </select>
-                    </div>
-                    <div>
-                        <input type="text" placeholder="agregar canal">
-                    </div>
-                    <input type="submit" value="Save">
-                </div>
-            </form>
-
-        </section>
         <article>
             <section>
                 <table>
@@ -404,8 +433,9 @@
             </section>
         </article>
     </main>
-    <script src="./JavaScript/index.js"></script>
+    <script src="../JavaScript/index.js"></script>
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
