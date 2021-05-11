@@ -6,7 +6,7 @@ const { dataLogin, validateJwt, dataReceived } = require("../middlewares");
 router.post("/", validateJwt, dataReceived, async (req, res) => {
 
     if (req.user.admin == false) {
-        res.send("no estás autorizado para acceder a esta información")
+        res.send("no estás autorizado para crear un nuevo usuario")
         return
 
     }

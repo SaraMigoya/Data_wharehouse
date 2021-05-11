@@ -3,7 +3,9 @@
 
 let email = document.getElementById("email")
 let password = document.getElementById("password")
-let incorrecto = document.getElementById("incorrecto")
+let repetePassword = document.getElementById("repete-password")
+let invalid = document.getElementById("invalid")
+let diferentPassword = document.getElementById("diferent-password")
 let buttonLogin = document.getElementById("button-login")
 
 
@@ -30,6 +32,6 @@ let login = async (email, password) =>{
         location.href = "../html/index.html"
     }
     else{
-        incorrecto.removeAttribute("hidden")
+        invalid.removeAttribute("hidden")
     }
 }

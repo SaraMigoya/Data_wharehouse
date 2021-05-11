@@ -114,8 +114,8 @@ const validateJwt = (req, res, next) => {
 
 
 const dataReceived = (req, res, next) => {
-    const { name, last_name, email, username, password, isAdmin } = req.body;
-    if (!name || !last_name || !email || !username || !password || ! isAdmin) {
+    const { name, last_name, email, username, password, repetedPassword, isAdmin } = req.body;
+    if (!name || !last_name || !email || !username || !password || ! repetedPassword|| ! isAdmin) {
         return res.status(400).json({
             error: 'faltan campos'
         })
@@ -132,6 +132,12 @@ const dataReceived = (req, res, next) => {
             error: 'Password incorrecto'
         })
     }
+    if(password != repetedPassword) {
+        return res.status(400).json({
+            error: "las contraseñas no coinciden"
+        })
+    }
+    
 
     next()
 }

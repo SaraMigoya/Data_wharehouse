@@ -48,39 +48,45 @@
 
         <div class="users-container">
             <div>
-                <form action="POST">
+            
                     <div class="required-field">
-                        <label for="POST-name">Nombre</label>
-                        <input id="POST-name" type="text" name="name" required>
+                        <label for="name">Nombre</label>
+                        <input id="name" type="text" name="name" required>
                     </div>
                     <div class="required-field">
-                        <label for="POST-lastname">Apellido</label>
-                        <input id="POST-lastname" type="text" name="lastname" required>
+                        <label for="lastname">Apellido</label>
+                        <input id="lastname" type="text" name="lastname" required>
                     </div>
                     <div class="required-field">
-                        <label for="POST-email">Email</label>
-                        <input id="POST-email" type="text" name="email" required>
+                        <label for="email">Email</label>
+                        <input id="email" type="text" name="email" required>
                     </div>
                     <div class="required-field">
-                        <label for="POST-profile">Perfil</label>
-                        <input id="POST-profile" type="text" name="profile" required>
+                        <label for="user">Nombre de usuario</label>
+                        <input id="user" type="text" name="profile" required>
                     </div>
                     <div class="required-field">
-                        <label for="POST-password">Contraseña</label>
-                        <input id="POST-password" type="text" name="password" required>
+                        <label for="password">Contraseña</label>
+                        <input id="password" type="text" name="password" required>
                     </div>
                     <div class="required-field">
-                        <label for="POST-password2"> Repetir contraseña</label>
-                        <input id="POST-password2" type="text" name="password2" required>
+                        <label for="repet-password"> Repetir contraseña</label>
+                        <input id="repet-password" type="text"required>
+                    </div>
+                    <div class="required-field">
+                        <label for="isadmin">Administrador</label>
+                        <input type="checkbox" id="isadmin">
                     </div>
                     <div>
-                        <input type="submit" value="Crear" class="submit">
+                        <button class="submit" id="button-create-user">crear</button>
                     </div>
-                </form>
+               
+                <p id="created-user" hidden>el usuario ha sido creado</p>
             </div>
         </div>
 
     </main>
+    <script src="../JavaScript/users.js"></script>
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 </body>
 
