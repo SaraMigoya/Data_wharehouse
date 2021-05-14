@@ -723,7 +723,7 @@ section .login-container {
   font-weight: lighter;
 }
 
-.users-container {
+.create-user {
   -webkit-box-shadow: 0px 2px 2px 1px  #CCCCCC;
           box-shadow: 0px 2px 2px 1px  #CCCCCC;
   border-radius: 3.5px;
@@ -736,9 +736,14 @@ section .login-container {
   background-color: #ffffff;
 }
 
-.users-container div {
+.create-user__container {
   display: -webkit-box;
   display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -748,7 +753,7 @@ section .login-container {
           justify-content: center;
 }
 
-.users-container input {
+.create-user input {
   height: 35.5px;
   width: 190px;
   border-radius: 3.5px;
@@ -757,7 +762,7 @@ section .login-container {
   margin: 0;
 }
 
-.users-container .required-field {
+.create-user__required-field {
   padding: 1em;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -766,14 +771,15 @@ section .login-container {
       justify-content: space-around;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  width: 27em;
 }
 
-.required-field label {
+.create-user__required-field label {
   margin: 0;
   width: 5%;
 }
 
-div .submit {
+.submit {
   border: none;
   border-radius: 3.5px;
   width: 10em;

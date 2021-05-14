@@ -22,4 +22,46 @@ user.init({
     modelName: "user"
 });
 
-module.exports = { user, /* productos, pedidos, detalle_pedidos, estados */}
+class regions extends Model {}
+regions.init({
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    name:DataTypes.STRING,
+}, {
+    sequelize,
+    modelName: "region"
+});
+
+class countries extends Model {}
+countries.init({
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+
+    name:DataTypes.STRING,
+}, {
+    sequelize,
+    modelName: "countrie"
+});
+
+class cities extends Model {}
+cities.init({
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+
+    name:DataTypes.STRING,
+}, {
+    sequelize,
+    modelName: "cities"
+});
+
+
+module.exports = { user, regions, countries, cities}

@@ -41,39 +41,37 @@
 
     <main>
         <div class="container1">
-
             <span class="icon-user"><i class="far fa-user"></i></span>
             <h1>Crear usuario</h1>
         </div>
 
-        <div class="users-container">
-            <div>
-            
-                    <div class="required-field">
+        <div class="create-user">
+            <div class="create-user__container">
+                    <div class="create-user__required-field">
                         <label for="name">Nombre</label>
                         <input id="name" type="text" name="name" required>
                     </div>
-                    <div class="required-field">
+                    <div class="create-user__required-field">
                         <label for="lastname">Apellido</label>
                         <input id="lastname" type="text" name="lastname" required>
                     </div>
-                    <div class="required-field">
+                    <div class="create-user__required-field">
                         <label for="email">Email</label>
                         <input id="email" type="text" name="email" required>
                     </div>
-                    <div class="required-field">
+                    <div class="create-user__required-field">
                         <label for="user">Nombre de usuario</label>
                         <input id="user" type="text" name="profile" required>
                     </div>
-                    <div class="required-field">
+                    <div class="create-user__required-field">
                         <label for="password">Contraseña</label>
                         <input id="password" type="text" name="password" required>
                     </div>
-                    <div class="required-field">
+                    <div class="create-user__required-field">
                         <label for="repet-password"> Repetir contraseña</label>
                         <input id="repet-password" type="text"required>
                     </div>
-                    <div class="required-field">
+                    <div class="create-user__required-field">
                         <label for="isadmin">Administrador</label>
                         <input type="checkbox" id="isadmin">
                     </div>
@@ -82,6 +80,7 @@
                     </div>
                
                 <p id="created-user" hidden>el usuario ha sido creado</p>
+                <p id="created-user2" hidden>lo siento no se pudo crear</p>
             </div>
         </div>
 

@@ -6,7 +6,7 @@
 }
 
 
-.users-container {
+.create-user {
     box-shadow: 0px 2px 2px 1px  #CCCCCC;
     border-radius: 3.5px;
     width: 500px;
@@ -16,16 +16,18 @@
     margin-top: 5em;
     margin-bottom: 5em;
     background-color: #ffffff;
+ 
 
 }
-
-.users-container div {
+.create-user__container {
+    display: flex;
+    flex-direction: column;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.users-container input {
+.create-user  input {
     height: 35.5px;
     width: 190px;
     border-radius: 3.5px;
@@ -34,19 +36,20 @@
     margin: 0;
 }
 
-.users-container .required-field {
+ .create-user__required-field {
     padding: 1em;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    width: 27em;
 }
 
-.required-field label {
+.create-user__required-field label {
     margin: 0;
     width: 5%;
 }
 
-div .submit {
+.submit {
     border:none;
     border-radius: 3.5px;
     width: 10em;

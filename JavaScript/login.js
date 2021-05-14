@@ -20,7 +20,7 @@ let login = async (email, password) =>{
         password
     }
 
-    let searchApi = await fetch(`https://localhost:3000/users/login`, {
+    let searchApi = await fetch(`http://localhost:3000/users/login`, {
         method: "POST" ,
         body: JSON.stringify(data),
         headers: {

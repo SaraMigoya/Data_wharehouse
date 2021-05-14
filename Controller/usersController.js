@@ -1,11 +1,13 @@
 const express = require("express");
 const models = require("../models")
 const router = express.Router();
-const { dataLogin, validateJwt, dataReceived } = require("../middlewares");
+const { dataLogin, dataReceived, validateJwt } = require("../middlewares");
 
+
+//POST
 router.post("/", validateJwt, dataReceived, async (req, res) => {
 
-    if (req.user.admin == false) {
+ if (req.user.admin == false) {
         res.send("no estás autorizado para crear un nuevo usuario")
         return
 
@@ -23,7 +25,7 @@ router.post("/", validateJwt, dataReceived, async (req, res) => {
 
 
     const usu = await models.user.create(newUser)
-    if (usu) return res.status(200).json(usu);
+    if (usu) return res.status(200).json({exito: "se creo el usuario exitosamente", usu} );
 
     res.status(400).json({
         message: "No se pudo crear el usuario"
@@ -40,5 +42,7 @@ router.post("/", validateJwt, dataReceived, async (req, res) => {
         }
     })
 })
-   
+
+
+
 module.exports = router; 

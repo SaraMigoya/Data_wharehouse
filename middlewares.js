@@ -101,9 +101,9 @@ function validateEmail(value) {
 
 const validateJwt = (req, res, next) => {
 
-    const codigoToken = req.headers.authorization.split(' ')[1];
+    const codeToken = req.headers.authorization.split(' ')[1];
 
-    jwt.verify(codigoToken, jwtClave, (err, decoded) => {
+    jwt.verify(codeToken, jwtClave, (err, decoded) => {
         if (err) {
             res.send('No está autorizado');
         }
@@ -114,8 +114,8 @@ const validateJwt = (req, res, next) => {
 
 
 const dataReceived = (req, res, next) => {
-    const { name, last_name, email, username, password, repetedPassword, isAdmin } = req.body;
-    if (!name || !last_name || !email || !username || !password || ! repetedPassword|| ! isAdmin) {
+    const { name, last_name, email, username, password, repetedPassword} = req.body;
+    if (!name || !last_name || !email || !username || !password || ! repetedPassword) {
         return res.status(400).json({
             error: 'faltan campos'
         })
