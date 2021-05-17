@@ -8,6 +8,7 @@ let sectionNewCountry = document.getElementById("section-new-country")
 let backgroundBlack = document.getElementById("black-region")
 let closeNewRegion = document.getElementById("close-region")
 let closeNewCountry = document.getElementById ("close-country")
+let sectionCity = document.getElementById("section-city")
 
 
 for (i = 0; i < toggler.length; i++) {
@@ -43,3 +44,6 @@ closeNewCountry.addEventListener("click", () =>{
   sectionNewCountry.classList.toggle("none")
   backgroundBlack.classList.toggle("none")
 })
+
+
+////
