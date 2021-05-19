@@ -8,6 +8,7 @@ const models = require("./models")
 const initialController = require("./Controller/initialController")
 const usersController = require("./Controller/usersController")
 const regionsController = require("./Controller/regionsController")
+const companiesController = require("./Controller/companiesController"); 
 
 app.use(express.json())
 app.use(cors());
@@ -15,6 +16,7 @@ app.use(helmet());
 app.use("/init", initialController);
 app.use("/users", usersController);
 app.use ("/regions", regionsController);
+app.use ("/companies", companiesController)
 
 
 db.init()
@@ -44,3 +46,6 @@ models.countries.belongsTo(models.regions)
 
 models.countries.hasMany(models.cities)
 models.cities.belongsTo(models.countries)
+
+models.cities.hasMany(models.companies)
+models.companies.belongsTo(models.cities)

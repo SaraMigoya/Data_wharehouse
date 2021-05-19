@@ -22,6 +22,7 @@ user.init({
     modelName: "user"
 });
 
+
 class regions extends Model {}
 regions.init({
     id: {
@@ -34,6 +35,7 @@ regions.init({
     sequelize,
     modelName: "region"
 });
+
 
 class countries extends Model {}
 countries.init({
@@ -64,4 +66,23 @@ cities.init({
 });
 
 
-module.exports = { user, regions, countries, cities}
+class companies extends Model {}
+companies.init({
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+
+    name:DataTypes.STRING,
+    address:DataTypes.STRING,
+    email: DataTypes.STRING,
+    tel: DataTypes.STRING,
+
+}, {
+    sequelize,
+    modelName: "companie"
+});
+
+
+module.exports = { user, regions, countries, cities, companies}

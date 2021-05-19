@@ -1,4 +1,4 @@
-require("dotenv").config();
+
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 var jwtClave = process.env.JWTPASSWORD
@@ -142,4 +142,26 @@ const dataReceived = (req, res, next) => {
     next()
 }
 
-module.exports = {dataLogin, validatekeyCode, validateEmail, generatedToken, validateUser, validateJwt, dataReceived}
+
+const dataCompanie = (req, res, next) => {
+    const { name, address, email, tel, cityId} = req.body;
+
+    if (!name || !address || !email || !tel || !cityId) {
+        return res.status(400).json({
+            error: 'faltan campos'
+        })
+    }
+ 
+    if (validateEmail(email) === false) {
+        return res.status(400).json({
+            error: 'Email incorrecto'
+        })
+    }
+    else {
+        req.dates = req.body;
+    }
+
+    next()
+}
+
+module.exports = {dataLogin, validatekeyCode, validateEmail, generatedToken, validateUser, validateJwt, dataReceived, dataCompanie}

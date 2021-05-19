@@ -2,7 +2,6 @@ const express = require("express");
 const models = require("../models")
 const router = express.Router();
 const { validateJwt } = require("../middlewares");
-const { cities } = require("../models");
 
 
 //POST
@@ -12,9 +11,10 @@ router.post("/", validateJwt, async (req, res) => {
         return
 
     }
+    
     const { name } = req.body
     const newRegion = {
-        name
+        name,
     }
 
     const region = await models.regions.create(newRegion)
