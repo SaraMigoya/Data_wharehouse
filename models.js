@@ -84,5 +84,49 @@ companies.init({
     modelName: "companie"
 });
 
+class contacts extends Model {}
+contacts.init({
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
 
-module.exports = { user, regions, countries, cities, companies}
+    name:DataTypes.STRING,
+    last_name:DataTypes.STRING,
+    position: DataTypes.STRING,
+    email: DataTypes.STRING,
+    company: DataTypes.STRING,
+    canal_contacto: DataTypes.STRING,
+    cuenta_usuario: DataTypes.STRING,
+
+}, {
+    sequelize,
+    modelName: "contacts"
+});
+/* class contacts extends Model {}
+contacts.init({
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+
+    name:DataTypes.STRING,
+    last_name:DataTypes.STRING,
+    position: DataTypes.STRING,
+    email: DataTypes.STRING,
+    company: DataTypes.STRING,
+    id_region: DataTypes.STRING,
+    id_country: DataTypes.STRING,
+    id_city: DataTypes.STRING,
+    canal_contacto: DataTypes.STRING,
+    cuenta_usuario: DataTypes.STRING,
+
+}, {
+    sequelize,
+    modelName: "contacts"
+}); */
+
+
+module.exports = { user, regions, countries, cities, companies, contacts}

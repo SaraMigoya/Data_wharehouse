@@ -60,6 +60,12 @@ router.post("/", dataCompanie, validateJwt, async (req, res) => {
 
 
     .put('/:id', async (req, res) => {
+          /*   if (req.user.admin == false) {
+        res.send("no estás autorizado para crear un nuevo usuario")
+        return
+
+    }
+ */
 
         const updateCompany = await models.companies.update(req.body, {
             where: { id: req.params.id }
@@ -68,9 +74,22 @@ router.post("/", dataCompanie, validateJwt, async (req, res) => {
 
         if (updateCompany) return res.status(201).json({ message: "Actualizado con exito" });
         res.status(400).json({
-            message: `No se pudo actualizar : ${req.params.name}`
+            message: `No se pudo actualizar : ${req.params.id}`
         });
 
+    })
+
+    .delete ("/:id", async (req, res) =>{
+
+        const deleteCompany = await models.companies.destroy({
+            where: {id: req.params.id}
+        });
+
+        if (deleteCompany) return res.status(201).json({message: "eliminado con exito" });
+        res.status(400).json({
+            message: `No se pudo elimnar : ${req.params.id}`
+
+        })
     })
 
 
