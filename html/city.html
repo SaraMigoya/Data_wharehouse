@@ -50,33 +50,9 @@
         <div class="container">
 
           <div class="container-input">
-            <label for="city">Región<span> * </span></label>
-            <div>
-              <select name="city" id="city" required>
-                <option value="">Seleccione una región</option>
-                <option value="">África</option>
-                <option value="city1">Norteamérica</option>
-                <option value="city2">Sudamérica</option>
-                <option value="city3">Europa</option>
-                <option value="city4">Asia</option>
-                <option value="city5">Australia</option>
-              </select>
-            </div>
-          </div>
+            <label for="region">Region <span>* </span></label>
+            <input id="region" type="text" name="region" required>
 
-          <div class="container-input">
-            <label for="city">País</label>
-            <div>
-              <select name="city" id="city" disabled>
-                <option value="">Seleccione una región</option>
-                <option value="">África</option>
-                <option value="city1">Norteamérica</option>
-                <option value="city2">Sudamérica</option>
-                <option value="city3">Europa</option>
-                <option value="city4">Asia</option>
-                <option value="city5">Australia</option>
-              </select>
-            </div>
           </div>
 
           <div class="flex-container-buttons">
@@ -91,30 +67,20 @@
     <section id="section-new-country" class="add-new-item none">
 
       <div class="flex-container">
-        <h2>Nueva país</h2>
+        <h2>Nuevo país</h2>
         <i class="fas fa-times" id="close-country"></i>
       </div>
       <form action="" method="POST">
         <div class="container">
 
           <div class="container-input">
-            <label for="city">País</label>
-            <div>
-              <select name="city" id="city">
-                <option value="">Seleccione una región</option>
-                <option value="">África</option>
-                <option value="city1">Norteamérica</option>
-                <option value="city2">Sudamérica</option>
-                <option value="city3">Europa</option>
-                <option value="city4">Asia</option>
-                <option value="city5">Australia</option>
-              </select>
-            </div>
+            <label for="country">Agregar país <span>* </span></label>
+            <input id="country" type="text" name="country" required>
           </div>
 
           <div class="flex-container-buttons">
             <button>Cancelar</button>
-            <input type="submit" value="Guardar región">
+            <input type="submit" value="Guardar país">
           </div>
         </div>
 
@@ -131,23 +97,13 @@
         <div class="container">
 
           <div class="container-input">
-            <label for="city">Ciudad</label>
-            <div>
-              <select name="city" id="city">
-                <option value="">Seleccione una ciudad</option>
-                <option value="">África</option>
-                <option value="city1">Norteamérica</option>
-                <option value="city2">Sudamérica</option>
-                <option value="city3">Europa</option>
-                <option value="city4">Asia</option>
-                <option value="city5">Australia</option>
-              </select>
-            </div>
+            <label for="city">Agregar ciudad <span>* </span></label>
+            <input id="city" type="text" name="city" required>
           </div>
 
           <div class="flex-container-buttons">
             <button>Cancelar</button>
-            <input type="submit" value="Guardar región">
+            <input type="submit" value="Guardar ciudad">
           </div>
         </div>
 
@@ -165,42 +121,46 @@
         <a href="#"><button id="button-new-region">Agregar región</button></a>
       </div>
 
-      <div class="container-regions">
+      <div id="container-regions">
 
-        <ul id="myUL">
+<!--      <ul class="myUL">
 
-          <li class="region"><span class="caret" id="region-title">Sudamérica</span>
+        <li class="region">
+            <span class="caret name-region">Sudamérica</span>
 
             <ul class="nested">
               <button class="add-new-country">Agregar País</button>
-              <li><span class="caret country" >Argentina</span>
-                <div class="button-flex-direccion">
-                  <button><i class="far fa-edit"></i></button>
-                  <button><i class="far fa-trash-alt"></i></button>
-                  <button class="button-add-city">Agregar ciudad</button>
-                </div>
-                <ul class="nested citys">
-                  <li>Buenos Aires</li>
+              <li> 
+                  <span class="caret country">Argentina</span>
                   <div class="button-flex-direccion">
-                    <button><i class="far fa-edit"></i></button>
-                    <button><i class="far fa-trash-alt"></i></button>
+                    <i class="far fa-edit"></i>
+                    <i class="far fa-trash-alt"></i>
+                    <button class="button-add-city">Agregar ciudad</button>
                   </div>
+                 
+                  <ul class="nested citys">
+                        <li>Buenos Aires</li>
+                        <div class="button-flex-direccion">
+                          <button><i class="far fa-edit"></i></button>
+                          <button><i class="far fa-trash-alt"></i></button>
+                        </div>
 
-                  <li>Cordoba</li>
-                  <div class="button-flex-direccion">
-                    <button><i class="far fa-edit"></i></button>
-                    <button><i class="far fa-trash-alt"></i></button>
-                  </div>
+                        <li>Cordoba</li>
+                        <div class="button-flex-direccion">
+                          <button><i class="far fa-edit"></i></button>
+                          <button><i class="far fa-trash-alt"></i></button>
+                        </div>
 
-                  <li>Rosario</li>
-                  <div class="button-flex-direccion">
-                    <button><i class="far fa-edit"></i></button>
-                    <button><i class="far fa-trash-alt"></i></button>
-                  </div>
-                </ul>
+                        <li>Rosario</li>
+                        <div class="button-flex-direccion">
+                          <button><i class="far fa-edit"></i></button>
+                          <button><i class="far fa-trash-alt"></i></button>
+                        </div>
+                  </ul>
               </li>
 
-              <li><span class="caret country">Colombia</span>
+              <li>
+                <span class="caret country">Colombia</span>
                 <div class="button-flex-direccion">
                   <button><i class="far fa-edit"></i></button>
                   <button><i class="far fa-trash-alt"></i></button>
@@ -221,7 +181,8 @@
 
                 </ul>
               </li>
-              <li><span class="caret country">Chile</span>
+              <li>
+                <span class="caret country">Chile</span>
                 <div class="button-flex-direccion chile">
                   <button><i class="far fa-edit"></i></button>
                   <button><i class="far fa-trash-alt"></i></button>
@@ -248,7 +209,8 @@
 
                 </ul>
               </li>
-              <li><span class="caret country">Uruguay</span>
+              <li>
+                <span class="caret country">Uruguay</span>
                 <div class="button-flex-direccion uruguay">
                   <button><i class="far fa-edit"></i></button>
                   <button><i class="far fa-trash-alt"></i></button>
@@ -276,12 +238,13 @@
                 </ul>
               </li>
             </ul>
-          </li>
+        </li>
 
         </ul>
 
-        <ul id="myUL">
-          <li class="region"><span id="region-title" class="caret">Norteamérica</span>
+        <ul class="myUL">
+          <li class="region">
+            <span class="caret name-region">Norteamérica</span>
             <ul class="nested">
               <button class="add-new-country">Agregar País</button>
               <li><span class="caret country" id="pais1">México</span>
@@ -335,8 +298,9 @@
           </li>
         </ul>
 
-        <ul id="myUL">
-          <li class="region"><span id="region-title" class="caret">Europa</span>
+        <ul class="myUL">
+          <li class="region">
+            <span class="caret name-region">Europa</span>
             <ul class="nested">
               <button class="add-new-country">Agregar país</button>
               <li><span class="caret country" id="pais1">España</span>
@@ -366,7 +330,7 @@
           </li>
         </ul>
         </li>
-        </ul>
+        </ul>  -->
 
       </div>
 

@@ -860,12 +860,12 @@ h1 {
 
 /* Remove default bullets */
 ul,
-#myUL {
+.myUL {
   list-style-type: none;
   height: 100%;
 }
 
-#myUL button {
+.myUL button {
   background: none;
   color: var(--blue);
   border-radius: 3px;
@@ -876,7 +876,7 @@ ul,
   cursor: pointer;
 }
 
-#myUL .button-add-city {
+.myUL .button-add-city {
   width: 10%;
   color: white;
   font-family: "Open Sans", sans-serif;
@@ -905,7 +905,7 @@ ul,
 }
 
 /* Remove margins and padding from the parent ul */
-#myUL {
+.myUL {
   margin: 0;
   padding: 0;
 }
@@ -993,13 +993,13 @@ li {
       flex-wrap: wrap;
 }
 
-#myUL .button-flex-direccion,
-#myUL .button-flex-direccion span {
+.myUL .button-flex-direccion,
+.myUL .button-flex-direccion span {
   margin-left: 71%;
   margin-top: -18px;
 }
 
-#myUL .button-flex-direccion.citys {
+.myUL .button-flex-direccion.citys {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

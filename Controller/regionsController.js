@@ -78,33 +78,40 @@ router.post("/", validateJwt, async (req, res) => {
 
 
     // GET
-    .get("/", validateJwt, async (req, res) => {
+    .get("/", async (req, res) => {
 
-        if (req.user.admin == false) {
+/*         if (req.user.admin == false) {
             res.send("no estás autorizado para crear un nuevo usuario")
             return
 
-        }
+        } */
 
         const allRegions = await models.regions.findAll({
             attributes: ["name"],
             include: [
 
                 {
-        
                     model: models.countries,
-                    required: true,
-                    attributes: ["name"]
+                    required: false,
+                    attributes: ["name"],
+                    include: [
+                        {
+                            model:models.cities,
+                            required: false,
+                            attributes: ["name"],
+                        }
+                    ]
                 }
 
             ]
         });
-        if (allRegions) return res.status(200).json(allRegions);
-        return res.status(400).send({ status: "ERROR", message: error.message })
+        if (allRegions.length > 0) return res.status(200).json( {exito: "operación exitosa", allRegions});
+        return res.status(400).json({message: "error. no se pudo traer info"})
 
 
 
     })
+
     .get("/countries", validateJwt, async (req, res) => {
         
         if (req.user.admin == false) {
@@ -132,7 +139,8 @@ router.post("/", validateJwt, async (req, res) => {
         });
         
         if (allCountries) return res.status(200).json(allCountries);
-        return res.status(400).send({ status: "ERROR", message: error.message })
+        return res.status(400).json({message: "error. no se pudo traer info"})
+
 
 
 

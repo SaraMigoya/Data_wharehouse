@@ -80,7 +80,7 @@ router.post("/", async (req, res) => {
             where:{countrieId: id_country}
         })
         
-        if(city.length >0){
+        if(city.length > 0){
 
             for(let i = 0; i < city.length ; i++){
                 
@@ -184,7 +184,7 @@ router.post("/", async (req, res) => {
         const deleteContact = await models.contacts.destroy( {
             where: {id: req.params.id}
         })
-        if(deleteContact) return res.status(200).json({ messege: `el contactp fue eliminado con exito` })
+        if(deleteContact) return res.status(200).json({ messege: `el contacto fue eliminado con exito` })
         return res.status(400).json({
  
             message: `No se pudo eliminar el contactp con el ID: ${req.params.id}`

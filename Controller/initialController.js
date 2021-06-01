@@ -57,22 +57,27 @@ router.post("/initialUsers", async (req,res) => {
     const newsCountries = [
         {
             name: "Argentina",
-            regionId: "1"
+            regionId: "2"
 
         },
         {
             name: "Colombia",
-            regionId: "1"
+            regionId: "2"
 
         },
     
         {
             name: "Chile",
-            regionId: "1"
+            regionId: "2"
 
         },
         {
             name: "Uruguay",
+            regionId: "2"
+
+        },
+        {
+            name: "México",
             regionId: "1"
 
         }
@@ -101,17 +106,17 @@ router.post("/initialUsers", async (req,res) => {
 
         {
             name: "Santiago",
-            countrieId: "2"
+            countrieId: "4"
 
         },
         {
             name: "Atacama",
-            countrieId: "2"
+            countrieId: "4"
 
         },
         {
             name: "Valparaíso",
-            countrieId: "2"
+            countrieId: "4"
 
         },
     
@@ -128,14 +133,14 @@ router.post("/initialUsers", async (req,res) => {
 
         {
             name: "Montevideo",
-            countrieId: "4"
+            countrieId: "2"
 
         },
         {
             name: "Maldonado",
-            countrieId: "4"
+            countrieId: "2"
 
-        },
+        }
     
     ]
     newsCities.forEach(e => {
