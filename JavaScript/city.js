@@ -1,6 +1,7 @@
 
 
 
+
 var toggler = document.getElementsByClassName("caret");
 var i;
 let addRegion = document.getElementById("button-new-region")
@@ -8,32 +9,17 @@ let addCountry = document.getElementsByClassName("add-new-country")
 let addCity = document.getElementsByClassName("button-add-city")
 let sectionNewRegion = document.getElementById("section-new-region")
 let sectionNewCountry = document.getElementById("section-new-country")
+let sectionNewCity = document.getElementById("section-new-city")
 let backgroundBlack = document.getElementById("black-region")
 let closeNewRegion = document.getElementById("close-region")
 let closeNewCountry = document.getElementById("close-country")
 let sectionCity = document.getElementById("section-city")
 
 
-/*  for (i = 0; i < toggler.length; i++) {
-  toggler[i].addEventListener("click", function() {
-    this.parentElement.querySelector(".nested").classList.toggle("active");
-    
-    this.classList.toggle("caret-down");
-  });
-}
-for (i = 0; i < addCountry.length; i++) {
-  addCountry[i].addEventListener("click", () => {
-    sectionNewCountry.classList.toggle("none")
-    backgroundBlack.classList.toggle("none")
-  });
-}
-for (i = 0; i < addCity.length; i++) {
-  addCity[i].addEventListener("click", () => {
-    sectionNewCountry.classList.toggle("none")
-    backgroundBlack.classList.toggle("none")
-  });
-} 
- */
+
+
+////eventos para agregar nuevos items
+
 addRegion.addEventListener("click", () => {
   sectionNewRegion.classList.toggle("none")
   backgroundBlack.classList.toggle("none")
@@ -49,7 +35,7 @@ closeNewCountry.addEventListener("click", () => {
 })
 
 
-////
+//// GET REGIONES
 let callRegion = async () => {
 
   let searchApi = await fetch(`http://localhost:3000/regions`, {
@@ -71,13 +57,38 @@ let callRegion = async () => {
 }
 
 callRegion()
+/* 
+////GET PAÍSES
+let callCountries = async () => {
 
+  let searchApi = await fetch(`http://localhost:3000/regions/countries`, {
+    method: "GET",
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
 
-async function createP() {
+  let res = await searchApi.json()
+
+  if (res.exito) {
+    return res
+
+  }
+  else {
+    console.log("error")
+  }
+}
+
+callCountries() */
+////
+
+async function createRegions() {
 
   let awaitRegions = await callRegion()
 
+
   awaitRegions.allRegions.forEach(element => {
+  
 
     //regiones
     let containerRegions = document.getElementById("container-regions")
@@ -102,6 +113,30 @@ async function createP() {
 
     countriesUl.appendChild(btnNewCountrie)
 
+    //obtengo el id de la region y agrego el país
+    btnNewCountrie.addEventListener("click",() =>{
+      let idRegion = element.id
+
+      const saveCountry = document.getElementById("save-country")
+      const inputCountry = document.getElementById("country")
+      
+      saveCountry.addEventListener ("click", async () => {
+      
+        postCountries (inputCountry.value, idRegion)
+        location.href = "../html/city.html"
+     
+      })
+    })
+
+/*      // delete
+      let btnDelete = document.getElementById("icon-delete")
+
+      btnDelete.addEventListener("click",  () => {
+
+         deleteCountry(element.id)
+       }) */
+                  
+       
 
     element.countries.forEach(e => {
 
@@ -120,9 +155,11 @@ async function createP() {
       country.appendChild(divButtons)
       let btnEdit = document.createElement("button")
       let btnDelete = document.createElement("button")
+      btnDelete.id =  "btn-delete"
       let iconEdit = document.createElement("i")
       iconEdit.className = "far fa-edit"
       let iconDelete = document.createElement("i")
+    
       iconDelete.className = "far fa-trash-alt"
       let btnNewCity = document.createElement("button")
       btnNewCity.className = "button-add-city"
@@ -136,13 +173,29 @@ async function createP() {
       countryTitle.innerHTML = `${e.name}`
 
 
+      ////agregar ciudades
+      btnNewCity.addEventListener("click",() =>{
+        let idCity = e.id
+        
+        const saveCity = document.getElementById("save-city")
+        const inputCity = document.getElementById("city")
+        
+        saveCity.addEventListener ("click", async () => {
+        
+          postCities (inputCity.value, idCity)
+          location.href = "../html/city.html"
+       
+        }) 
+      }) 
+
+
+
       let citiesUl = document.createElement("ul")
       citiesUl.className = "nested city"
     
 
       e.cities.forEach(x => {
 
-        console.log(e)
         let cityLI = document.createElement("li");
         cityLI.innerHTML = `${x.name}`
         citiesUl.appendChild(cityLI)
@@ -159,7 +212,6 @@ async function createP() {
 
     });
     regionsLi.appendChild(countriesUl)
-    // li hija de nested
 
   });
 
@@ -179,13 +231,108 @@ async function createP() {
   }
   for (i = 0; i < addCity.length; i++) {
     addCity[i].addEventListener("click", () => {
-      sectionNewCountry.classList.toggle("none")
+      sectionNewCity.classList.toggle("none")
       backgroundBlack.classList.toggle("none")
     });
   }
 
 
 }
-createP()
+createRegions()
 
+//////CRUD REGIONES PAÍSES Y CIUDADES
+
+let postRegions = async (name) =>{
+
+  var data = {
+    name
+  }
+
+  let searchApi = await fetch(`http://localhost:3000/regions`, {
+      method: "POST" ,
+      body: JSON.stringify(data),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  })
+  await searchApi.json()
+
+}
+
+
+let postCountries = async (name, regionId) =>{
+
+  var data = {
+    name,
+    regionId
+  }
+
+  let searchApi = await fetch(`http://localhost:3000/regions/countries`, {
+      method: "POST" ,
+      body: JSON.stringify(data),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  })
+  await searchApi.json()
+
+}
+
+ let postCities = async (name, countrieId) =>{
+
+  var data = {
+    name,
+    countrieId
+  }
+
+  let searchApi = await fetch(`http://localhost:3000/regions/cities`, {
+      method: "POST" ,
+      body: JSON.stringify(data),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  })
+  await searchApi.json()
+
+} 
+
+////DELETE
+
+ let deleteCountry = async (id) =>{
+
+  var data = {
+    id
+  }
+
+  let searchApi = await fetch(`http://localhost:3000/regions/countries`, {
+      method: "DELETE" ,
+      body: JSON.stringify(data),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  })
+  await searchApi.json()
+
+} 
+
+
+
+
+
+const inputRegion = document.getElementById("region")
+const saveRegion = document.getElementById("save-region")
+
+  async function newRegion (){
+
+  saveRegion.addEventListener ("click", async () => {
+
+     
+      postRegions (inputRegion.value)
+      location.href = "../html/city.html"
+
+  })
+
+}
+
+newRegion()  
 

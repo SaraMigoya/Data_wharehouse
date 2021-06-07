@@ -5,13 +5,12 @@ const { validateJwt } = require("../middlewares");
 
 
 //POST
-router.post("/", validateJwt, async (req, res) => {
-    if (req.user.admin == false) {
+router.post("/", async (req, res) => {
+/*     if (req.user.admin == false) {
         res.send("no estás autorizado para crear un nuevo usuario")
         return
-
     }
-    
+     */
     const { name } = req.body
     const newRegion = {
         name,
@@ -27,12 +26,12 @@ router.post("/", validateJwt, async (req, res) => {
 
 })
 
-    .post("/countries", validateJwt, async (req, res) => {
-        if (req.user.admin == false) {
+    .post("/countries", async (req, res) => {
+/*         if (req.user.admin == false) {
             res.send("no estás autorizado para crear un nuevo usuario")
             return
 
-        }
+        } */
 
         const { name, regionId } = req.body
         const newCountry = {
@@ -50,15 +49,15 @@ router.post("/", validateJwt, async (req, res) => {
 
 
     })
-    .post("/cities", validateJwt, async (req, res) => {
+    .post("/cities",  async (req, res) => {
         
 
-        if (req.user.admin == false) {
+        /* if (req.user.admin == false) {
             res.send("no estás autorizado para crear un nuevo usuario")
             return
 
         }
-
+ */
         const { name, countrieId } = req.body
         const newCity = {
             name,
@@ -87,13 +86,13 @@ router.post("/", validateJwt, async (req, res) => {
         } */
 
         const allRegions = await models.regions.findAll({
-            attributes: ["name"],
+            attributes: ["name","id"],
             include: [
 
                 {
                     model: models.countries,
                     required: false,
-                    attributes: ["name"],
+                    attributes: ["name", "id"],
                     include: [
                         {
                             model:models.cities,
