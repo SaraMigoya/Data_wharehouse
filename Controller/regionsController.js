@@ -97,7 +97,7 @@ router.post("/", async (req, res) => {
                         {
                             model:models.cities,
                             required: false,
-                            attributes: ["name"],
+                            attributes: ["name","id" ],
                         }
                     ]
                 }
@@ -214,12 +214,12 @@ router.post("/", async (req, res) => {
     }) */
 
 
-    .delete("/countries/:id", validateJwt, async (req, res) => {
+    .delete("/countries/:id", async (req, res) => {
 
-        if (req.user.admin == false) {
+ /*        if (req.user.admin == false) {
             res.send("Sólo un administrador puede realizar altas y/o modificar")
             return
-        }
+        } */
 
         await models.cities.destroy({
             where: { countrieId: req.params.id }
@@ -235,13 +235,13 @@ router.post("/", async (req, res) => {
         })
     })
 
-    .delete("/cities/:id", validateJwt, async (req, res) => {
+    .delete("/cities/:id", async (req, res) => {
 
-        if (req.user.admin == false) {
+/*         if (req.user.admin == false) {
             res.send("Sólo un administrador puede realizar altas y/o modificar")
             return
         }
-
+ */
         const deleteCity = await models.cities.destroy({
             where: { id: req.params.id }
            

@@ -1,11 +1,11 @@
 const express = require("express");
 const models = require("../models")
 const router = express.Router();
-const { dataCompanie, validateJwt } = require("../middlewares");
+const { dataCompanie} = require("../middlewares");
 
 
 //POST
-router.post("/", dataCompanie, validateJwt, async (req, res) => {
+router.post("/", dataCompanie, async (req, res) => {
 /* 
     if (req.user.admin == false) {
            res.send("no estás autorizado para crear un nuevo usuario")
@@ -20,7 +20,7 @@ router.post("/", dataCompanie, validateJwt, async (req, res) => {
            address,
            email,
            tel,
-           cityId
+           cityId 
            
        }
    

@@ -80,7 +80,7 @@
    font-size: 1.2em;
 }
 
-.add-new-item, form {
+.add-new-item, .form {
     z-index: 4;
     position: relative;
     background: white;
@@ -95,18 +95,18 @@
     width: 100%;
 }
  */
-#section-new-company form  {
+#section-new-company .form  {
     height: 200px;
 
 }
-#section-new-region, form, #section-new-country form {
+#section-new-region, .form, #section-new-country .form {
     z-index: 4;
     position: relative;
     background: white;
     width: 100%;
 }
  
-#section-new-region form, #section-new-country form {
+#section-new-region .form, #section-new-country .form {
 height: auto;
 
 }

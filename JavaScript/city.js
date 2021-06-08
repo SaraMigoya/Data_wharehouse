@@ -1,7 +1,4 @@
 
-
-
-
 var toggler = document.getElementsByClassName("caret");
 var i;
 let addRegion = document.getElementById("button-new-region")
@@ -14,8 +11,6 @@ let backgroundBlack = document.getElementById("black-region")
 let closeNewRegion = document.getElementById("close-region")
 let closeNewCountry = document.getElementById("close-country")
 let sectionCity = document.getElementById("section-city")
-
-
 
 
 ////eventos para agregar nuevos items
@@ -57,30 +52,6 @@ let callRegion = async () => {
 }
 
 callRegion()
-/* 
-////GET PAÍSES
-let callCountries = async () => {
-
-  let searchApi = await fetch(`http://localhost:3000/regions/countries`, {
-    method: "GET",
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-
-  let res = await searchApi.json()
-
-  if (res.exito) {
-    return res
-
-  }
-  else {
-    console.log("error")
-  }
-}
-
-callCountries() */
-////
 
 async function createRegions() {
 
@@ -89,8 +60,7 @@ async function createRegions() {
 
   awaitRegions.allRegions.forEach(element => {
   
-
-    //regiones
+    //crear regiones
     let containerRegions = document.getElementById("container-regions")
     let regionsUl = document.createElement("ul")
     regionsUl.className = "myUL"
@@ -102,18 +72,15 @@ async function createRegions() {
     titleRegion.className = "caret name-region"
     regionsLi.appendChild(titleRegion) //span
     titleRegion.innerHTML = `${element.name}`
-
     let countriesUl = document.createElement("ul")
     countriesUl.className = "nested"
-
     let btnNewCountrie = document.createElement("button")
     btnNewCountrie.className = "add-new-country"
     btnNewCountrie.innerHTML = "Agregar País"
-    //let li = document.createElement("li")
 
     countriesUl.appendChild(btnNewCountrie)
 
-    //obtengo el id de la region y agrego el país
+    //agregar paises nuevos
     btnNewCountrie.addEventListener("click",() =>{
       let idRegion = element.id
 
@@ -128,30 +95,18 @@ async function createRegions() {
       })
     })
 
-/*      // delete
-      let btnDelete = document.getElementById("icon-delete")
-
-      btnDelete.addEventListener("click",  () => {
-
-         deleteCountry(element.id)
-       }) */
-                  
-       
 
     element.countries.forEach(e => {
 
-      ///países
+      ///crear países
 
       let country = document.createElement("li")
       countriesUl.appendChild(country)
       let countryTitle = document.createElement("span")
       countryTitle.className = "caret country"
-
       country.appendChild(countryTitle)
-  
       let divButtons = document.createElement("div")
       divButtons.className = "button-flex-direccion"
-
       country.appendChild(divButtons)
       let btnEdit = document.createElement("button")
       let btnDelete = document.createElement("button")
@@ -159,7 +114,6 @@ async function createRegions() {
       let iconEdit = document.createElement("i")
       iconEdit.className = "far fa-edit"
       let iconDelete = document.createElement("i")
-    
       iconDelete.className = "far fa-trash-alt"
       let btnNewCity = document.createElement("button")
       btnNewCity.className = "button-add-city"
@@ -172,11 +126,20 @@ async function createRegions() {
 
       countryTitle.innerHTML = `${e.name}`
 
+      // delete countries
+       btnDelete.addEventListener("click", () => {
+        let deteleId = e.id
+       
+         deleteCountry(deteleId)
+         location.href = "../html/city.html"
+  
+       })  
 
-      ////agregar ciudades
+      ////post countries
       btnNewCity.addEventListener("click",() =>{
         let idCity = e.id
-        
+
+        console.log(idCity)
         const saveCity = document.getElementById("save-city")
         const inputCity = document.getElementById("city")
         
@@ -189,25 +152,45 @@ async function createRegions() {
       }) 
 
 
-
       let citiesUl = document.createElement("ul")
       citiesUl.className = "nested city"
-    
-
+      
+      //crear ciudades
       e.cities.forEach(x => {
 
         let cityLI = document.createElement("li");
         cityLI.innerHTML = `${x.name}`
         citiesUl.appendChild(cityLI)
-        /*  let divButtons = document.createElement("div")
-       divButtons.className = "button-flex-direccion"
-       cityLI.appendChild(divButtons) */
+        let divButtons = document.createElement("div")
+        divButtons.className = "button-flex-direccion"
+        let btnEdit = document.createElement("button")
+        let btnDelete = document.createElement("button")
+        btnDelete.id =  "btn-delete"
+        let iconEdit = document.createElement("i")
+        iconEdit.className = "far fa-edit"
+        let iconDelete = document.createElement("i")
+      
+        iconDelete.className = "far fa-trash-alt"
 
+        btnEdit.appendChild(iconEdit)
+        btnDelete.appendChild(iconDelete)
+        divButtons.appendChild(btnEdit)
+        divButtons.appendChild(btnDelete)
+        
+        citiesUl.appendChild(divButtons)
+     
 
-      });      
+      // delete cities
+       btnDelete.addEventListener("click", () => {
+       
+        deleteCity(x.id)
+        location.href = "../html/city.html"
+  
+       })  
+      });  
+
     country.appendChild(citiesUl)
     countriesUl.appendChild(country)
-
 
 
     });
@@ -304,7 +287,7 @@ let postCountries = async (name, regionId) =>{
     id
   }
 
-  let searchApi = await fetch(`http://localhost:3000/regions/countries`, {
+  let searchApi = await fetch(`http://localhost:3000/regions/countries/${id}`, {
       method: "DELETE" ,
       body: JSON.stringify(data),
       headers: {
@@ -314,11 +297,24 @@ let postCountries = async (name, regionId) =>{
   await searchApi.json()
 
 } 
+//city
+  let deleteCity = async (id) =>{
 
+  var data = {
+    id
+  }
 
+  let searchApi = await fetch(`http://localhost:3000/regions/cities/${id}`, {
+      method: "DELETE" ,
+      body: JSON.stringify(data),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  })
+  await searchApi.json()
 
-
-
+} 
+ 
 const inputRegion = document.getElementById("region")
 const saveRegion = document.getElementById("save-region")
 
