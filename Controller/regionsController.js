@@ -140,8 +140,21 @@ router.post("/", async (req, res) => {
         if (allCountries) return res.status(200).json(allCountries);
         return res.status(400).json({message: "error. no se pudo traer info"})
 
+    })
+    .get("/cities", async (req, res) => {
+        
+/*         if (req.user.admin == false) {
+            res.send("no estás autorizado para crear un nuevo usuario")
+            return
 
+        } */
 
+        const allCities = await models.cities.findAll({
+            attributes: ["name"],
+        });
+        
+        if (allCities) return res.status(200).json(allCities);
+        return res.status(400).json({message: "error. no se pudo traer info"})
 
     })
 

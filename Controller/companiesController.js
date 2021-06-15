@@ -31,7 +31,7 @@ router.post("/", dataCompanie, async (req, res) => {
            where: {cityId: null}
        }) */
 
-       if (company) return res.status(200).json({exito: "se creo la compañía exitosamente", company} );
+       if (company) return res.status(200).json(company);
    
        res.status(400).json({
            message: "Lo sentimos. No se pudo crear la companía."
@@ -48,7 +48,20 @@ router.post("/", dataCompanie, async (req, res) => {
 
     }
  */
-        const companies = await models.companies.findAll();
+        const companies = await models.companies.findAll({
+            attributes: ["name", "address", "email", "tel"],
+            include: [
+
+                {
+                    model: models.cities,
+                    required: false,
+                    attributes: ["name"]
+                }
+
+            ]
+        });
+
+
         if (companies.length > 0) return res.status(200).json(companies);
         res.status(400).json({
             message: "No se encontraron companies registrados con esos datos"

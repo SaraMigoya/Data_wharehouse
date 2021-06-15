@@ -139,7 +139,6 @@ async function createRegions() {
       btnNewCity.addEventListener("click",() =>{
         let idCity = e.id
 
-        console.log(idCity)
         const saveCity = document.getElementById("save-city")
         const inputCity = document.getElementById("city")
         

@@ -164,4 +164,6 @@ const dataCompanie = (req, res, next) => {
     next()
 }
 
+//validar que el teléfono sea un númer!!!
+
 module.exports = {dataLogin, validatekeyCode, validateEmail, generatedToken, validateUser, validateJwt, dataReceived, dataCompanie}
