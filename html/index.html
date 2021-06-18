@@ -54,11 +54,7 @@
                 </div>
                 <form action="" method="POST" class="form-new-contact">
                     <div class="container">
-        
-                            <div class="add-profile-photo">
-                                <i class="far fa-user icon-"></i>
-
-                            </div>
+    
                             <div class="container-input">
                                 <label for="POST-name">Nombre <span>* </span></label>
                                 <input id="POST-name" type="text" name="name" required>
@@ -198,17 +194,7 @@
                 </div>
 
                 <div class="inline-dos">
-                    <div class="container-arrowUp">
-                        <div class="spanArrow">
-                            <span id="spanFlecha"></span>
-                            <i class="fas fa-caret-up" id="arrowUp"></i>
-                            <span id="spanFlechaDos"></span>
-                        </div>
-                    </div>
-                    <div class="export">
-                        <p>Exportar contactos</p>
-                        <i class="fas fa-caret-down" id="arrowExportar"></i>
-                    </div>
+                  
                     <button id="button-new-contact">Agregar contacto</button>
                 </div>
             </div>
@@ -272,16 +258,18 @@
             </div>
         </article>
  -->
-        <article>
-            <section>
-                <table>
+ <section id="contacts"></section>
+<!--             
+                <table id="table-contacts">
                     <thead>
                         <tr>
-
                             <th><input type="checkbox"></th>
 
-                            <th>Contacto <span><i class="fas fa-long-arrow-alt-up"></i><i
-                                        class="fas fa-long-arrow-alt-down"></i></span>
+                            <th>Contacto 
+                                <span>
+                                    <i class="fas fa-long-arrow-alt-up"></i>
+                                    <i class="fas fa-long-arrow-alt-down"></i>
+                                </span>
                             </th>
                             <th>País/Región <span><i class="fas fa-long-arrow-alt-up"></i><i
                                         class="fas fa-long-arrow-alt-down"></i></span>
@@ -301,7 +289,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr> seria el tr2
                             <td><input type="checkbox"></td>
 
                             <td>
@@ -318,7 +306,13 @@
                             <td>developer</td>
                           
                             <td>100</td>
-                            <td>...</td>
+                            <td>...
+                            <div class="icons">
+                                <i class="far fa-trash-alt "></i>
+                                <i class="far fa-edit"></i>
+                            </div>
+                            </td>
+                          
 
                         </tr>
                         <tr>
@@ -420,8 +414,8 @@
 
                     </tbody>
                 </table>
-            </section>
-        </article>
+            -->
+        
     </main>
     <script src="../JavaScript/index.js"></script>
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>

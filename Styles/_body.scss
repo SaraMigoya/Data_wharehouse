@@ -215,6 +215,9 @@ thead tr {
     height: 4em;
     max-width: 1310px;
 }
+tbody {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
 
 tbody tr {
     height: 4em;
@@ -222,13 +225,14 @@ tbody tr {
 tbody tr:hover {
     background: #e8e8e8;
 }
-table {
+
+#table-contacts {
     table-layout: fixed;
     width: 96%;
     border-collapse: collapse;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    //border: 1px solid rgba(0, 0, 0, 0.1);
     margin-left: 29.5px;
-}
+} 
 
 thead th {
     width: 18%;
@@ -237,7 +241,7 @@ thead th {
 }
 
 thead th:nth-child(2) {
-    width: 35%;
+    width: 22%;
 }
 thead th:nth-child(8) {
     width: 14%;
@@ -253,22 +257,23 @@ thead tr:nth-child(1) {
 
 th,
 td {
-    padding: 10px;
+    padding: 7px;
 }
 
-th i {
+span i {
     font-size: 13px;
     padding: 0;
+    transform: rotate(90deg);
 }
-td img {
-    width: 24px;
-    margin: 0;
-    padding: 0;
-}
+
 
 td p {
     color: rgba(0, 0, 0, 0.5);
     font-size: 14px;
+}
+.pName {
+    color: black;
+    font-size: 16px;
 }
 
 .contact {
@@ -292,3 +297,16 @@ td p {
     border-radius: 3px;
 }
 
+.icons {
+    display: none;
+}
+
+#icon2{
+    display: none;
+} 
+.tdActions:hover{
+    color: red;
+    #icon2 & {
+        display: inline;
+    } 
+}

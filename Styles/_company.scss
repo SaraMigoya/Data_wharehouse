@@ -15,6 +15,14 @@
     width: 30%;
     text-align: initial;
     font-weight: lighter;
+    //border: 1px solid rgba(0, 0, 0, 0.1);
+}
+#table-company {
+    table-layout: fixed;
+    width: 96%;
+    border-collapse: collapse;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-left: 29.5px;
 }
 .icon-company {
     padding: 6px 10px;

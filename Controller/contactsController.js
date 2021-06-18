@@ -3,41 +3,41 @@ const models = require("../models")
 const router = express.Router();
 
 //POST
-/* router.post("/", async (req, res) => {
+ router.post("/", async (req, res) => {
 
-    const {name, last_name, position, email, company, id_region, id_country, id_city, canal_contacto, cuenta_usuario}= req.body;
+    const {name, last_name, position, email, company, canal_contacto, cuenta_usuario, regionId, countrieId, cityId}= req.body;
     const newContact = {
         name, 
         last_name,
         position,
         email, 
         company,
-        id_region, 
-        id_country, 
-        id_city, 
         canal_contacto,
-        cuenta_usuario
+        cuenta_usuario,
+        regionId, 
+        countrieId, 
+        cityId
     }
 
     const country = await models.countries.findAll({
-        where: {regionId: id_region}
+        where: {regionId: regionId}
     })
 
 
     if(country.length > 0){
 
         const city = await models.cities.findAll({
-            where:{countrieId: id_country}
+            where:{countrieId: countrieId}
         })
         
         if(city.length >0){
 
             for(let i = 1; i < city.length ; i++){
                 
-                if (city[i].id == id_city){
+                if (city[i].id == cityId){
                     const contact = await models.contacts.create(newContact)
                     if(contact) {
-                        return res.status(200).json({exito: "El contacto fue creado exitosamente", contact})
+                        return res.status(200).json(contact)
                     }             
                 }
             }
@@ -55,8 +55,8 @@ const router = express.Router();
 
   
 
-}) */
-router.post("/", async (req, res) => {
+}) 
+/* router.post("/", async (req, res) => {
 
     const {name, last_name, position, email, company, id_region, id_country, id_city, canal_contacto, cuenta_usuario}= req.body;
     const newContact = {
@@ -118,7 +118,7 @@ router.post("/", async (req, res) => {
 
   
 
-})
+}) */
 
     // GET
     .get("/", async (req, res) => {
@@ -130,7 +130,7 @@ router.post("/", async (req, res) => {
         } */
 
         const allContacts = await models.contacts.findAll({
-            attributes: ["name", "last_name", "countrieId", "cityId", "company", "position"],
+            attributes: ["name", "last_name", "position", "email", "company", "countrieId", "cityId", "company", "position"],
             include: [
 
                 {

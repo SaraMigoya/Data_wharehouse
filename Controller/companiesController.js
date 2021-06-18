@@ -49,7 +49,7 @@ router.post("/", dataCompanie, async (req, res) => {
     }
  */
         const companies = await models.companies.findAll({
-            attributes: ["name", "address", "email", "tel"],
+            attributes: ["id","name", "address", "email", "tel"],
             include: [
 
                 {

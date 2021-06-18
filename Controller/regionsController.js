@@ -150,7 +150,7 @@ router.post("/", async (req, res) => {
         } */
 
         const allCities = await models.cities.findAll({
-            attributes: ["name"],
+            attributes: ["name", "id"],
         });
         
         if (allCities) return res.status(200).json(allCities);
