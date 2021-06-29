@@ -59,15 +59,20 @@ body {
     display: none;
 }
 
-#expand select,.container-new-contact select {
+.container-new-contact select {
     height: 35.5px;
     width: 190px;
     border-radius: 3.5px;
     border: 1px solid #cccccc;
-    text-align: center;
+   
+    color: rgba(0,0,0,0.60);
 }
-
-#expand div {
+.background-gray {
+    background: rgba(0,0,0,0.10);
+    border: 1px solid #C6CACC;
+  
+}
+/*  div {
     display: flex;
     justify-content: space-between;
     padding: 1em;
@@ -85,7 +90,7 @@ body {
     margin: 0;
     width: 59%;
     outline:none;
-}
+} */
 
 select {
     font-family: "Open Sans", sans-serif;
@@ -201,6 +206,7 @@ select {
     border: 0;
     margin: 0;
 }
+
 
 .inline-dos {
     margin-right: 28px;

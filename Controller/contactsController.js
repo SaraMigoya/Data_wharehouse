@@ -5,7 +5,7 @@ const router = express.Router();
 //POST
  router.post("/", async (req, res) => {
 
-    const {name, last_name, position, email, company, canal_contacto, cuenta_usuario, regionId, countrieId, cityId}= req.body;
+    const {name, last_name, position, email, company, canal_contacto, cuenta_usuario, regionId, countrieId, cityId, interes}= req.body;
     const newContact = {
         name, 
         last_name,
@@ -16,7 +16,8 @@ const router = express.Router();
         cuenta_usuario,
         regionId, 
         countrieId, 
-        cityId
+        cityId, 
+        interes
     }
 
     const country = await models.countries.findAll({
@@ -130,7 +131,7 @@ const router = express.Router();
         } */
 
         const allContacts = await models.contacts.findAll({
-            attributes: ["name", "last_name", "position", "email", "company", "countrieId", "cityId", "company", "position"],
+            attributes: ["name", "last_name", "position", "email", "company", "countrieId", "cityId", "company", "position", "interes"],
             include: [
 
                 {

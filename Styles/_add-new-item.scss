@@ -68,12 +68,6 @@
 }
 
 
-/* #section-new-company h2, #section-new-contact h2, #section-new-region h2 {
-    margin: 0;
-    padding: 11px 22px;
-   font-size: 1.2em;
-} */
-
 .add-new-item h2 {
     margin: 0;
     padding: 11px 22px;
@@ -87,14 +81,7 @@
     height: 200px;
     width: 100%;
 }
-/*  #section-new-company, form {
-    z-index: 4;
-    position: relative;
-    background: white;
-    height: 200px;
-    width: 100%;
-}
- */
+
 #section-new-company .form  {
     height: 200px;
 
@@ -125,7 +112,19 @@ height: auto;
 
 }
 
-
+.btb-new-contact-blue{
+    color: white;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    border-radius: 2px;
+    width: 173px;
+    height: 42px;
+    letter-spacing: 0;
+    text-align: center;
+    background: var(--blue);
+    border: 0;
+    margin: 0;
+}
 ///////////////////////
 
 
@@ -166,17 +165,40 @@ height: auto;
     margin: auto;
 }
  #section-new-contact .container-new-contact  {
-   width: 94%;
+    width: 94%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+   
 }
-#section-new-contact .container-new-contact div {
+.box {
     padding: 5px;
     margin: 0;
     padding-bottom: 1.5em;
+    width: 20%;
+}
+.plus{
+    font-size: 28px;
+   margin: 5px;
+
 }
 
+#btn-add-channel{
+    height: 35.5px;
+    width: 168px;
+    border-radius: 3.5px;
+    border: 1px solid #cccccc;
+   
+    background: none;
+    color: #cccccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+.box2 {
+    margin: 0;
+}
 #section-new-contact #interes-new-contact {
     width: 70px;
 }
@@ -184,7 +206,7 @@ height: auto;
     z-index: 4;
     position: relative;
     background: white;
-    height: 577px;
+    height: 100%;
     width: 100%;
 } 
 
@@ -193,22 +215,39 @@ height: auto;
     display: flex;
     justify-content: flex-end;
 }
+.flex-container-buttons {
+    margin-top: 100px;
+}
 .container-new-contact .flex-container-buttons input, .flex-container-buttons button{
     margin: 10px;
 }
 .container-new-company .flex-container-buttons input, .flex-container-buttons button{
     margin: 10px;
 }
-.container-new-contact .flex-container-buttons input, .container-new-company .flex-container-buttons input {
+ .container-new-company .flex-container-buttons input {
     border-radius: 2px;
     width: 173px;
     height: 42px;
     font-weight: bold;
     color:var(--white);
     background: rgba(0,0,0,0.25)
+
 }
 
-.flex-container-buttons button {
+.inactivo {
+    
+    width: 250px;
+    height: 42px;
+    font-weight: bold;
+    color:var(--white);
+    background: rgba(0,0,0,0.25)
+}
+.verde {
+    background: green;
+    width: 250px;
+}
+
+.btn-cancel {
     font-weight: bold;
     background: none;
     border: none;
@@ -216,6 +255,10 @@ height: auto;
     color: rgba(0,0,0,0.25)
 }
 
+.btn-cancel-red {
+    color: red;
+    width: 250px;
+}
 
 .add-new-item .flex-container i {
     margin: 22px;

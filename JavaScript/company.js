@@ -63,46 +63,45 @@ closenewCompany.addEventListener("click", () => {
 
 
 
-async function choseCity() {
-  const inputName = document.getElementById("name")
-  const inputAddress = document.getElementById("address")
-  const inputEmail = document.getElementById("email")
-  const inputTel = document.getElementById("tel")
-  const saveCompany = document.getElementById("save-company")
-  let ciudadId;
+const inputName = document.getElementById("name")
+const inputAddress = document.getElementById("address")
+const inputEmail = document.getElementById("email")
+const inputTel = document.getElementById("tel")
+const saveCompany = document.getElementById("save-company")
+let ciudadId;
+
+
+saveCompany.addEventListener("click", async () => {
+
+  postCompany(inputName.value, inputAddress.value, inputEmail.value, inputTel.value, ciudadId)
+  location.href = "../html/company.html"
+
+})
+
+let selectCity = document.getElementById("select-city")
+ async function choseCity() {
   
   let awaitCity = await callCities()
   
   awaitCity.forEach(element => {
-
-    let selectCity = document.getElementById("select-city")
     let option = document.createElement("option")
+    
+
     option.innerHTML = `${element.name}`
-    selectCity.appendChild(option)
-    
-    selectCity.addEventListener("click", (e) => {
-      
- 
-      let pais= e.target.value
-      console.log(pais)
-
-      if(pais == element.name){
-
-        ciudadId = element.id
-        console.log(ciudadId)
-    
-     }   
+   
+      selectCity.addEventListener("click", async(e) => {
+         let pais = e.target.value
+        console.log(pais)
   
-    })
+        if(pais == element.name){
+          ciudadId = element.id 
+       }    
+     
+      })
+    
+
+      selectCity.appendChild(option)
   }); 
-
-  
-  saveCompany.addEventListener("click", async () => {
-  
-    postCompany(inputName.value, inputAddress.value, inputEmail.value, inputTel.value, ciudadId)
-    location.href = "../html/company.html"
-  
-  })
 }
 
 choseCity()
@@ -190,7 +189,7 @@ async function createCompanies() {
 
 }
 
-createCompanies()
+createCompanies() 
 
 
 
