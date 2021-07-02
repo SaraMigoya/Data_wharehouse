@@ -97,8 +97,6 @@ contacts.init({
     position: DataTypes.STRING,
     email: DataTypes.STRING,
     company: DataTypes.STRING,
-    canal_contacto: DataTypes.STRING,
-    cuenta_usuario: DataTypes.STRING,
     interes: DataTypes.STRING
 
 }, {

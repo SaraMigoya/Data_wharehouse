@@ -3,27 +3,24 @@ const models = require("../models")
 const router = express.Router();
 
 //POST
- router.post("/", async (req, res) => {
+  router.post("/", async (req, res) => {
 
-    const {name, last_name, position, email, company, canal_contacto, cuenta_usuario, regionId, countrieId, cityId, interes}= req.body;
+    const {name, last_name, position, email, company, interes, regionId, countrieId, cityId}= req.body;
     const newContact = {
         name, 
         last_name,
         position,
         email, 
         company,
-        canal_contacto,
-        cuenta_usuario,
+        interes,
         regionId, 
         countrieId, 
-        cityId, 
-        interes
+        cityId
     }
 
     const country = await models.countries.findAll({
         where: {regionId: regionId}
     })
-
 
     if(country.length > 0){
 
@@ -31,20 +28,19 @@ const router = express.Router();
             where:{countrieId: countrieId}
         })
         
-        if(city.length >0){
+        if(city.length > 0){
 
-            for(let i = 1; i < city.length ; i++){
+            for(let i = 0; i < city.length ; i++){
                 
                 if (city[i].id == cityId){
                     const contact = await models.contacts.create(newContact)
-                    if(contact) {
-                        return res.status(200).json(contact)
-                    }             
-                }
-            }
 
-            return res.status(400).json({message: "la ciudad ingresada no existe en el pais"})
-            
+                    if(contact) {
+                        return res.status(200).json({exito: "El contacto fue creado exitosamente"})
+                    }  
+                }
+                            
+            }
         }
         else{
             return res.status(400).json({message: "No se encontro ninguna ciudad con el id del pais"}) 
@@ -56,18 +52,20 @@ const router = express.Router();
 
   
 
-}) 
-/* router.post("/", async (req, res) => {
+})  
+/*  router.post("/", async (req, res) => {
 
-    const {name, last_name, position, email, company, id_region, id_country, id_city, canal_contacto, cuenta_usuario}= req.body;
+    const {name, last_name, position, email, company, interes, regionId, countrieId, cityId}= req.body;
     const newContact = {
         name, 
         last_name,
         position,
         email, 
         company,
-        canal_contacto,
-        cuenta_usuario
+        interes,
+        regionId, 
+        countrieId, 
+        cityId
     }
 
     const country = await models.countries.findAll({
@@ -119,7 +117,7 @@ const router = express.Router();
 
   
 
-}) */
+}) */ 
 
     // GET
     .get("/", async (req, res) => {
@@ -131,7 +129,7 @@ const router = express.Router();
         } */
 
         const allContacts = await models.contacts.findAll({
-            attributes: ["name", "last_name", "position", "email", "company", "countrieId", "cityId", "company", "position", "interes"],
+            attributes: ["name", "last_name", "position", "email", "company", "interes","countrieId", "cityId", "company"],
             include: [
 
                 {

@@ -57,28 +57,33 @@ router.post("/initialUsers", async (req,res) => {
     const newsCountries = [
         {
             name: "Argentina",
-            regionId: "2"
+            regionId: "1"
 
         },
         {
             name: "Colombia",
-            regionId: "2"
+            regionId: "1"
 
         },
     
         {
             name: "Chile",
-            regionId: "2"
+            regionId: "1"
 
         },
         {
             name: "Uruguay",
-            regionId: "2"
+            regionId: "1"
 
         },
         {
             name: "México",
-            regionId: "1"
+            regionId: "2"
+
+        },
+        {
+            name: "Estados Unidos",
+            regionId: "2"
 
         }
     
@@ -106,39 +111,39 @@ router.post("/initialUsers", async (req,res) => {
 
         {
             name: "Santiago",
-            countrieId: "4"
+            countrieId: "3"
 
         },
         {
             name: "Atacama",
-            countrieId: "4"
+            countrieId: "3"
 
         },
         {
             name: "Valparaíso",
-            countrieId: "4"
+            countrieId: "3"
 
         },
     
         {
             name: "Bogotá",
-            countrieId: "3"
+            countrieId: "2"
 
         },
         {
             name: "Medellín",
-            countrieId: "3"
+            countrieId: "2"
 
         },
 
         {
             name: "Montevideo",
-            countrieId: "2"
+            countrieId: "5"
 
         },
         {
             name: "Maldonado",
-            countrieId: "2"
+            countrieId: "5"
 
         }
     

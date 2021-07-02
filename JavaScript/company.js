@@ -7,7 +7,7 @@ let backgroundBlack = document.getElementById("black-company")
 
 
 
-//// GET REGIONES
+//// GET companias
 let callCompanies = async () => {
 
   let searchApi = await fetch(`http://localhost:3000/companies`, {
@@ -89,7 +89,7 @@ let selectCity = document.getElementById("select-city")
 
     option.innerHTML = `${element.name}`
    
-      selectCity.addEventListener("click", async(e) => {
+      selectCity.addEventListener("change", async(e) => {
          let pais = e.target.value
         console.log(pais)
   
@@ -135,6 +135,7 @@ async function createCompanies() {
   let tbody = document.createElement("tbody")
 
   let a = []
+  if(awaitCompanies)
   awaitCompanies.forEach(element => {
 
     a = Object.values(element)
@@ -190,10 +191,6 @@ async function createCompanies() {
 }
 
 createCompanies() 
-
-
-
-
 
 
 //POST

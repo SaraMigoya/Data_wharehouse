@@ -62,17 +62,24 @@ let callRegions = async () => {
     }
   })
 
+  let searchCompany = await fetch(`http://localhost:3000/companies`, {
+    method: "GET",
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+
+  let resCompany = await searchCompany.json()
+
   let res = await searchApi.json()
-
-  if (res.exito) {
-    return res
-
-
+  let obj = {
+    companies: resCompany,
+    regions: res
   }
-  else {
-    console.log("error")
-  }
+  console.log(obj)
+return obj
 }
+
 
 let name = document.getElementById("name")
 const lastName = document.getElementById("lastname")
@@ -83,14 +90,17 @@ const region = document.getElementById("region")
 const country = document.getElementById("country")
 const city = document.getElementById("city")
 const address = document.getElementById("address")
+let selectInteres = document.getElementById("interes-new-contact")
 const userAccount = document.getElementById("user-account")
 const canalContacto = document.getElementById("canal")
 const saveContact = document.getElementById("save-contact")
-let interes = document.getElementById("interes")
+
 
 let regionId;
 let countryId;
 let cityId;
+let interes;
+let companyId;
 
 name.addEventListener("keyup", () =>{
   saveContact.classList.add("verde")
@@ -98,21 +108,57 @@ name.addEventListener("keyup", () =>{
   cancel.classList.add("btn-cancel-red")
   btnAddChannel.classList.add("btb-new-contact-blue")
 
-
-
 })
+selectInteres.addEventListener("change", (e) =>{
+  num = e.target.value
+  console.log(num)
+  if(num == "100%"){
+    interes = "100%"
+  }
+  if(num == "75%"){
+    interes = "100%"
+  }
+  if(num == "50%"){
+    interes = "100%"
+  }
+  if(num == "25%"){
+    interes = "100%"
+  }
+  if(num == "0%"){
+    interes = "100%"
+  }
+})
+
+
 ///CARGAR REGIONES PAISES Y CIUDADES
 async function choseRegions() {
 
-  let awaitRegions = await callRegions();
+  let objRegions = await callRegions();
+  let arr = Object.values(objRegions)
+  let awaitRegions = arr[1]
+  let awaitCompanies = arr[0]
 
+
+  awaitCompanies.forEach(element =>{
+    let optionCompanies = document.createElement("option")
+    optionCompanies.innerHTML = `${element.name}`
+
+    company.addEventListener("change", (e) =>{
+      console.log(e.target.value)
+      if (e.target.value == element.name) {
+        companyId = element.name
+      }
+    })
+
+    company.appendChild(optionCompanies)
+  })
 
   awaitRegions.allRegions.forEach(element => {
 
     let optionRegions = document.createElement("option")
     optionRegions.innerHTML = `${element.name}`
 
-    region.addEventListener("click", (e) => {
+    region.addEventListener("change", (e) => {
 
       if (e.target.value == element.name) {
 
@@ -134,7 +180,7 @@ async function choseRegions() {
           optionCountries.innerHTML = `${e.name}`
           country.appendChild(optionCountries)
 
-          country.addEventListener("click", (event) =>{
+          country.addEventListener("change", (event) =>{
             if (event.target.value == e.name) {
                countryId = e.id
                console.log(countryId)
@@ -148,7 +194,7 @@ async function choseRegions() {
                 document.getElementById("city").disabled = false
                 city.classList.remove("background-gray")
                 address.classList.remove("background-gray")
-                city.addEventListener("click", (e) =>{
+                city.addEventListener("change", (e) =>{
                   if (e.target.value == x.name){
                     cityId = x.id
                     console.log(cityId)
@@ -234,7 +280,7 @@ async function createContacts() {
   awaitContacts.forEach(element => {
 
     a = Object.values(element)
-    console.log(a)
+
 
     let tr2 = document.createElement("tr")
     for (let i = 0; i < a.length; i++) {
@@ -262,7 +308,7 @@ async function createContacts() {
         td.appendChild(divContact)
         tr2.appendChild(td)
       }
-      console.log(a[8].name)
+      
       if (i == 2) {
         let td = document.createElement("td")
         td.innerHTML = a[8].name
@@ -276,6 +322,11 @@ async function createContacts() {
       if (i == 4) {
         let td = document.createElement("td")
         td.innerHTML = a[2]
+        tr2.appendChild(td)
+      }
+      if (i == 5) {
+        let td = document.createElement("td")
+        td.innerHTML = a[6]
         tr2.appendChild(td)
       }
       if (i == 7) {
@@ -321,10 +372,12 @@ async function createContacts() {
 }
 
 createContacts()
+
 //GUARDAR CONTACTO
 saveContact.addEventListener("click", async () => {
 
-  postContact(name.value, lastName.value, position.value, email.value, company.value, canalContacto.selected, "22213444", regionId, countryId, cityId)
+  //postContact("name.value", "lastName.value", "position.value", "email.value", "companyId", "interes", "1", "6", "13")
+  postContact(name.value, lastName.value, position.value, email.value, companyId, interes, regionId, countryId, cityId)
 
 })
 ////AGREGAR CANAL
@@ -371,7 +424,7 @@ btnAddChannel.addEventListener("click", ()=>{
 
 })
 //POST CONTACTOS
-let postContact = async (name, last_name, position, email, company, canal_contacto, cuenta_usuario, regionId, countrieId, cityId, interes) => {
+let postContact = async (name, last_name, position, email, company, interes, regionId, countrieId, cityId) => {
 
   var data = {
     name,
@@ -379,12 +432,11 @@ let postContact = async (name, last_name, position, email, company, canal_contac
     position,
     email,
     company,
-    canal_contacto,
-    cuenta_usuario,
+    interes,
     regionId,
     countrieId,
     cityId, 
-    interes
+ 
   }
 
   let searchApi = await fetch(`http://localhost:3000/contacts`, {
@@ -394,9 +446,9 @@ let postContact = async (name, last_name, position, email, company, canal_contac
       'Content-Type': 'application/json'
     }
   })
-  console.log(searchApi)
+  
   await searchApi.json()
-
+  location.href = "../html/index.html"
 }
 
 ////DELETE CONTACTOS

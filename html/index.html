@@ -74,8 +74,12 @@
                             </div>
                             <div class="container-input">
                                 <label for="company">Compañía <span>*</span> </label>
-                                <input id="company" type="text" name="company"
-                                    placeholder="ingresar nombre de la compañía" required>
+                                <div>
+                                    <select name="company" id="company" required>
+                                    <option>Seleccione una compañía</option>
+                                    </select>
+                                </div>
+                            
                             </div>
                      
                     </div>
@@ -86,7 +90,6 @@
                             <div>
                                 <select name="region" id="region" >
                                 <option>Seleccione una región</option>
-
                                 </select>
                             </div>
         
@@ -121,11 +124,12 @@
                             <label for="interes-new-contact" id="interes">Interés</label>
                             <div>
                                 <select name="interes-new-contact" id="interes-new-contact">
-                                    <option value="canal1">100%</option>
-                                    <option value="canal1">75%</option>
-                                    <option value="canal1">50%</option>
-                                    <option value="canal1">25%</option>
-                                    <option value="canal1">0%</option>
+                                    <option value="">seleccione un porcentaje</option>
+                                    <option>100%</option>
+                                    <option>75%</option>
+                                    <option>50%</option>
+                                    <option >25%</option>
+                                    <option>0%</option>
             
                                 </select>
                             </div>
@@ -135,11 +139,11 @@
                                 <label for="canal" >Canal de contacto</label>
                                 <div class="container-select">
                                     <select name="canal" id="canal">
-                                        <option value="canal1">Whatsapp</option>
-                                        <option value="canal2">Slack</option>
-                                        <option value="canal3">Facebook</option>
-                                        <option value="canal4">Email</option>
-                                        <option value="canal5">Mensaje</option>
+                                        <option id="whatsapp">Whatsapp</option>
+                                        <option id="slack">Slack</option>
+                                        <option id="facebook">Facebook</option>
+                                        <option>Email</option>
+                                        <option>Mensaje</option>
                                     </select>
                                 </div>
                             </div>
