@@ -129,7 +129,7 @@ const router = express.Router();
         } */
 
         const allContacts = await models.contacts.findAll({
-            attributes: ["name", "last_name", "position", "email", "company", "interes","countrieId", "cityId", "company"],
+            attributes: [ "name", "last_name", "position", "email", "company", "interes","countrieId", "cityId", "company","id"],
             include: [
 
                 {

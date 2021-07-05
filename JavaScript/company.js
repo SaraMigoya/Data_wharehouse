@@ -154,9 +154,9 @@ async function createCompanies() {
       if (i == 5) {
         td.innerHTML = `${a[i].name}`
         idCompany = `${a[0]}`
-        iconDelete.className = "far fa-trash-alt"
+        iconDelete.className = "fas fa-trash"
         let iconEdit = document.createElement("i")
-        iconEdit.className = "far fa-edit"
+        iconEdit.className = "fas fa-pen"
         tr2.appendChild(td)
         tr2.appendChild(iconEdit)
         tr2.appendChild(iconDelete)

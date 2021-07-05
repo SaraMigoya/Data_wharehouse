@@ -230,6 +230,17 @@ tbody tr {
 }
 tbody tr:hover {
     background: #e8e8e8;
+     #icon2, #icon3 {
+         display: inline-block;
+        margin-top: 25px;
+        font-size: 20px;
+        padding: 10px;
+        color: rgba(0,0,0,0.50)
+    } 
+  
+    .tdActions{
+        display: none;
+    }
 }
 
 #table-contacts {
@@ -307,12 +318,24 @@ td p {
     display: none;
 }
 
-#icon2{
-    display: none;
+#icon2, #icon3, .delete-contact {
+   display: none;
+   
+   //margin: 0;
 } 
-.tdActions:hover{
-    color: red;
-    #icon2 & {
-        display: inline;
-    } 
+
+#icon-delete {
+    color: var(--blue);
+    margin-right: 7px;
+    font-size: 18px;
+    
+}
+.div-delete-contactos{
+    display: flex;
+    justify-content: flex-end;
+}
+.delete-contact-color{
+    color: var(--blue);
+    margin-left: 5px;
+    margin-right: 27px;
 }

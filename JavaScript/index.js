@@ -76,7 +76,6 @@ let callRegions = async () => {
     companies: resCompany,
     regions: res
   }
-  console.log(obj)
 return obj
 }
 
@@ -207,9 +206,7 @@ async function choseRegions() {
                 city.appendChild(optionCities)
               })
             }
-          
-      
-            
+  
           })
 
          
@@ -229,18 +226,28 @@ choseRegions()
 
 //CREAR CONTACTOS
 async function createContacts() {
-
   let awaitContacts = await callContacts()
-
   let sectionContacts = document.getElementById("contacts")
+  let div = document.getElementById("div")
+  let table = document.getElementById("table-contacts")
+  let thead = document.getElementById("thead")
+  let tr = document.getElementById("tr-titles")
+  let thContact = document.getElementById("th-contact")
+  let thCountry = document.getElementById("th-country")
+  let thCompany = document.getElementById("th-company")
+  let thPosition = document.getElementById("th-position")
+  let thInteres = document.getElementById("th-interes")
+  let thActions = document.getElementById("th-actions")
+/* 
   let div = document.createElement("div")
   let table = document.createElement("table-contacts")
   table.id = "table-contacts"
   let thead = document.createElement("thead")
   let tr = document.createElement("tr")
   let thCheckbox = document.createElement("th")
-  let inputCheckbox = document.createElement("input")
+  const inputCheckbox = document.createElement("input")
   inputCheckbox.type = "checkbox"
+  inputCheckbox.id = "checkboxId"
   thCheckbox.appendChild(inputCheckbox)
   let thContact = document.createElement("th")
   let thCountry = document.createElement("th")
@@ -273,10 +280,14 @@ async function createContacts() {
   let span5 = document.createElement("span")
   let arrow5 = document.createElement("i")
   arrow5.className = "fas fa-exchange-alt"
-  span5.appendChild(arrow5)
+  span5.appendChild(arrow5) */
+
+  
 
   let tbody = document.createElement("tbody")
   let a = []
+
+
   awaitContacts.forEach(element => {
 
     a = Object.values(element)
@@ -287,9 +298,15 @@ async function createContacts() {
       if (i == 0) {
         let tdCheckbox = document.createElement("input")
         tdCheckbox.type = "checkbox"
+        tdCheckbox.id = element.id
+        tdCheckbox.classList = "checkbox2"
         tr2.appendChild(tdCheckbox)
 
+  /*       tdCheckbox.addEventListener("click", ()=>{
+          tr2.classList.add("checked")
+        }) */
       }
+    
       if (i == 1) {
 
         let td = document.createElement("td")
@@ -329,21 +346,32 @@ async function createContacts() {
         td.innerHTML = a[6]
         tr2.appendChild(td)
       }
-      if (i == 7) {
+ /*      if (i == 7) {
         let td = document.createElement("td")
         td.innerHTML = a[7]
         tr2.appendChild(td)
-      }
+      } */
       if (i == 8) {
         let td = document.createElement("td")
         td.innerHTML = "..."
         td.className = "tdActions"
         let iconDelete = document.createElement("i")
-        iconDelete.className = "far fa-trash-alt"
+        let iconEdit = document.createElement("i")
+        iconDelete.className = "fas fa-trash"
         iconDelete.id = "icon2"
+        iconEdit.className = "fas fa-pen"
+        iconEdit.id = "icon3"
+        
+        iconDelete.addEventListener("click", () =>{
+          
+          deleteContact(element.id)
+        })
+
         tr2.appendChild(td)
         tr2.appendChild(iconDelete)
+        tr2.appendChild(iconEdit)
       }
+
 
       tbody.appendChild(tr2)
     }
@@ -355,23 +383,70 @@ async function createContacts() {
   thead.appendChild(tr)
   div.appendChild(table)
   table.appendChild(tbody)
-  tr.appendChild(thCheckbox)
+  //tr.appendChild(thCheckbox)
   tr.appendChild(thContact)
-  thContact.appendChild(span)
+ // thContact.appendChild(span)
   tr.appendChild(thCountry)
-  thCountry.appendChild(span2)
+  //thCountry.appendChild(span2)
   tr.appendChild(thCompany)
-  thCompany.appendChild(span3)
+  //thCompany.appendChild(span3)
   tr.appendChild(thPosition)
-  thPosition.appendChild(span4)
+  //thPosition.appendChild(span4)
   tr.appendChild(thInteres)
-  thInteres.appendChild(span5)
+  //thInteres.appendChild(span5)
   tr.appendChild(thActions)
   sectionContacts.appendChild(div)
 
 }
 
 createContacts()
+
+let a = document.getElementById("checkbox4")
+let deleteContacts = document.getElementById("delete-contacts")
+let icondel = document.getElementById("icon-delete")
+let arrayIdContactos;
+let checks = document.getElementsByClassName("checkbox2")
+
+function selectedElements (){
+
+}
+
+a.addEventListener("click",(e)=>{
+  arrayIdContactos = []
+
+  if (e.target.checked == true){
+    for (let i = 0; i < checks.length; i++) {
+      arrayIdContactos.push(checks[i].id)
+      checks[i].checked = true;
+    }
+    deleteContacts.classList.remove("delete-contact")
+    icondel.classList.remove("delete-contact")
+
+    console.log(arrayIdContactos)
+    if(arrayIdContactos == 0){
+          
+      deleteContacts.classList.add("delete-contact")
+      } 
+
+}
+
+  else {
+
+    for (let i = 0; i < checks.length; i++) {
+        checks[i].checked = false;
+    }
+    deleteContacts.classList.add("delete-contact")
+      arrayIdContactos = arrayIdContactos.filter(function(i) { return i !== a.id })
+  }
+
+})
+
+deleteContacts.addEventListener("click", ()=>{
+  arrayIdContactos.forEach(element => {
+    
+    deleteContact(element)
+  });
+})
 
 //GUARDAR CONTACTO
 saveContact.addEventListener("click", async () => {
@@ -423,6 +498,8 @@ btnAddChannel.addEventListener("click", ()=>{
 
 
 })
+
+
 //POST CONTACTOS
 let postContact = async (name, last_name, position, email, company, interes, regionId, countrieId, cityId) => {
 
@@ -467,5 +544,6 @@ let deleteContact = async (id) => {
     }
   })
   await searchApi.json()
+  location.href = "../html/index.html"
 
 } 

@@ -159,7 +159,7 @@
                             <div class="box2">
                                 <button id="btn-add-channel"> <span class="plus">+</span> Agregar canal</button>
                             </div>
-                           <!--  <input type="text" id="btn-add-channel" placeholder="+ Agregar canal"> -->
+                        
                            
                             <div class="flex-container-buttons">
                                 <button id="cancel" class="btn-cancel">Cancelar</button>
@@ -188,10 +188,17 @@
                 </div>
 
                 <div class="inline-dos">
-                  
                     <button id="button-new-contact">Agregar contacto</button>
                 </div>
+  
             </div>
+           <div class="div-delete-contactos">
+
+               <p class="delete-contact delete-contact-color" id="delete-contacts"> <i class="fas fa-trash"  id="icon-delete"></i>Eliminar contactos</p>
+           </div>
+   
+       
+
         </section>
 
 <!--         <article id="article2">
@@ -253,36 +260,46 @@
         </article>
  -->
  <section id="contacts"></section>
-<!--             
+   
+                
                 <table id="table-contacts">
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox"></th>
-
-                            <th>Contacto 
-                                <span>
-                                    <i class="fas fa-long-arrow-alt-up"></i>
-                                    <i class="fas fa-long-arrow-alt-down"></i>
+                    <div  id="div">
+                        <thead id="thead">
+                            <tr id="tr-titles">
+                                <th><input type="checkbox" id="checkbox4"></th>
+    
+                                <th id="th-contact">  Contacto 
+                                    <span>
+                                        <i class="fas fa-exchange-alt"></i>
+                                        
+                                    </span>
+                                </th>
+                                <th id="th-country">País/Región
+                                     <span>
+                                    <i class="fas fa-exchange-alt"></i>
                                 </span>
-                            </th>
-                            <th>País/Región <span><i class="fas fa-long-arrow-alt-up"></i><i
-                                        class="fas fa-long-arrow-alt-down"></i></span>
-                            </th>
-                            <th>Compañía <span><i class="fas fa-long-arrow-alt-up"></i><i
-                                        class="fas fa-long-arrow-alt-down"></i></span>
-                            </th>
-                            <th>Cargo
-                                <span><i class="fas fa-long-arrow-alt-up"></i><i
-                                        class="fas fa-long-arrow-alt-down"></i></span>
-                            </th>
-                    
-                            <th>Interés <span><i class="fas fa-long-arrow-alt-up"></i><i
-                                        class="fas fa-long-arrow-alt-down"></i></span>
-                            </th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+
+                                </th>
+                                <th id="th-company">Compañía 
+                            <span>
+                                      <i class="fas fa-exchange-alt"></i>
+                             </span>
+                                </th>
+                                <th id="th-position">Cargo
+                                    <span>
+                                        <i class="fas fa-exchange-alt"></i>
+                                    </span>
+                                </th>
+                        
+                                <th id="th-interes">Interés <span>
+                                    <i class="fas fa-exchange-alt"></i>
+                                </span>
+                                </th>
+                                <th id="th-actions">Acciones</th>
+                            </tr>
+                        </thead>
+                    </div>
+         <!--            <tbody>
                         <tr> seria el tr2
                             <td><input type="checkbox"></td>
 
@@ -406,9 +423,9 @@
                         </tr>
 
 
-                    </tbody>
+                    </tbody> -->
                 </table>
-            -->
+          
         
     </main>
     <script src="../JavaScript/index.js"></script>
