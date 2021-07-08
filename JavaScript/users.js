@@ -37,8 +37,8 @@ let createUser = async (name, last_name, email, username, password, isAdmin, rep
         body: JSON.stringify(data),
         headers: {
             'Content-Type': 'application/json', 
-            'Authorization': 'Bearer ' + process.env.JWTPASSWORD
-        }
+           // 'Authorization': 'Bearer ' + process.env.JWTPASSWORD
+        } 
     })
 
     let res = await api.json()

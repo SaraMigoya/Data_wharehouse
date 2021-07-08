@@ -193,7 +193,7 @@
   
             </div>
            <div class="div-delete-contactos">
-
+                <p id="contact-selected" hidden></p>
                <p class="delete-contact delete-contact-color" id="delete-contacts"> <i class="fas fa-trash"  id="icon-delete"></i>Eliminar contactos</p>
            </div>
    
@@ -259,177 +259,193 @@
             </div>
         </article>
  -->
- <section id="contacts"></section>
-   
-                
-                <table id="table-contacts">
-                    <div  id="div">
-                        <thead id="thead">
-                            <tr id="tr-titles">
-                                <th><input type="checkbox" id="checkbox4"></th>
+ <section id="contacts">
+     
+     <table id="table-contacts">
+         <div  id="div">
+             <thead id="thead">
+                 <tr id="tr-titles">
+                     <th><input type="checkbox" id="checkbox4"></th>
     
-                                <th id="th-contact">  Contacto 
-                                    <span>
-                                        <i class="fas fa-exchange-alt"></i>
-                                        
-                                    </span>
-                                </th>
-                                <th id="th-country">País/Región
-                                     <span>
-                                    <i class="fas fa-exchange-alt"></i>
-                                </span>
-
-                                </th>
-                                <th id="th-company">Compañía 
-                            <span>
-                                      <i class="fas fa-exchange-alt"></i>
-                             </span>
-                                </th>
-                                <th id="th-position">Cargo
-                                    <span>
-                                        <i class="fas fa-exchange-alt"></i>
-                                    </span>
-                                </th>
-                        
-                                <th id="th-interes">Interés <span>
-                                    <i class="fas fa-exchange-alt"></i>
-                                </span>
-                                </th>
-                                <th id="th-actions">Acciones</th>
-                            </tr>
-                        </thead>
-                    </div>
-         <!--            <tbody>
-                        <tr> seria el tr2
-                            <td><input type="checkbox"></td>
-
-                            <td>
-                                <div class="contact">
-                                    <img src="./images/group-81.svg" alt="">
-                                    <div class="name">
-                                        Sofia Gonzalez
-                                        <p>saramigoy@fff.com</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>Argentina</td>
-                            <td>Globant</td>
-                            <td>developer</td>
-                          
-                            <td>100</td>
-                            <td>...
-                            <div class="icons">
-                                <i class="far fa-trash-alt "></i>
-                                <i class="far fa-edit"></i>
-                            </div>
-                            </td>
-                          
-
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>
-                                <div class="contact">
-                                    <img src="./images/group-81.svg" alt="">
-                                    <div class="name">
-                                        Sofia Gonzalez
-                                        <p>sofiagonzalez12@gmail.com</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>Argentina</td>
-                            <td>Globant</td>
-                            <td>developer</td>
-                    
-                            <td>100</td>
-                            <td>...</td>
-
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>
-                                <div class="contact">
-                                    <img src="./images/group-81.svg" alt="">
-                                    <div class="name">
-                                        Sofia Gonzalez
-                                        <p>saramigoy@fff.com</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>Argentina</td>
-                            <td>Globant</td>
-                            <td>developer</td>
-                     
-                            <td>100</td>
-                            <td>...</td>
-
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>
-                                <div class="contact">
-                                    <img src="./images/group-81.svg" alt="">
-                                    <div class="name">
-                                        Sofia Gonzalez
-                                        <p>saramigoy@fff.com</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>Argentina</td>
-                            <td>Globant</td>
-                            <td>developer</td>
-                   
-                            <td>100</td>
-                            <td>...</td>
-
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>
-                                <div class="contact">
-                                    <img src="./images/group-81.svg" alt="">
-                                    <div class="name">
-                                        Sofia Gonzalez
-                                        <p>saramigoy@fff.com</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>Argentina</td>
-                            <td>Globant</td>
-                            <td>developer</td>
-                     
-                            <td>100</td>
-                            <td>...</td>
-
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>
-                                <div class="contact">
-                                    <img src="./images/group-81.svg" alt="">
-                                    <div class="name">
-                                        Sofia Gonzalez
-                                        <p>saramigoy@fff.com</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>Argentina</td>
-                            <td>Globant</td>
-                            <td>developer</td>
-                     
-                            <td>100</td>
-                            <td>...</td>
-
-                        </tr>
-
-
-                    </tbody> -->
-                </table>
+                     <th id="th-contact">Contacto 
+                         <span id="exchange-alt">
+                             <i class="fas fa-exchange-alt"></i>
+                             
+                         </span>
+                     </th>
+                     <th id="th-country">País/Región
+                          <span>
+                         <i class="fas fa-exchange-alt"></i>
+                     </span>
+    
+                     </th>
+                     <th id="th-company">Compañía 
+                 <span>
+                           <i class="fas fa-exchange-alt"></i>
+                  </span>
+                     </th>
+                     <th id="th-position">Cargo
+                         <span>
+                             <i class="fas fa-exchange-alt"></i>
+                         </span>
+                     </th>
+             
+                     <th id="th-interes">Interés <span>
+                         <i class="fas fa-exchange-alt"></i>
+                     </span>
+                     </th>
+                     <th id="th-actions">Acciones</th>
+                 </tr>
+             </thead>
+         </div>
+    <!--            <tbody>
+             <tr> seria el tr2
+                 <td><input type="checkbox"></td>
+    
+                 <td>
+                     <div class="contact">
+                         <img src="./images/group-81.svg" alt="">
+                         <div class="name">
+                             Sofia Gonzalez
+                             <p>saramigoy@fff.com</p>
+                         </div>
+                     </div>
+                 </td>
+                 <td>Argentina</td>
+                 <td>Globant</td>
+                 <td>developer</td>
+               
+                 <td>100</td>
+                 <td>...
+                 <div class="icons">
+                     <i class="far fa-trash-alt "></i>
+                     <i class="far fa-edit"></i>
+                 </div>
+                 </td>
+             </tr>
+             <tr>
+                 <td><input type="checkbox"></td>
+                 <td>
+                     <div class="contact">
+                         <img src="./images/group-81.svg" alt="">
+                         <div class="name">
+                             Sofia Gonzalez
+                             <p>sofiagonzalez12@gmail.com</p>
+                         </div>
+                     </div>
+                 </td>
+                 <td>Argentina</td>
+                 <td>Globant</td>
+                 <td>developer</td>
+         
+                 <td>100</td>
+                 <td>...</td>
+    
+             </tr>
+             <tr>
+                 <td><input type="checkbox"></td>
+                 <td>
+                     <div class="contact">
+                         <img src="./images/group-81.svg" alt="">
+                         <div class="name">
+                             Sofia Gonzalez
+                             <p>saramigoy@fff.com</p>
+                         </div>
+                     </div>
+                 </td>
+                 <td>Argentina</td>
+                 <td>Globant</td>
+                 <td>developer</td>
           
+                 <td>100</td>
+                 <td>...</td>
+    
+             </tr>
+             <tr>
+                 <td><input type="checkbox"></td>
+                 <td>
+                     <div class="contact">
+                         <img src="./images/group-81.svg" alt="">
+                         <div class="name">
+                             Sofia Gonzalez
+                             <p>saramigoy@fff.com</p>
+                         </div>
+                     </div>
+                 </td>
+                 <td>Argentina</td>
+                 <td>Globant</td>
+                 <td>developer</td>
         
+                 <td>100</td>
+                 <td>...</td>
+    
+             </tr>
+             <tr>
+                 <td><input type="checkbox"></td>
+                 <td>
+                     <div class="contact">
+                         <img src="./images/group-81.svg" alt="">
+                         <div class="name">
+                             Sofia Gonzalez
+                             <p>saramigoy@fff.com</p>
+                         </div>
+                     </div>
+                 </td>
+                 <td>Argentina</td>
+                 <td>Globant</td>
+                 <td>developer</td>
+          
+                 <td>100</td>
+                 <td>...</td>
+    
+             </tr>
+             <tr>
+                 <td><input type="checkbox"></td>
+                 <td>
+                     <div class="contact">
+                         <img src="./images/group-81.svg" alt="">
+                         <div class="name">
+                             Sofia Gonzalez
+                             <p>saramigoy@fff.com</p>
+                         </div>
+                     </div>
+                 </td>
+                 <td>Argentina</td>
+                 <td>Globant</td>
+                 <td>developer</td>
+          
+                 <td>100</td>
+                 <td>...</td>
+    
+             </tr>
+    
+    
+         </tbody> -->
+     </table>
+     
+ </section>
+ <section id="section-alert" class="alert-delete none">
+   
+        <div class="section-alert-div--container">
+            <i class="fas fa-user section-alert-icon"></i>
+    
+            <div>
+                <i class="fas fa-times-circle section-alert-cross"></i>
+            </div>
+
+            <p class="section-alert--p">¿Seguro que deseas eliminar los contactos seleccionados?</p>
+            <div class="section-alert--container_btn">
+                <button class="section-alert-btn-cancel">Cancelar</button> 
+                <button id="delete-confirm" class="section-alert-btn-delete">eliminar</button>
+            </div>
+        </div>
+    
+ </section>
     </main>
     <script src="../JavaScript/index.js"></script>
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!--  <script src="../JavaScript/sweetAlert.js"></script> -->
 
 </body>
 

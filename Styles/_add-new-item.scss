@@ -103,7 +103,7 @@ height: auto;
 }
 
 
-#black-company, #black, #black-region {
+#black-company, #black, #black-region, .background-black {
     position: absolute;
     z-index: 3;
     background-color: rgba(0,0,0, 0.7);
@@ -262,4 +262,64 @@ height: auto;
 
 .add-new-item .flex-container i {
     margin: 22px;
+}
+.alert-delete {
+    z-index: 4;
+    position: relative;
+    background: white;
+    width: 339px;
+    height: 303px;
+}
+ .section-alert--p{
+    font-size: 1em;
+    text-align: center;
+    margin: 17px 17px 30px
+} 
+
+.section-alert-btn-cancel {
+    border: 1px solid blue;
+    border-radius: 1.4px;
+    padding: 20px;
+    background: none;
+    color: blue;
+    width: 130px;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+
+}
+.section-alert-btn-delete{
+    border: 1px solid;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 1.4px;
+    padding: 20px;
+    background: #F03738;
+    color: white;
+    width: 130px;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+.section-alert-icon{
+    font-size: 100px;
+    color: #FFDBAC;
+} 
+.section-alert-cross{
+    font-size: 50px;
+    color: #DB0404 ;
+    
+} 
+.section-alert-div--container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.section-alert--container_btn {
+    display: flex;
+
+    justify-content: space-between;
+    margin: 0;
 }

@@ -5,14 +5,14 @@ const { dataLogin, dataReceived, validateJwt } = require("../middlewares");
 
 
 //POST
-router.post("/", validateJwt, dataReceived, async (req, res) => {
+router.post("/", dataReceived, async (req, res) => {
 
- if (req.user.admin == false) {
+ /* if (req.user.admin == false) {
         res.send("no estás autorizado para crear un nuevo usuario")
         return
 
     }
-
+ */
     const { name, last_name, email, username, password, isAdmin } = req.body
     const newUser = {
         name,

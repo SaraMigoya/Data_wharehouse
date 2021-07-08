@@ -15,7 +15,7 @@ buttonLogin.addEventListener("click", ()=>{
 
 let login = async (email, password) =>{
 
-    var data = {
+    const data = {
         email,
         password
     }
@@ -28,8 +28,12 @@ let login = async (email, password) =>{
         }
     })
     let res = await searchApi.json()
+    
     if(res.exito){
         location.href = "../html/index.html"
+        localStorage.setItem("token", JSON.stringify(res.access.codeToken));
+        //localStorage.setItem("username", JSON.stringify(res.access.dataUser.username));
+       // localStorage.setItem("admin", JSON.stringify(res.success.userData.isAdmin));
     }
     else{
         invalid.removeAttribute("hidden")

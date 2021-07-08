@@ -7,7 +7,7 @@
 
 :root {
   --blue: #0665be;
-  --white:#FFFFFF;
+  --white: #ffffff;
 }
 
 body {
@@ -74,7 +74,7 @@ body {
 
 .background-gray {
   background: rgba(0, 0, 0, 0.1);
-  border: 1px solid #C6CACC;
+  border: 1px solid #c6cacc;
 }
 
 /*  div {
@@ -221,7 +221,8 @@ select {
 }
 
 #button-new-contact,
-#button-new-region, #button-new-company {
+#button-new-region,
+#button-new-company {
   color: white;
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
@@ -260,9 +261,9 @@ tbody tr:hover {
   background: #e8e8e8;
 }
 
-tbody tr:hover #icon2, tbody tr:hover #icon3 {
+tbody tr:hover #icon2,
+tbody tr:hover #icon3 {
   display: inline-block;
-  margin-top: 25px;
   font-size: 20px;
   padding: 10px;
   color: rgba(0, 0, 0, 0.5);
@@ -353,7 +354,9 @@ td p {
   display: none;
 }
 
-#icon2, #icon3, .delete-contact {
+#icon2,
+#icon3,
+.delete-contact {
   display: none;
 }
 
@@ -367,17 +370,36 @@ td p {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .delete-contact-color {
   color: var(--blue);
   margin-left: 5px;
   margin-right: 27px;
+  cursor: pointer;
 }
 
+#contact-selected {
+  color: cornflowerblue;
+  background: #069df92b;
+  margin-left: 29px;
+  padding: 7px;
+  margin-bottom: 6px;
+  border-radius: 5px;
+}
+
+.check {
+  margin-top: 40px;
+  margin-left: 7px;
+}
+
+/* .checked {
+    background: #069df92b;
+}
+ */
 header nav {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -565,7 +587,7 @@ header nav a.activo {
   display: none;
 }
 
-#black-company, #black, #black-region {
+#black-company, #black, #black-region, .background-black {
   position: absolute;
   z-index: 3;
   background-color: rgba(0, 0, 0, 0.7);
@@ -742,6 +764,93 @@ header nav a.activo {
 
 .add-new-item .flex-container i {
   margin: 22px;
+}
+
+.alert-delete {
+  z-index: 4;
+  position: relative;
+  background: white;
+  width: 339px;
+  height: 303px;
+}
+
+.section-alert--p {
+  font-size: 1em;
+  text-align: center;
+  margin: 17px 17px 30px;
+}
+
+.section-alert-btn-cancel {
+  border: 1px solid blue;
+  border-radius: 1.4px;
+  padding: 20px;
+  background: none;
+  color: blue;
+  width: 130px;
+  height: 41px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.section-alert-btn-delete {
+  border: 1px solid;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 1.4px;
+  padding: 20px;
+  background: #F03738;
+  color: white;
+  width: 130px;
+  height: 41px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.section-alert-icon {
+  font-size: 100px;
+  color: #FFDBAC;
+}
+
+.section-alert-cross {
+  font-size: 50px;
+  color: #DB0404;
+}
+
+.section-alert-div--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.section-alert--container_btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0;
 }
 
 .body-login {

@@ -5,15 +5,13 @@
 }
 :root {
     --blue: #0665be;
-    --white:#FFFFFF;
-
+    --white: #ffffff;
 }
 
 body {
     max-width: 1366px;
     font-family: "Open Sans", sans-serif;
     font-weight: lighter;
-
 }
 
 //---------section one
@@ -64,13 +62,12 @@ body {
     width: 190px;
     border-radius: 3.5px;
     border: 1px solid #cccccc;
-   
-    color: rgba(0,0,0,0.60);
+
+    color: rgba(0, 0, 0, 0.6);
 }
 .background-gray {
-    background: rgba(0,0,0,0.10);
-    border: 1px solid #C6CACC;
-  
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid #c6cacc;
 }
 /*  div {
     display: flex;
@@ -193,7 +190,8 @@ select {
 }
 
 #button-new-contact,
-#button-new-region, #button-new-company {
+#button-new-region,
+#button-new-company {
     color: white;
     font-family: "Open Sans", sans-serif;
     font-size: 14px;
@@ -206,7 +204,6 @@ select {
     border: 0;
     margin: 0;
 }
-
 
 .inline-dos {
     margin-right: 28px;
@@ -230,15 +227,16 @@ tbody tr {
 }
 tbody tr:hover {
     background: #e8e8e8;
-     #icon2, #icon3 {
-         display: inline-block;
-        margin-top: 25px;
+    #icon2,
+    #icon3 {
+        display: inline-block;
+        //margin-top: 10px;
         font-size: 20px;
         padding: 10px;
-        color: rgba(0,0,0,0.50)
-    } 
-  
-    .tdActions{
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    .tdActions {
         display: none;
     }
 }
@@ -249,7 +247,7 @@ tbody tr:hover {
     border-collapse: collapse;
     //border: 1px solid rgba(0, 0, 0, 0.1);
     margin-left: 29.5px;
-} 
+}
 
 thead th {
     width: 18%;
@@ -264,7 +262,7 @@ thead th:nth-child(8) {
     width: 14%;
 }
 tr td:nth-child(8) {
-   font-weight: bold;
+    font-weight: bold;
 }
 
 thead th:nth-child(1),
@@ -282,7 +280,6 @@ span i {
     padding: 0;
     transform: rotate(90deg);
 }
-
 
 td p {
     color: rgba(0, 0, 0, 0.5);
@@ -310,7 +307,7 @@ td p {
 .icon-contact {
     padding: 6px 10px;
     background-color: #63e6be;
-    color:rgb(85, 102, 9);
+    color: rgb(85, 102, 9);
     border-radius: 3px;
 }
 
@@ -318,24 +315,43 @@ td p {
     display: none;
 }
 
-#icon2, #icon3, .delete-contact {
-   display: none;
-   
-   //margin: 0;
-} 
+#icon2,
+#icon3,
+.delete-contact {
+    display: none;
+
+    //margin: 0;
+}
 
 #icon-delete {
     color: var(--blue);
     margin-right: 7px;
     font-size: 18px;
-    
 }
-.div-delete-contactos{
+.div-delete-contactos {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
-.delete-contact-color{
+.delete-contact-color {
     color: var(--blue);
     margin-left: 5px;
     margin-right: 27px;
+    cursor: pointer;
 }
+#contact-selected {
+    color: cornflowerblue;
+    background: #069df92b;
+    margin-left: 29px;
+    padding: 7px;
+    margin-bottom: 6px;
+    border-radius: 5px;
+}
+.check {
+    margin-top: 40px;
+    margin-left: 7px;
+}
+
+/* .checked {
+    background: #069df92b;
+}
+ */
