@@ -18,7 +18,26 @@ function addClose (evento) {
 addClose(addContact)
 addClose(closenewContact)
 addClose(cancel)
+let get = async (search)=>{
 
+  let searchApi = await fetch(`http://localhost:3000/contacts/${search}`, {
+    method: "GET",
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  let res = await searchApi.json()
+  
+
+  if (res) {
+  console.log(res)
+    return res
+
+  }
+  else {
+    console.log("error")
+  }
+}
 
 //// GET CONTACTS
 let callContacts = async () => {
@@ -29,6 +48,7 @@ let callContacts = async () => {
       'Content-Type': 'application/json'
     }
   })
+
 
   let res = await searchApi.json()
   
@@ -42,6 +62,7 @@ let callContacts = async () => {
   }
 }
 
+ 
 //// GET REGIONS
 let callRegions = async () => {
 
@@ -228,43 +249,189 @@ const thActions = document.getElementById("th-actions")
 async function createContacts() {
  
   let awaitContacts = await callContacts()
-  
   const tbody = document.createElement("tbody")
-
+ 
+  let indicador = 0
   let a = []
   let contactosSelec;
   const exchangeAlt = document.getElementById("exchange-alt")
   
-  console.log(awaitContacts)
-  let orderName= false;
+  let orderName
   exchangeAlt.addEventListener("click", () =>{
-    document.querySelector(".delete").remove();
+    let cantidadAnterior = tbody.children.length
+
+  
     awaitContacts.sort(function (a, b) {
-    
-      if(orderName==false){
-
-        if (a.name.toLowerCase() > b.name.toLowerCase()) {
-        
-          return 1;
-        
+     
+      if (a.name.toLowerCase() > b.name.toLowerCase()){
+       orderName = true
+        return 1;
       } 
-      } else {
-
-        if (a.name.toLowerCase() < b.name.toLowerCase()) {
-          return -1;
-      }
-      }
-
+      if (a.name.toLowerCase() < b.name.toLowerCase()) {
+        orderName = false
+        return -1;
+      } 
       return 0;
       
     }); 
 
+    if(orderName==true) {
+      
+      awaitContacts.reverse()
 
-    if(orderName==false) orderName=true;
-    else orderName=false;
+    }
+    awaitContacts.forEach(element => {
+
+      a = Object.values(element)
+      contactosSelec = []
+      let tr2 = document.createElement("tr")
+    
+ 
+      for (let i = 0; i < a.length; i++) {
   
+        if (i == 0) {
+          let tdCheckbox = document.createElement("input")
+          tdCheckbox.type = "checkbox"
+          tdCheckbox.id = element.id
+          tdCheckbox.classList = "checkbox2 check"
+          tr2.appendChild(tdCheckbox)
+  
+          tdCheckbox.addEventListener("click", (e) => {
+            document.getElementById("contact-selected").removeAttribute("hidden")
+            if (e.target.checked == true) {
+  
+              contactosSelec.push(element.id)
+        
+              tr2.style = "background: rgb(213 235 255)"
+            }else{
+  
+              contactosSelec = contactosSelec.filter(function(i) { return i !== element.id })
+      
+              tr2.style = ""
+            }
+  
+            document.getElementById("contact-selected").innerHTML = `${contactosSelec.length} seleccionados`
+  
+              if(contactosSelec.length == 0){
+                document.getElementById("contact-selected").toggleAttribute("hidden")
+                //tr2.classList.remove("checked")
+              } 
+          })
+  
+        }
+  
+        if (i == 1) {
+  
+          let td = document.createElement("td")
+          
+          let divContact = document.createElement("div") //al final hacer hijo al divcontact de tr2
+          divContact.className = "contact"
+          let divName = document.createElement("div")
+          divName.className = "name"
+          divContact.appendChild(divName)
+          let p1 = document.createElement("p")
+          p1.innerHTML = a[0] + a[1]
+          p1.className = "pName"
+          let p = document.createElement("p")
+          p.innerHTML = a[3]
+          divName.appendChild(p1)
+          divName.appendChild(p)
+          td.appendChild(divContact)
+          tr2.appendChild(td)
+        }
+  
+        if (i == 2) {
+          let td = document.createElement("td")
+          td.classListm = "delete"
+          td.innerHTML = a[8].name
+          tr2.appendChild(td)
+        }
+        if (i == 3) {
+          let td = document.createElement("td")
+          
+          td.innerHTML = a[4]
+          tr2.appendChild(td)
+        }
+        if (i == 4) {
+          let td = document.createElement("td")
+          
+          td.innerHTML = a[2]
+          tr2.appendChild(td)
+        }
+        if (i == 5) {
+          
+          let td = document.createElement("td")
+          
+          td.innerHTML = a[6]
+          tr2.appendChild(td)
+        }
+        /*      if (i == 7) {
+               let td = document.createElement("td")
+               td.innerHTML = a[7]
+               tr2.appendChild(td)
+             } */
+        if (i == 8) {
+          let td = document.createElement("td")
+          
+          td.innerHTML = "..."
+          tr2.appendChild(td)
+          td.className = "tdActions"
+          let iconDelete = document.createElement("i")
+          let iconEdit = document.createElement("i")
+          iconDelete.className = "fas fa-trash"
+          iconDelete.id = "icon2"
+          iconEdit.className = "fas fa-pen"
+          iconEdit.id = "icon3"
+          let b = document.getElementById("section-alert")
+           let idContact;
+          iconDelete.addEventListener("click", () => {
+  
+         backgroundBlack.classList.toggle("none")
+            b.classList.toggle("none")
+             idContact = element.id
+          })
+          let deleteConfirm = document.getElementById("delete-confirm")
+        
+          deleteConfirm.addEventListener("click", ()=>{
+            
+            deleteContact(idContact)
+  
+          }) 
+  
+        addClose(iconEdit)
+          tr2.appendChild(td)
+          tr2.appendChild(iconDelete)
+          tr2.appendChild(iconEdit)
+        }
+        tbody.appendChild(tr2)
+      }
+      let nuevaCantidad = tbody.children.length
+
+
+        let vueltas = nuevaCantidad - cantidadAnterior
+        // console.log("vueltas", vueltas)
+        parseInt(vueltas)
+      
+        for (let i = 0; i <= vueltas; i++){
+          console.log(indicador)
+          if(i < vueltas){
+              tbody.firstChild.remove()
+          }
+          if(i == vueltas && indicador == 0){
+              indicador = 1
+       
+              tbody.firstChild.remove()
+       
+              
+          }
+          if(i == vueltas && indicador == 1){
+              console.log("no")
+          }
+          
+      }
+    });
+
    }) 
-   
    
 
   awaitContacts.forEach(element => {
@@ -400,18 +567,6 @@ async function createContacts() {
   thead.appendChild(tr)
   div.appendChild(table)
   table.appendChild(tbody)
-  //tr.appendChild(thCheckbox)
- /*  tr.appendChild(thContact)
-  // thContact.appendChild(span)
-  tr.appendChild(thCountry)
-  //thCountry.appendChild(span2)
-  tr.appendChild(thCompany)
-  //thCompany.appendChild(span3)
-  tr.appendChild(thPosition)
-  //thPosition.appendChild(span4)
-  tr.appendChild(thInteres)
-  //thInteres.appendChild(span5)
-  tr.appendChild(thActions)  */
   sectionContacts.appendChild(div)
 }
 
@@ -513,6 +668,165 @@ btnAddChannel.addEventListener("click", () => {
 })
 
 
+
+////
+
+  const inputSearch= document.getElementById("input")
+
+  inputSearch.addEventListener("keyup", async (e)=>{
+    const tbody = document.createElement("tbody")
+    let v = e.target.value
+    let a = await get(v)
+    if(e.keyCode===13) {
+      a.forEach(element => {
+
+        a = Object.values(element)
+        contactosSelec = []
+        let tr2 = document.createElement("tr")
+      
+   
+        for (let i = 0; i < a.length; i++) {
+    
+          if (i == 0) {
+            let tdCheckbox = document.createElement("input")
+            tdCheckbox.type = "checkbox"
+            tdCheckbox.id = element.id
+            tdCheckbox.classList = "checkbox2 check"
+            tr2.appendChild(tdCheckbox)
+    
+            tdCheckbox.addEventListener("click", (e) => {
+              document.getElementById("contact-selected").removeAttribute("hidden")
+              if (e.target.checked == true) {
+    
+                contactosSelec.push(element.id)
+          
+                tr2.style = "background: rgb(213 235 255)"
+              }else{
+    
+                contactosSelec = contactosSelec.filter(function(i) { return i !== element.id })
+        
+                tr2.style = ""
+              }
+    
+              document.getElementById("contact-selected").innerHTML = `${contactosSelec.length} seleccionados`
+    
+                if(contactosSelec.length == 0){
+                  document.getElementById("contact-selected").toggleAttribute("hidden")
+                  //tr2.classList.remove("checked")
+                } 
+            })
+    
+          }
+    
+          if (i == 1) {
+    
+            let td = document.createElement("td")
+            
+            let divContact = document.createElement("div") //al final hacer hijo al divcontact de tr2
+            divContact.className = "contact"
+            let divName = document.createElement("div")
+            divName.className = "name"
+            divContact.appendChild(divName)
+            let p1 = document.createElement("p")
+            p1.innerHTML = a[0] + a[1]
+            p1.className = "pName"
+            let p = document.createElement("p")
+            p.innerHTML = a[3]
+            divName.appendChild(p1)
+            divName.appendChild(p)
+            td.appendChild(divContact)
+            tr2.appendChild(td)
+          }
+    
+          if (i == 2) {
+            let td = document.createElement("td")
+            td.classListm = "delete"
+            td.innerHTML = a[8].name
+            tr2.appendChild(td)
+          }
+          if (i == 3) {
+            let td = document.createElement("td")
+            
+            td.innerHTML = a[4]
+            tr2.appendChild(td)
+          }
+          if (i == 4) {
+            let td = document.createElement("td")
+            
+            td.innerHTML = a[2]
+            tr2.appendChild(td)
+          }
+          if (i == 5) {
+            
+            let td = document.createElement("td")
+            
+            td.innerHTML = a[6]
+            tr2.appendChild(td)
+          }
+          /*      if (i == 7) {
+                 let td = document.createElement("td")
+                 td.innerHTML = a[7]
+                 tr2.appendChild(td)
+               } */
+          if (i == 8) {
+            let td = document.createElement("td")
+            
+            td.innerHTML = "..."
+            tr2.appendChild(td)
+            td.className = "tdActions"
+            let iconDelete = document.createElement("i")
+            let iconEdit = document.createElement("i")
+            iconDelete.className = "fas fa-trash"
+            iconDelete.id = "icon2"
+            iconEdit.className = "fas fa-pen"
+            iconEdit.id = "icon3"
+            let b = document.getElementById("section-alert")
+             let idContact;
+            iconDelete.addEventListener("click", () => {
+    
+           backgroundBlack.classList.toggle("none")
+              b.classList.toggle("none")
+               idContact = element.id
+            })
+            let deleteConfirm = document.getElementById("delete-confirm")
+          
+            deleteConfirm.addEventListener("click", ()=>{
+              
+              deleteContact(idContact)
+    
+            }) 
+    
+          addClose(iconEdit)
+            tr2.appendChild(td)
+            tr2.appendChild(iconDelete)
+            tr2.appendChild(iconEdit)
+          }
+          tbody.appendChild(tr2)
+        }
+      
+            
+      
+      });
+      thead.appendChild(tr)
+      table.appendChild(thead)
+      thead.appendChild(tr)
+      div.appendChild(table)
+      table.appendChild(tbody)
+      sectionContacts.appendChild(div)
+    }
+
+
+
+  })
+
+
+
+/*  let search2 = document.getElementById("search")
+search2.addEventListener("click", (e)=>{
+    let v = e.target.value
+   
+    getContactSearch(v)
+}) */
 //POST CONTACTOS
 let postContact = async (name, last_name, position, email, company, interes, regionId, countrieId, cityId) => {
 
