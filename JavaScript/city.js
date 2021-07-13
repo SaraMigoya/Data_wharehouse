@@ -12,6 +12,11 @@ let closeNewRegion = document.getElementById("close-region")
 let closeNewCountry = document.getElementById("close-country")
 let sectionCity = document.getElementById("section-city")
 
+let users = JSON.parse(localStorage.getItem("user"))
+
+if(users.isadmin == false){
+    document.getElementById("htmlUsuarios").style = "display: none"
+  }
 
 ////eventos para agregar nuevos items
 

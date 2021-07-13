@@ -30,7 +30,7 @@
                     </div>
 
                     <div>
-                        <a href="./users.html">Usuarios</a>
+                        <a href="./users.html" id="htmlUsuarios">Usuarios</a>
                         <span></span>
                     </div>
                     <div>
@@ -164,6 +164,130 @@
                             <div class="flex-container-buttons">
                                 <button id="cancel" class="btn-cancel">Cancelar</button>
                                 <input type="submit" id="save-contact" class="inactivo" value="Guardar contacto">
+                            </div>
+
+                    </div>
+               
+        
+            </section>
+            <section id="section-edit-contact" class="add-new-item none">
+                <div class="flex-container">
+                    <h2>Editar contacto</h2> 
+                <i class="fas fa-times" id="close-edit-contact"></i>
+
+                </div>
+                
+                    <div class="container">
+    
+                            <div class="container-input">
+                                <label for="name2">Nombre <span>* </span></label>
+                                <input id="name2" type="text" name="name" required>
+                            </div>
+                            <div class="container-input">
+                                <label for="lastname2">Apellido <span>*</span> </label>
+                                <input id="lastname2" type="text" name="lastname" required>
+                            </div>
+                            <div class="container-input">
+                                <label for="cargo2">Cargo <span>*</span> </label>
+                                <input id="cargo2" type="text" name="cargo" required>
+                            </div>
+        
+                            <div class="container-input">
+                                <label for="email2">Email <span>*</span> </label>
+                                <input id="email2" type="text" name="email" required>
+                            </div>
+                            <div class="container-input">
+                                <label for="company2">Compañía <span>*</span> </label>
+                                <div>
+                                    <select name="company" id="company2" required>
+                                    <option>Seleccione una compañía</option>
+                                    </select>
+                                </div>
+                            
+                            </div>
+                     
+                    </div>
+                    <div class="container-new-contact">
+        
+                        <div  class="box">
+                            <label for="region2">Región</label>
+                            <div>
+                                <select name="region" id="region2" >
+                                <option>Seleccione una región</option>
+                                </select>
+                            </div>
+        
+                        </div>
+                        <div class="box">
+                            <label for="country2">País</label>
+                            <div>
+                                <select name="country" id="country2" class="background-gray" disabled>
+                                    <option value="">Seleccione un país</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <label for="city2">Ciudad</label>
+                            <div>
+                                <select name="city" id="city2" class="background-gray" disabled>
+                                    <option value="">Seleccione una ciudad</option>
+
+                                </select>
+                            </div>
+        
+                        </div>
+                        <div class="box">
+                            <label for="adress2">Dirección</label>
+                            <div>
+                                <input id="address2" type="text" name="adress" class="background-gray" required>
+                            </div>
+                        </div>
+        
+                        <div class="box">
+                            <label for="interes-new-contact" id="interes2">Interés</label>
+                            <div>
+                                <select name="interes-edit-contact" id="interes-edit-contact">
+                                    <option value="">seleccione un porcentaje</option>
+                                    <option>100%</option>
+                                    <option>75%</option>
+                                    <option>50%</option>
+                                    <option >25%</option>
+                                    <option>0%</option>
+            
+                                </select>
+                            </div>
+                        </div>
+                        
+                            <div id="container-channel" class="box">
+                                <label for="canal2" >Canal de contacto</label>
+                                <div class="container-select">
+                                    <select name="canal2" id="canal2">
+                                        <option >Whatsapp</option>
+                                        <option >Slack</option>
+                                        <option >Facebook</option>
+                                        <option>Email</option>
+                                        <option>Mensaje</option>
+                                    </select>
+                                </div>
+                            </div>
+            
+                            <div id="container-usser-account" class="box"> 
+                                <label for="user-account">Cuenta de usuario</label>
+                                <div>
+                                    <input id="user-account2" type="text" name="user-account" class="background-gray" placeholder="@ejemplo">
+                                </div>
+                            </div>
+
+        
+                            <div class="box2">
+                                <button id="btn-add-channel2"> <span class="plus">+</span> Agregar canal</button>
+                            </div>
+                        
+                           
+                            <div class="flex-container-buttons">
+                                <button id="cancel2" class="btn-cancel">Cancelar</button>
+                                <input type="submit" id="save-contact2" class="inactivo" value="Guardar contacto">
                             </div>
 
                     </div>
@@ -445,7 +569,6 @@
     <script src="../JavaScript/index.js"></script>
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!--  <script src="../JavaScript/sweetAlert.js"></script> -->
 
 </body>
 

@@ -1,23 +1,81 @@
 
-let arrow = document.getElementById("arrow")
-let expand = document.getElementById("expand")
-let addContact = document.getElementById("button-new-contact")
-let backgroundBlack = document.getElementById("black")
-let sectionNewContact = document.getElementById("section-new-contact")
-let closenewContact = document.getElementById("close")
-let cancel = document.getElementById("cancel")
 
-function addClose (evento) {
+window.history.forward("../html/login.html")
+const arrow = document.getElementById("arrow")
+const expand = document.getElementById("expand")
+const addContact = document.getElementById("button-new-contact")
+const backgroundBlack = document.getElementById("black")
+const sectionNewContact = document.getElementById("section-new-contact")
+const sectionEditContact = document.getElementById("section-edit-contact")
+const closenewContact = document.getElementById("close")
+const closeEditContact = document.getElementById("close-edit-contact")
+const cancel = document.getElementById("cancel")
+const cancel2 = document.getElementById("cancel2")
+
+let name = document.getElementById("name")
+const lastName = document.getElementById("lastname")
+const position = document.getElementById("cargo")
+const email = document.getElementById("email")
+const company = document.getElementById("company")
+const region = document.getElementById("region")
+const country = document.getElementById("country")
+const city = document.getElementById("city")
+const address = document.getElementById("address")
+let selectInteres = document.getElementById("interes-new-contact")
+const userAccount = document.getElementById("user-account")
+const canalContacto = document.getElementById("canal")
+const saveContact = document.getElementById("save-contact")
+let regionId;
+let countryId;
+let cityId;
+let interes;
+let companyId;
+
+const sectionContacts = document.getElementById("contacts")
+const div = document.getElementById("div")
+const table = document.getElementById("table-contacts")
+const thead = document.getElementById("thead")
+const tr = document.getElementById("tr-titles")
+const thContact = document.getElementById("th-contact")
+const thCountry = document.getElementById("th-country")
+const thCompany = document.getElementById("th-company")
+const thPosition = document.getElementById("th-position")
+const thInteres = document.getElementById("th-interes")
+const thActions = document.getElementById("th-actions")
+
+
+const a = document.getElementById("checkbox4")
+const deleteContacts = document.getElementById("delete-contacts")
+let icondel = document.getElementById("icon-delete")
+let arrayIdContactos;
+let checks = document.getElementsByClassName("checkbox2")
+
+const btnAddChannel = document.getElementById("btn-add-channel")
+const containerChannel = document.getElementById("container-channel")
+const containerSelect = document.getElementById("container-select")
+const containerUserAccount = document.getElementById("container-usser-account")
+let arraychannels = ["Whatsapp", "Facebook", "Instagram", "Slack", "Email", "Mensaje"]
+let preferencias = []
+
+let users = JSON.parse(localStorage.getItem("user"))
+
+if(users.isadmin == false){
+    document.getElementById("htmlUsuarios").style = "display: none"
+  }
+
+function addClose (evento, section) {
 
   evento.addEventListener("click", () => {
-    sectionNewContact.classList.toggle("none")
+    section.classList.toggle("none")
     backgroundBlack.classList.toggle("none")
   })
   
 }
-addClose(addContact)
-addClose(closenewContact)
-addClose(cancel)
+addClose(addContact, sectionNewContact)
+addClose(closenewContact, sectionNewContact)
+addClose(cancel,sectionNewContact)
+addClose(cancel2,sectionEditContact)
+addClose(closeEditContact,sectionEditContact)
 let get = async (search)=>{
 
   let searchApi = await fetch(`http://localhost:3000/contacts/${search}`, {
@@ -91,24 +149,7 @@ let callRegions = async () => {
 }
 
 ///NEW CONTACT SECTION
-let name = document.getElementById("name")
-const lastName = document.getElementById("lastname")
-const position = document.getElementById("cargo")
-const email = document.getElementById("email")
-const company = document.getElementById("company")
-const region = document.getElementById("region")
-const country = document.getElementById("country")
-const city = document.getElementById("city")
-const address = document.getElementById("address")
-let selectInteres = document.getElementById("interes-new-contact")
-const userAccount = document.getElementById("user-account")
-const canalContacto = document.getElementById("canal")
-const saveContact = document.getElementById("save-contact")
-let regionId;
-let countryId;
-let cityId;
-let interes;
-let companyId;
+
 
 name.addEventListener("keyup", () => {
   saveContact.classList.add("verde")
@@ -117,6 +158,7 @@ name.addEventListener("keyup", () => {
   btnAddChannel.classList.add("btb-new-contact-blue")
 
 })
+
 
 selectInteres.addEventListener("change", (e) => {
   num = e.target.value
@@ -149,6 +191,7 @@ async function choseRegions() {
 
   awaitCompanies.forEach(element => {
     let optionCompanies = document.createElement("option")
+ 
     optionCompanies.innerHTML = `${element.name}`
 
     company.addEventListener("change", (e) => {
@@ -234,28 +277,22 @@ choseRegions()
 
 
 //CREAR CONTACTOS
-const sectionContacts = document.getElementById("contacts")
-const div = document.getElementById("div")
-const table = document.getElementById("table-contacts")
-const thead = document.getElementById("thead")
-const tr = document.getElementById("tr-titles")
-const thContact = document.getElementById("th-contact")
-const thCountry = document.getElementById("th-country")
-const thCompany = document.getElementById("th-company")
-const thPosition = document.getElementById("th-position")
-const thInteres = document.getElementById("th-interes")
-const thActions = document.getElementById("th-actions")
-
 async function createContacts() {
- 
+let objRegions = await callRegions();
+  let arr = Object.values(objRegions)
+  let awaitRegions = arr[1]
+  let awaitCompanies = arr[0]
+
+
   let awaitContacts = await callContacts()
   const tbody = document.createElement("tbody")
+  tbody.className = "delete"
  
   let indicador = 0
   let a = []
   let contactosSelec;
   const exchangeAlt = document.getElementById("exchange-alt")
-  
+ 
   let orderName
   exchangeAlt.addEventListener("click", () =>{
     let cantidadAnterior = tbody.children.length
@@ -398,7 +435,7 @@ async function createContacts() {
   
           }) 
   
-        addClose(iconEdit)
+        addClose(iconEdit, sectionEditContact)
           tr2.appendChild(td)
           tr2.appendChild(iconDelete)
           tr2.appendChild(iconEdit)
@@ -432,253 +469,160 @@ async function createContacts() {
     });
 
    }) 
-   
-
-  awaitContacts.forEach(element => {
-
-    a = Object.values(element)
-    contactosSelec = []
-    let tr2 = document.createElement("tr")
-    tr2.classList = "delete"
-   
-    for (let i = 0; i < a.length; i++) {
-
-      if (i == 0) {
-        let tdCheckbox = document.createElement("input")
-        tdCheckbox.type = "checkbox"
-        tdCheckbox.id = element.id
-        tdCheckbox.classList = "checkbox2 check"
-        tr2.appendChild(tdCheckbox)
-
-        tdCheckbox.addEventListener("click", (e) => {
-          document.getElementById("contact-selected").removeAttribute("hidden")
-          if (e.target.checked == true) {
-
-            contactosSelec.push(element.id)
-      
-            tr2.style = "background: rgb(213 235 255)"
-          }else{
-
-            contactosSelec = contactosSelec.filter(function(i) { return i !== element.id })
-    
-            tr2.style = ""
-          }
-
-          document.getElementById("contact-selected").innerHTML = `${contactosSelec.length} seleccionados`
-
-            if(contactosSelec.length == 0){
-              document.getElementById("contact-selected").toggleAttribute("hidden")
-              //tr2.classList.remove("checked")
-            } 
-        })
-
-      }
-
-      if (i == 1) {
-
-        let td = document.createElement("td")
-        
-        let divContact = document.createElement("div") //al final hacer hijo al divcontact de tr2
-        divContact.className = "contact"
-        let divName = document.createElement("div")
-        divName.className = "name"
-        divContact.appendChild(divName)
-        let p1 = document.createElement("p")
-        p1.innerHTML = a[0] + a[1]
-        p1.className = "pName"
-        let p = document.createElement("p")
-        p.innerHTML = a[3]
-        divName.appendChild(p1)
-        divName.appendChild(p)
-        td.appendChild(divContact)
-        tr2.appendChild(td)
-      }
-
-      if (i == 2) {
-        let td = document.createElement("td")
-        td.classListm = "delete"
-        td.innerHTML = a[8].name
-        tr2.appendChild(td)
-      }
-      if (i == 3) {
-        let td = document.createElement("td")
-        
-        td.innerHTML = a[4]
-        tr2.appendChild(td)
-      }
-      if (i == 4) {
-        let td = document.createElement("td")
-        
-        td.innerHTML = a[2]
-        tr2.appendChild(td)
-      }
-      if (i == 5) {
-        
-        let td = document.createElement("td")
-        
-        td.innerHTML = a[6]
-        tr2.appendChild(td)
-      }
-      /*      if (i == 7) {
-             let td = document.createElement("td")
-             td.innerHTML = a[7]
-             tr2.appendChild(td)
-           } */
-      if (i == 8) {
-        let td = document.createElement("td")
-        
-        td.innerHTML = "..."
-        tr2.appendChild(td)
-        td.className = "tdActions"
-        let iconDelete = document.createElement("i")
-        let iconEdit = document.createElement("i")
-        iconDelete.className = "fas fa-trash"
-        iconDelete.id = "icon2"
-        iconEdit.className = "fas fa-pen"
-        iconEdit.id = "icon3"
-        let b = document.getElementById("section-alert")
-         let idContact;
-        iconDelete.addEventListener("click", () => {
-
-       backgroundBlack.classList.toggle("none")
-          b.classList.toggle("none")
-           idContact = element.id
-        })
-        let deleteConfirm = document.getElementById("delete-confirm")
-      
-        deleteConfirm.addEventListener("click", ()=>{
-          
-          deleteContact(idContact)
-
-        }) 
-
-      addClose(iconEdit)
-        tr2.appendChild(td)
-        tr2.appendChild(iconDelete)
-        tr2.appendChild(iconEdit)
-      }
-      tbody.appendChild(tr2)
-    }
-    
-  });
- 
-  thead.appendChild(tr)
-  table.appendChild(thead)
-  thead.appendChild(tr)
-  div.appendChild(table)
-  table.appendChild(tbody)
-  sectionContacts.appendChild(div)
-}
-
-createContacts()
-
-let a = document.getElementById("checkbox4")
-let deleteContacts = document.getElementById("delete-contacts")
-let icondel = document.getElementById("icon-delete")
-let arrayIdContactos;
-let checks = document.getElementsByClassName("checkbox2")
-
-
-
-a.addEventListener("click", (e) => {
-let arrayIdContactos = []
-
-  if (e.target.checked == true) {
-
-    for (let i = 0; i < checks.length; i++) {
-      arrayIdContactos.push(checks[i].id)
-      checks[i].checked = true;
-    }
-    deleteContacts.classList.remove("delete-contact")
-    icondel.classList.remove("delete-contact")
-
-    console.log(arrayIdContactos)
-    if (arrayIdContactos == 0) {
-
-      deleteContacts.classList.add("delete-contact")
-    }
-
-  }
-
-  else {
-
-    for (let i = 0; i < checks.length; i++) {
-      checks[i].checked = false;
   
-    }
-    deleteContacts.classList.add("delete-contact")
-  }
+    awaitContacts.forEach(element => {
+ 
 
-})
+      a = Object.values(element)
+      contactosSelec = []
+      let tr2 = document.createElement("tr")
+      tr2.classList = "delete"
+    
+      for (let i = 0; i < a.length; i++) {
 
-deleteContacts.addEventListener("click", () => {
-  arrayIdContactos.forEach(element => {
+        if (i == 0) {
+          let tdCheckbox = document.createElement("input")
+          tdCheckbox.type = "checkbox"
+          tdCheckbox.id = element.id
+          tdCheckbox.classList = "checkbox2 check"
+          tr2.appendChild(tdCheckbox)
 
-    deleteContact(element)
-  });
-})
+          tdCheckbox.addEventListener("click", (e) => {
+            document.getElementById("contact-selected").removeAttribute("hidden")
+            if (e.target.checked == true) {
 
-//GUARDAR CONTACTO
-saveContact.addEventListener("click", async () => {
-  postContact(name.value, lastName.value, position.value, email.value, companyId, interes, regionId, countryId, cityId)
+              contactosSelec.push(element.id)
+        
+              tr2.style = "background: rgb(213 235 255)"
+            }else{
 
-})
-////AGREGAR CANAL
+              contactosSelec = contactosSelec.filter(function(i) { return i !== element.id })
+      
+              tr2.style = ""
+            }
 
-let btnAddChannel = document.getElementById("btn-add-channel")
-let containerChannel = document.getElementById("container-channel")
-let containerSelect = document.getElementById("container-select")
-let containerUserAccount = document.getElementById("container-usser-account")
-let arraychannels = ["Whatsapp", "Facebook", "Instagram", "Slack", "Email", "Mensaje"]
-let preferencias = []
+            document.getElementById("contact-selected").innerHTML = `${contactosSelec.length} seleccionados`
 
-btnAddChannel.addEventListener("click", () => {
-  //canal contactos
-  let label = document.createElement("label")
-  label.for = "canal"
-  let div = document.createElement("div")
-  let select = document.createElement("select")
-  select.name = "canal"
+              if(contactosSelec.length == 0){
+                document.getElementById("contact-selected").toggleAttribute("hidden")
+                //tr2.classList.remove("checked")
+              } 
+          })
 
-  arraychannels.forEach(element => {
-    let option = document.createElement("option")
-    option.innerHTML = element
+        }
 
-    select.appendChild(option)
-  });
-  label.innerHTML = "Canal de contacto"
+        if (i == 1) {
 
-  containerChannel.appendChild(label)
-  containerChannel.appendChild(div)
-  div.appendChild(select)
+          let td = document.createElement("td")
+          
+          let divContact = document.createElement("div") //al final hacer hijo al divcontact de tr2
+          divContact.className = "contact"
+          let divName = document.createElement("div")
+          divName.className = "name"
+          divContact.appendChild(divName)
+          let p1 = document.createElement("p")
+          p1.innerHTML = a[0] + a[1]
+          p1.className = "pName"
+          let p = document.createElement("p")
+          p.innerHTML = a[3]
+          divName.appendChild(p1)
+          divName.appendChild(p)
+          td.appendChild(divContact)
+          tr2.appendChild(td)
+        }
 
-  // cuenta usuario
-  let labelAccount = document.createElement("label")
-  labelAccount.for = "user-account"
-  labelAccount.innerHTML = "Cuenta de usuario"
-  let div2 = document.createElement("div")
-  let input = document.createElement("input")
-  input.placeholder = "@ejemplo"
-  div2.appendChild(input)
+        if (i == 2) {
+          let td = document.createElement("td")
+          td.classListm = "delete"
+          td.innerHTML = a[8].name
+          tr2.appendChild(td)
+        }
+        if (i == 3) {
+          let td = document.createElement("td")
+          
+          td.innerHTML = a[4]
+          tr2.appendChild(td)
+        }
+        if (i == 4) {
+          let td = document.createElement("td")
+          
+          td.innerHTML = a[2]
+          tr2.appendChild(td)
+        }
+        if (i == 5) {
+          
+          let td = document.createElement("td")
+          
+          td.innerHTML = a[6]
+          tr2.appendChild(td)
+        }
+        /*      if (i == 7) {
+              let td = document.createElement("td")
+              td.innerHTML = a[7]
+              tr2.appendChild(td)
+            } */
+        if (i == 8) {
+          let td = document.createElement("td")
+          
+          td.innerHTML = "..."
+          tr2.appendChild(td)
+          td.className = "tdActions"
+          let iconDelete = document.createElement("i")
+          let iconEdit = document.createElement("i")
+          iconDelete.className = "fas fa-trash"
+          iconDelete.id = "icon2"
+          iconEdit.className = "fas fa-pen"
+          iconEdit.id = "icon3"
+          let b = document.getElementById("section-alert")
+          let idContact;
+          iconDelete.addEventListener("click", () => {
 
-  containerUserAccount.appendChild(labelAccount)
-  containerUserAccount.appendChild(div2)
+          backgroundBlack.classList.toggle("none")
+            b.classList.toggle("none")
+            idContact = element.id
+          })
+          let deleteConfirm = document.getElementById("delete-confirm")
+        
+          deleteConfirm.addEventListener("click", ()=>{
+            
+            deleteContact(idContact)
 
+          }) 
+          
+          iconEdit.addEventListener("click", ()=>{
 
-})
+            document.getElementById("name2").value = element.name
+            document.getElementById("lastname2").value = element.last_name
+            document.getElementById("cargo2").value = element.position
+            document.getElementById("email2").value = element.email
+            
+            awaitCompanies.forEach(element => {
+              let optionCompanies2 = document.createElement("option")
+              optionCompanies2.innerHTML = element.name
+              
+              document.getElementById("company2").appendChild(optionCompanies2)
+            });
 
+          })
+          addClose(iconEdit, sectionEditContact)
+          tr2.appendChild(td)
+          tr2.appendChild(iconDelete)
+          tr2.appendChild(iconEdit)
+        }
+        tbody.appendChild(tr2)
+      }
+      
+    });
 
-
-////
-
-  const inputSearch= document.getElementById("input")
 
   inputSearch.addEventListener("keyup", async (e)=>{
-    const tbody = document.createElement("tbody")
     let v = e.target.value
-    let a = await get(v)
     if(e.keyCode===13) {
+      document.querySelector(".delete").remove()
+      
+      let a = await get(v)
       a.forEach(element => {
+        const tbody2 = document.createElement("tbody")
 
         a = Object.values(element)
         contactosSelec = []
@@ -801,24 +745,122 @@ btnAddChannel.addEventListener("click", () => {
             tr2.appendChild(iconDelete)
             tr2.appendChild(iconEdit)
           }
-          tbody.appendChild(tr2)
+          tbody2.appendChild(tr2)
         }
-      
-            
-      
+       
+        table.appendChild(tbody2)
       });
-      thead.appendChild(tr)
-      table.appendChild(thead)
-      thead.appendChild(tr)
-      div.appendChild(table)
-      table.appendChild(tbody)
-      sectionContacts.appendChild(div)
+ 
+      
+    }
+        if( v == ""){
+          location.href = "../html/index.html"
+        }
+    
+    
+    
+  })
+  
+
+ 
+  thead.appendChild(tr)
+  table.appendChild(thead)
+  thead.appendChild(tr)
+  div.appendChild(table)
+  table.appendChild(tbody)
+  sectionContacts.appendChild(div)
+}
+
+createContacts()
+
+
+
+
+a.addEventListener("click", (e) => {
+let arrayIdContactos = []
+
+  if (e.target.checked == true) {
+
+    for (let i = 0; i < checks.length; i++) {
+      arrayIdContactos.push(checks[i].id)
+      checks[i].checked = true;
+    }
+    deleteContacts.classList.remove("delete-contact")
+    icondel.classList.remove("delete-contact")
+
+    console.log(arrayIdContactos)
+    if (arrayIdContactos == 0) {
+
+      deleteContacts.classList.add("delete-contact")
     }
 
+  }
+
+  else {
+
+    for (let i = 0; i < checks.length; i++) {
+      checks[i].checked = false;
+  
+    }
+    deleteContacts.classList.add("delete-contact")
+  }
+
+})
+
+deleteContacts.addEventListener("click", () => {
+  arrayIdContactos.forEach(element => {
+
+    deleteContact(element)
+  });
+})
+
+//GUARDAR CONTACTO
+saveContact.addEventListener("click", async () => {
+  postContact(name.value, lastName.value, position.value, email.value, companyId, interes, regionId, countryId, cityId)
+
+})
+////AGREGAR CANAL
+
+btnAddChannel.addEventListener("click", () => {
+  //canal contactos
+  let label = document.createElement("label")
+  label.for = "canal"
+  let div = document.createElement("div")
+  let select = document.createElement("select")
+  select.name = "canal"
+
+  arraychannels.forEach(element => {
+    let option = document.createElement("option")
+    option.innerHTML = element
+
+    select.appendChild(option)
+  });
+  label.innerHTML = "Canal de contacto"
+
+  containerChannel.appendChild(label)
+  containerChannel.appendChild(div)
+  div.appendChild(select)
+
+  // cuenta usuario
+  let labelAccount = document.createElement("label")
+  labelAccount.for = "user-account"
+  labelAccount.innerHTML = "Cuenta de usuario"
+  let div2 = document.createElement("div")
+  let input = document.createElement("input")
+  input.placeholder = "@ejemplo"
+  div2.appendChild(input)
+
+  containerUserAccount.appendChild(labelAccount)
+  containerUserAccount.appendChild(div2)
 
 
-  })
+})
 
+
+
+////busqueda
+
+  const inputSearch= document.getElementById("input")
 
 
 /*  let search2 = document.getElementById("search")

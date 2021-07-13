@@ -6,7 +6,6 @@ let addCompany = document.getElementById("button-new-company")
 let backgroundBlack = document.getElementById("black-company")
 
 
-
 //// GET companias
 let callCompanies = async () => {
 
@@ -61,6 +60,12 @@ closenewCompany.addEventListener("click", () => {
 })
 
 
+
+let users = JSON.parse(localStorage.getItem("user"))
+
+if(users.isadmin == false){
+    document.getElementById("htmlUsuarios").style = "display: none"
+  }
 
 
 const inputName = document.getElementById("name")
