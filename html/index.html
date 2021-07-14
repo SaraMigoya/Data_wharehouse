@@ -39,6 +39,9 @@
                         <span></span>
 
                     </div>
+                    <div>
+                        <p id="log-out">Cerrar</p>
+                    </div>
                 </nav>
             </div>
         </div>
@@ -200,7 +203,7 @@
                                 <label for="company2">Compañía <span>*</span> </label>
                                 <div>
                                     <select name="company" id="company2" required>
-                                    <option>Seleccione una compañía</option>
+                                    <option id="option-edit">Seleccione una compañía</option>
                                     </select>
                                 </div>
                             
@@ -213,7 +216,7 @@
                             <label for="region2">Región</label>
                             <div>
                                 <select name="region" id="region2" >
-                                <option>Seleccione una región</option>
+                                <option id="option-edit2">Seleccione una región</option>
                                 </select>
                             </div>
         
@@ -222,7 +225,7 @@
                             <label for="country2">País</label>
                             <div>
                                 <select name="country" id="country2" class="background-gray" disabled>
-                                    <option value="">Seleccione un país</option>
+                                    <option id="option-edit3">Seleccione un país</option>
 
                                 </select>
                             </div>
@@ -231,18 +234,18 @@
                             <label for="city2">Ciudad</label>
                             <div>
                                 <select name="city" id="city2" class="background-gray" disabled>
-                                    <option value="">Seleccione una ciudad</option>
+                                    <option id="option-edit4">Seleccione una ciudad</option>
 
                                 </select>
                             </div>
         
                         </div>
-                        <div class="box">
+<!--                         <div class="box">
                             <label for="adress2">Dirección</label>
                             <div>
                                 <input id="address2" type="text" name="adress" class="background-gray" required>
                             </div>
-                        </div>
+                        </div> -->
         
                         <div class="box">
                             <label for="interes-new-contact" id="interes2">Interés</label>
@@ -286,8 +289,8 @@
                         
                            
                             <div class="flex-container-buttons">
-                                <button id="cancel2" class="btn-cancel">Cancelar</button>
-                                <input type="submit" id="save-contact2" class="inactivo" value="Guardar contacto">
+                                <button id="cancel2" class="btn-cancel-red">Eliminar contacto</button>
+                                <input type="submit" id="save-contact2" class="inactivo verde" value="Guardar contacto">
                             </div>
 
                     </div>
@@ -325,64 +328,6 @@
 
         </section>
 
-<!--         <article id="article2">
-            <div id="expand" class="none">
-                <form action="../form-result.php" method="GET" target="_blank" rel="noopener noreferrer">
-
-                    <div>
-                        <label for="GET-name">Nombre del contacto</label>
-                        <input id="GET-name" type="text" name="name" id="input-form"
-                            placeholder="Introduce el nombre del contacto">
-                    </div>
-                    <div>
-                        <label for="GET-cargo">Cargo</label>
-                        <input id="GET-cargo" type="text" name="cargo" placeholder="Introduce el cargo del contacto">
-                    </div>
-                    <div>
-                        <label for="country">País/Región</label>
-                        <select name="country" id="country">
-                            <option value="country1">Argentina</option>
-                            <option value="country1">Colombia</option>0
-                            <option value="country1">Chile</option>
-                            <option value="country1">Uruguay</option>
-                            <option value="country1">España</option>
-                        </select>
-
-                    </div>
-                    <div>
-                        <label for="company">Compañía</label>
-                        <select name="company" id="company">
-                            <option value="company1">Globant</option>
-                            <option value="company2">Mercado Libre</option>
-                            <option value="company3">Accenture</option>
-                            <option value="company4">Pedidos Ya</option>
-                            <option value="company5">Ualá</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="canal">Canal favorito</label>
-                        <select name="canal" id="canal">
-                            <option value="canal1">Whatsapp</option>
-                            <option value="canal2">Slack</option>
-                            <option value="canal3">Facebook</option>
-                            <option value="canal4">Email</option>
-                            <option value="canal5">Mensaje</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="interes">Interés</label>
-                        <select name="interes" id="interes">
-                            <option value="interes1">poco</option>
-                            <option value="interes2">medio</option>
-                            <option value="interes3">mucho</option>
-
-                        </select>
-
-                    </div>
-                </form>
-            </div>
-        </article>
- -->
  <section id="contacts">
      
      <table id="table-contacts">
@@ -398,23 +343,24 @@
                          </span>
                      </th>
                      <th id="th-country">País/Región
-                          <span>
+                          <span id="exchange-alt-country">
                          <i class="fas fa-exchange-alt"></i>
                      </span>
     
                      </th>
                      <th id="th-company">Compañía 
-                 <span>
+                         <span id="exchange-alt-company">
                            <i class="fas fa-exchange-alt"></i>
-                  </span>
+                         </span>
                      </th>
                      <th id="th-position">Cargo
-                         <span>
+                         <span id="exchange-alt-position">
                              <i class="fas fa-exchange-alt"></i>
                          </span>
                      </th>
              
-                     <th id="th-interes">Interés <span>
+                     <th id="th-interes">Interés 
+                         <span id="exchange-alt-interest">
                          <i class="fas fa-exchange-alt"></i>
                      </span>
                      </th>

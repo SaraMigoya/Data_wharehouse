@@ -25,6 +25,7 @@ let selectInteres = document.getElementById("interes-new-contact")
 const userAccount = document.getElementById("user-account")
 const canalContacto = document.getElementById("canal")
 const saveContact = document.getElementById("save-contact")
+const saveContact2 = document.getElementById("save-contact2")
 let regionId;
 let countryId;
 let cityId;
@@ -56,27 +57,37 @@ const containerSelect = document.getElementById("container-select")
 const containerUserAccount = document.getElementById("container-usser-account")
 let arraychannels = ["Whatsapp", "Facebook", "Instagram", "Slack", "Email", "Mensaje"]
 let preferencias = []
-
 let users = JSON.parse(localStorage.getItem("user"))
+if (users) {
 
-if(users.isadmin == false){
+  
+  
+  if (users.isadmin == false) {
     document.getElementById("htmlUsuarios").style = "display: none"
   }
+}
 
-function addClose (evento, section) {
+let logOut = document.getElementById("log-out")
+logOut.addEventListener("click", () => {
+    localStorage.clear()
+    location.href ="../html/login.html#!"
+})
+
+function addClose(evento, section) {
 
   evento.addEventListener("click", () => {
     section.classList.toggle("none")
     backgroundBlack.classList.toggle("none")
   })
-  
+
 }
+
 addClose(addContact, sectionNewContact)
 addClose(closenewContact, sectionNewContact)
-addClose(cancel,sectionNewContact)
-addClose(cancel2,sectionEditContact)
-addClose(closeEditContact,sectionEditContact)
-let get = async (search)=>{
+addClose(cancel, sectionNewContact)
+//addClose(cancel2, sectionEditContact)
+addClose(closeEditContact, sectionEditContact)
+let get = async (search) => {
 
   let searchApi = await fetch(`http://localhost:3000/contacts/${search}`, {
     method: "GET",
@@ -85,10 +96,10 @@ let get = async (search)=>{
     }
   })
   let res = await searchApi.json()
-  
+
 
   if (res) {
-  console.log(res)
+    console.log(res)
     return res
 
   }
@@ -109,7 +120,7 @@ let callContacts = async () => {
 
 
   let res = await searchApi.json()
-  
+
 
   if (res) {
     return res
@@ -120,7 +131,7 @@ let callContacts = async () => {
   }
 }
 
- 
+
 //// GET REGIONS
 let callRegions = async () => {
 
@@ -191,7 +202,7 @@ async function choseRegions() {
 
   awaitCompanies.forEach(element => {
     let optionCompanies = document.createElement("option")
- 
+
     optionCompanies.innerHTML = `${element.name}`
 
     company.addEventListener("change", (e) => {
@@ -278,7 +289,7 @@ choseRegions()
 
 //CREAR CONTACTOS
 async function createContacts() {
-let objRegions = await callRegions();
+  let objRegions = await callRegions();
   let arr = Object.values(objRegions)
   let awaitRegions = arr[1]
   let awaitCompanies = arr[0]
@@ -287,33 +298,35 @@ let objRegions = await callRegions();
   let awaitContacts = await callContacts()
   const tbody = document.createElement("tbody")
   tbody.className = "delete"
- 
+
   let indicador = 0
   let a = []
   let contactosSelec;
+  let orderName;
   const exchangeAlt = document.getElementById("exchange-alt")
- 
-  let orderName
-  exchangeAlt.addEventListener("click", () =>{
-    let cantidadAnterior = tbody.children.length
-
+  const exchangeAltCountry = document.getElementById("exchange-alt-country")
+  const exchangeAltCompany = document.getElementById("exchange-alt-company")
+  const exchangeAltposition = document.getElementById("exchange-alt-position")
+  const exchangeAltinterest = document.getElementById("exchange-alt-interest")
   
+  exchangeAltCountry.addEventListener("click", () =>{
+    let cantidadAnterior = tbody.children.length
+    console.log(awaitContacts)
     awaitContacts.sort(function (a, b) {
-     
-      if (a.name.toLowerCase() > b.name.toLowerCase()){
-       orderName = true
+
+      if (a.countrie.name.toLowerCase() > b.countrie.name.toLowerCase()) {
+        orderName = true
         return 1;
-      } 
-      if (a.name.toLowerCase() < b.name.toLowerCase()) {
+      }
+      if (a.countrie.name.toLowerCase() < b.countrie.name.toLowerCase()) {
         orderName = false
         return -1;
-      } 
+      }
       return 0;
-      
-    }); 
 
-    if(orderName==true) {
-      
+    });
+
+    if (orderName == true) {
       awaitContacts.reverse()
 
     }
@@ -322,56 +335,57 @@ let objRegions = await callRegions();
       a = Object.values(element)
       contactosSelec = []
       let tr2 = document.createElement("tr")
-    
- 
+
+
       for (let i = 0; i < a.length; i++) {
-  
+
         if (i == 0) {
           let tdCheckbox = document.createElement("input")
           tdCheckbox.type = "checkbox"
           tdCheckbox.id = element.id
           tdCheckbox.classList = "checkbox2 check"
           tr2.appendChild(tdCheckbox)
-  
+
           tdCheckbox.addEventListener("click", (e) => {
             document.getElementById("contact-selected").removeAttribute("hidden")
             if (e.target.checked == true) {
-  
+
               contactosSelec.push(element.id)
-        
+
               tr2.style = "background: rgb(213 235 255)"
-            }else{
-  
-              contactosSelec = contactosSelec.filter(function(i) { return i !== element.id })
-      
+            } else {
+
+              contactosSelec = contactosSelec.filter(function (i) { return i !== element.id })
+
               tr2.style = ""
             }
-  
+
             document.getElementById("contact-selected").innerHTML = `${contactosSelec.length} seleccionados`
-  
-              if(contactosSelec.length == 0){
-                document.getElementById("contact-selected").toggleAttribute("hidden")
-                //tr2.classList.remove("checked")
-              } 
+
+            if (contactosSelec.length == 0) {
+              document.getElementById("contact-selected").toggleAttribute("hidden")
+              //tr2.classList.remove("checked")
+            }
           })
-  
+
         }
-  
+
         if (i == 1) {
-  
+
           let td = document.createElement("td")
-          
+  
           let divContact = document.createElement("div") //al final hacer hijo al divcontact de tr2
           divContact.className = "contact"
           let divName = document.createElement("div")
           divName.className = "name"
           divContact.appendChild(divName)
           let p1 = document.createElement("p")
-          p1.innerHTML = a[0] + a[1]
+          p1.innerHTML = `${a[0]}  ${a[1]}`
           p1.className = "pName"
           let p = document.createElement("p")
           p.innerHTML = a[3]
           divName.appendChild(p1)
+          //divName.appendChild(p2)
           divName.appendChild(p)
           td.appendChild(divContact)
           tr2.appendChild(td)
@@ -380,26 +394,35 @@ let objRegions = await callRegions();
         if (i == 2) {
           let td = document.createElement("td")
           td.classListm = "delete"
-          td.innerHTML = a[8].name
+          td.innerHTML = a[10].name
+          let divContact = document.createElement("div") 
+          let divName = document.createElement("div")
+          divName.className = "name"
+          divContact.appendChild(divName)
+          let p = document.createElement("p")
+          p.innerHTML = a[9].name
+          divName.appendChild(p)
+          td.appendChild(divContact)
           tr2.appendChild(td)
+        
         }
         if (i == 3) {
           let td = document.createElement("td")
-          
+
           td.innerHTML = a[4]
           tr2.appendChild(td)
         }
         if (i == 4) {
           let td = document.createElement("td")
-          
+
           td.innerHTML = a[2]
           tr2.appendChild(td)
         }
         if (i == 5) {
-          
+
           let td = document.createElement("td")
-          
-          td.innerHTML = a[6]
+
+          td.innerHTML = a[5]
           tr2.appendChild(td)
         }
         /*      if (i == 7) {
@@ -407,77 +430,201 @@ let objRegions = await callRegions();
                td.innerHTML = a[7]
                tr2.appendChild(td)
              } */
-        if (i == 8) {
-          let td = document.createElement("td")
-          
-          td.innerHTML = "..."
-          tr2.appendChild(td)
-          td.className = "tdActions"
-          let iconDelete = document.createElement("i")
-          let iconEdit = document.createElement("i")
-          iconDelete.className = "fas fa-trash"
-          iconDelete.id = "icon2"
-          iconEdit.className = "fas fa-pen"
-          iconEdit.id = "icon3"
-          let b = document.getElementById("section-alert")
-           let idContact;
-          iconDelete.addEventListener("click", () => {
-  
-         backgroundBlack.classList.toggle("none")
-            b.classList.toggle("none")
-             idContact = element.id
-          })
-          let deleteConfirm = document.getElementById("delete-confirm")
-        
-          deleteConfirm.addEventListener("click", ()=>{
-            
-            deleteContact(idContact)
-  
-          }) 
-  
-        addClose(iconEdit, sectionEditContact)
-          tr2.appendChild(td)
-          tr2.appendChild(iconDelete)
-          tr2.appendChild(iconEdit)
-        }
+             if (i == 8) {
+              let td = document.createElement("td")
+      
+              td.innerHTML = "..."
+              tr2.appendChild(td)
+              td.className = "tdActions"
+              let iconDelete = document.createElement("i")
+              let iconEdit = document.createElement("i")
+              iconDelete.className = "fas fa-trash"
+              iconDelete.id = "icon2"
+              iconEdit.className = "fas fa-pen"
+              iconEdit.id = "icon3"
+              let b = document.getElementById("section-alert")
+              let idContact;
+              let idContactEdit;
+              iconDelete.addEventListener("click", () => {
+      
+                backgroundBlack.classList.toggle("none")
+                b.classList.toggle("none")
+                idContact = element.id
+              })
+              let deleteConfirm = document.getElementById("delete-confirm")
+      
+              deleteConfirm.addEventListener("click", () => {
+      
+                deleteContact(idContact)
+      
+              })
+      
+              iconEdit.addEventListener("click", () => {
+                idContactEdit = element.id
+                document.getElementById("name2").value = element.name
+                document.getElementById("lastname2").value = element.last_name
+                document.getElementById("cargo2").value = element.position
+                document.getElementById("email2").value = element.email
+                document.getElementById("option-edit").innerHTML = element.company
+                document.getElementById("option-edit2").innerHTML = element.region.name
+                document.getElementById("option-edit3").innerHTML = element.countrie.name
+                document.getElementById("option-edit4").innerHTML = element.city.name
+      
+                awaitCompanies.forEach(element => {
+                  let optionCompanies2 = document.createElement("option")
+                  optionCompanies2.innerHTML = element.name
+                  document.getElementById("company2").addEventListener("change", (e) => {
+                    console.log(e.target.value)
+                    if (e.target.value == element.name) {
+                      companyId = element.name
+                    }
+                  })
+      
+                  document.getElementById("company2").appendChild(optionCompanies2)
+                });
+                awaitRegions.allRegions.forEach(element => {
+      
+                  let optionRegions = document.createElement("option")
+                  optionRegions.innerHTML = `${element.name}`
+      
+                  document.getElementById("region2").addEventListener("change", (e) => {
+      
+                    if (e.target.value == element.name) {
+      
+                      regionId = element.id
+                      console.log(regionId)
+      
+                      if (document.getElementById("country2").options.length > 1) {
+      
+                        for (let i = document.getElementById("country2").options.length; i >= 1; i--) {
+                          document.getElementById("country2").remove(i);
+                        }
+                      }
+      
+                      element.countries.forEach(e => {
+      
+                        document.getElementById("country2").disabled = false
+                        document.getElementById("country2").classList.remove("background-gray")
+                        let optionCountries = document.createElement("option")
+                        optionCountries.innerHTML = `${e.name}`
+                        document.getElementById("country2").appendChild(optionCountries)
+      
+                        document.getElementById("country2").addEventListener("change", (event) => {
+                          if (event.target.value == e.name) {
+                            countryId = e.id
+                            console.log(countryId)
+                            if (document.getElementById("city2").options.length > 1) {
+      
+                              for (let i = document.getElementById("city2").options.length; i >= 1; i--) {
+                                document.getElementById("city2").remove(i);
+                              }
+                            }
+                            e.cities.forEach(x => {
+                              document.getElementById("city2").disabled = false
+                              document.getElementById("city2").classList.remove("background-gray")
+                              address.classList.remove("background-gray")
+                              document.getElementById("city2").addEventListener("change", (e) => {
+                                if (e.target.value == x.name) {
+                                  cityId = x.id
+                                  console.log(cityId)
+                                }
+      
+                              })
+                              document.getElementById("city2").disabled = false
+                              let optionCities = document.createElement("option")
+                              optionCities.innerHTML = `${x.name}`
+                              document.getElementById("city2").appendChild(optionCities)
+                            })
+                          }
+      
+                        })
+      
+      
+                      });
+                    }
+      
+      
+                  })
+      
+                  document.getElementById("region2").appendChild(optionRegions)
+      
+                });
+                saveContact2.addEventListener("click", async () => {
+                  console.log("hol")
+                  putContact(idContactEdit, document.getElementById("name2").value, document.getElementById("lastname2").value, document.getElementById("cargo2").value, document.getElementById("email2").value = element.email.value, companyId, interes, regionId, countryId, cityId)
+      
+                })
+              })
+              cancel2.addEventListener("click",() => {
+                deleteContact(idContactEdit)
+              })
+              addClose(iconEdit, sectionEditContact)
+              tr2.appendChild(td)
+              tr2.appendChild(iconDelete)
+              tr2.appendChild(iconEdit)
+            }
         tbody.appendChild(tr2)
       }
       let nuevaCantidad = tbody.children.length
 
 
-        let vueltas = nuevaCantidad - cantidadAnterior
-        // console.log("vueltas", vueltas)
-        parseInt(vueltas)
-      
-        for (let i = 0; i <= vueltas; i++){
-          console.log(indicador)
-          if(i < vueltas){
-              tbody.firstChild.remove()
-          }
-          if(i == vueltas && indicador == 0){
-              indicador = 1
-       
-              tbody.firstChild.remove()
-       
-              
-          }
-          if(i == vueltas && indicador == 1){
-              console.log("no")
-          }
-          
+      let vueltas = nuevaCantidad - cantidadAnterior
+      // console.log("vueltas", vueltas)
+      parseInt(vueltas)
+
+      for (let i = 0; i <= vueltas; i++) {
+        console.log(indicador)
+        if (i < vueltas) {
+          tbody.firstChild.remove()
+        }
+        if (i == vueltas && indicador == 0) {
+          indicador = 1
+
+          tbody.firstChild.remove()
+
+
+        }
+        if (i == vueltas && indicador == 1) {
+          console.log("no")
+        }
+
       }
     });
 
-   }) 
-  
+
+  }) 
+
+  exchangeAlt.addEventListener("click", () => {
+    let cantidadAnterior = tbody.children.length
+
+
+    awaitContacts.sort(function (a, b) {
+
+      if (a.name.toLowerCase() > b.name.toLowerCase()) {
+        orderName = true
+        return 1;
+      }
+      if (a.name.toLowerCase() < b.name.toLowerCase()) {
+        orderName = false
+        return -1;
+      }
+      return 0;
+
+    });
+
+
+    if (orderName == true) {
+
+      awaitContacts.reverse()
+
+    }
     awaitContacts.forEach(element => {
- 
 
       a = Object.values(element)
       contactosSelec = []
       let tr2 = document.createElement("tr")
-      tr2.classList = "delete"
-    
+
+
       for (let i = 0; i < a.length; i++) {
 
         if (i == 0) {
@@ -492,21 +639,21 @@ let objRegions = await callRegions();
             if (e.target.checked == true) {
 
               contactosSelec.push(element.id)
-        
-              tr2.style = "background: rgb(213 235 255)"
-            }else{
 
-              contactosSelec = contactosSelec.filter(function(i) { return i !== element.id })
-      
+              tr2.style = "background: rgb(213 235 255)"
+            } else {
+
+              contactosSelec = contactosSelec.filter(function (i) { return i !== element.id })
+
               tr2.style = ""
             }
 
             document.getElementById("contact-selected").innerHTML = `${contactosSelec.length} seleccionados`
 
-              if(contactosSelec.length == 0){
-                document.getElementById("contact-selected").toggleAttribute("hidden")
-                //tr2.classList.remove("checked")
-              } 
+            if (contactosSelec.length == 0) {
+              document.getElementById("contact-selected").toggleAttribute("hidden")
+              //tr2.classList.remove("checked")
+            }
           })
 
         }
@@ -514,112 +661,1323 @@ let objRegions = await callRegions();
         if (i == 1) {
 
           let td = document.createElement("td")
-          
+  
           let divContact = document.createElement("div") //al final hacer hijo al divcontact de tr2
           divContact.className = "contact"
           let divName = document.createElement("div")
           divName.className = "name"
           divContact.appendChild(divName)
           let p1 = document.createElement("p")
-          p1.innerHTML = a[0] + a[1]
+          p1.innerHTML = `${a[0]}  ${a[1]}`
           p1.className = "pName"
           let p = document.createElement("p")
           p.innerHTML = a[3]
           divName.appendChild(p1)
+          //divName.appendChild(p2)
           divName.appendChild(p)
           td.appendChild(divContact)
           tr2.appendChild(td)
         }
-
+  
         if (i == 2) {
           let td = document.createElement("td")
           td.classListm = "delete"
-          td.innerHTML = a[8].name
+          td.innerHTML = a[10].name
+          let divContact = document.createElement("div") 
+          let divName = document.createElement("div")
+          divName.className = "name"
+          divContact.appendChild(divName)
+          let p = document.createElement("p")
+          p.innerHTML = a[9].name
+          divName.appendChild(p)
+          td.appendChild(divContact)
           tr2.appendChild(td)
+        
         }
         if (i == 3) {
           let td = document.createElement("td")
-          
+
           td.innerHTML = a[4]
           tr2.appendChild(td)
         }
         if (i == 4) {
           let td = document.createElement("td")
-          
+
           td.innerHTML = a[2]
           tr2.appendChild(td)
         }
         if (i == 5) {
-          
+
           let td = document.createElement("td")
-          
-          td.innerHTML = a[6]
+
+          td.innerHTML = a[5]
           tr2.appendChild(td)
         }
         /*      if (i == 7) {
+               let td = document.createElement("td")
+               td.innerHTML = a[7]
+               tr2.appendChild(td)
+             } */
+             if (i == 8) {
               let td = document.createElement("td")
-              td.innerHTML = a[7]
+      
+              td.innerHTML = "..."
               tr2.appendChild(td)
-            } */
-        if (i == 8) {
-          let td = document.createElement("td")
-          
-          td.innerHTML = "..."
-          tr2.appendChild(td)
-          td.className = "tdActions"
-          let iconDelete = document.createElement("i")
-          let iconEdit = document.createElement("i")
-          iconDelete.className = "fas fa-trash"
-          iconDelete.id = "icon2"
-          iconEdit.className = "fas fa-pen"
-          iconEdit.id = "icon3"
-          let b = document.getElementById("section-alert")
-          let idContact;
-          iconDelete.addEventListener("click", () => {
-
-          backgroundBlack.classList.toggle("none")
-            b.classList.toggle("none")
-            idContact = element.id
-          })
-          let deleteConfirm = document.getElementById("delete-confirm")
-        
-          deleteConfirm.addEventListener("click", ()=>{
-            
-            deleteContact(idContact)
-
-          }) 
-          
-          iconEdit.addEventListener("click", ()=>{
-
-            document.getElementById("name2").value = element.name
-            document.getElementById("lastname2").value = element.last_name
-            document.getElementById("cargo2").value = element.position
-            document.getElementById("email2").value = element.email
-            
-            awaitCompanies.forEach(element => {
-              let optionCompanies2 = document.createElement("option")
-              optionCompanies2.innerHTML = element.name
-              
-              document.getElementById("company2").appendChild(optionCompanies2)
-            });
-
-          })
-          addClose(iconEdit, sectionEditContact)
-          tr2.appendChild(td)
-          tr2.appendChild(iconDelete)
-          tr2.appendChild(iconEdit)
-        }
+              td.className = "tdActions"
+              let iconDelete = document.createElement("i")
+              let iconEdit = document.createElement("i")
+              iconDelete.className = "fas fa-trash"
+              iconDelete.id = "icon2"
+              iconEdit.className = "fas fa-pen"
+              iconEdit.id = "icon3"
+              let b = document.getElementById("section-alert")
+              let idContact;
+              let idContactEdit;
+              iconDelete.addEventListener("click", () => {
+      
+                backgroundBlack.classList.toggle("none")
+                b.classList.toggle("none")
+                idContact = element.id
+              })
+              let deleteConfirm = document.getElementById("delete-confirm")
+      
+              deleteConfirm.addEventListener("click", () => {
+      
+                deleteContact(idContact)
+      
+              })
+      
+              iconEdit.addEventListener("click", () => {
+                idContactEdit = element.id
+                document.getElementById("name2").value = element.name
+                document.getElementById("lastname2").value = element.last_name
+                document.getElementById("cargo2").value = element.position
+                document.getElementById("email2").value = element.email
+                document.getElementById("option-edit").innerHTML = element.company
+                document.getElementById("option-edit2").innerHTML = element.region.name
+                document.getElementById("option-edit3").innerHTML = element.countrie.name
+                document.getElementById("option-edit4").innerHTML = element.city.name
+      
+                awaitCompanies.forEach(element => {
+                  let optionCompanies2 = document.createElement("option")
+                  optionCompanies2.innerHTML = element.name
+                  document.getElementById("company2").addEventListener("change", (e) => {
+                    console.log(e.target.value)
+                    if (e.target.value == element.name) {
+                      companyId = element.name
+                    }
+                  })
+      
+                  document.getElementById("company2").appendChild(optionCompanies2)
+                });
+                awaitRegions.allRegions.forEach(element => {
+      
+                  let optionRegions = document.createElement("option")
+                  optionRegions.innerHTML = `${element.name}`
+      
+                  document.getElementById("region2").addEventListener("change", (e) => {
+      
+                    if (e.target.value == element.name) {
+      
+                      regionId = element.id
+                      console.log(regionId)
+      
+                      if (document.getElementById("country2").options.length > 1) {
+      
+                        for (let i = document.getElementById("country2").options.length; i >= 1; i--) {
+                          document.getElementById("country2").remove(i);
+                        }
+                      }
+      
+                      element.countries.forEach(e => {
+      
+                        document.getElementById("country2").disabled = false
+                        document.getElementById("country2").classList.remove("background-gray")
+                        let optionCountries = document.createElement("option")
+                        optionCountries.innerHTML = `${e.name}`
+                        document.getElementById("country2").appendChild(optionCountries)
+      
+                        document.getElementById("country2").addEventListener("change", (event) => {
+                          if (event.target.value == e.name) {
+                            countryId = e.id
+                            console.log(countryId)
+                            if (document.getElementById("city2").options.length > 1) {
+      
+                              for (let i = document.getElementById("city2").options.length; i >= 1; i--) {
+                                document.getElementById("city2").remove(i);
+                              }
+                            }
+                            e.cities.forEach(x => {
+                              document.getElementById("city2").disabled = false
+                              document.getElementById("city2").classList.remove("background-gray")
+                              address.classList.remove("background-gray")
+                              document.getElementById("city2").addEventListener("change", (e) => {
+                                if (e.target.value == x.name) {
+                                  cityId = x.id
+                                  console.log(cityId)
+                                }
+      
+                              })
+                              document.getElementById("city2").disabled = false
+                              let optionCities = document.createElement("option")
+                              optionCities.innerHTML = `${x.name}`
+                              document.getElementById("city2").appendChild(optionCities)
+                            })
+                          }
+      
+                        })
+      
+      
+                      });
+                    }
+      
+      
+                  })
+      
+                  document.getElementById("region2").appendChild(optionRegions)
+      
+                });
+                saveContact2.addEventListener("click", async () => {
+                  console.log("hol")
+                  putContact(idContactEdit, document.getElementById("name2").value, document.getElementById("lastname2").value, document.getElementById("cargo2").value, document.getElementById("email2").value = element.email.value, companyId, interes, regionId, countryId, cityId)
+      
+                })
+              })
+              cancel2.addEventListener("click",() => {
+                deleteContact(idContactEdit)
+              })
+              addClose(iconEdit, sectionEditContact)
+              tr2.appendChild(td)
+              tr2.appendChild(iconDelete)
+              tr2.appendChild(iconEdit)
+            }
         tbody.appendChild(tr2)
       }
+      let nuevaCantidad = tbody.children.length
+
+
+      let vueltas = nuevaCantidad - cantidadAnterior
+      // console.log("vueltas", vueltas)
+      parseInt(vueltas)
+
+      for (let i = 0; i <= vueltas; i++) {
+        console.log(indicador)
+        if (i < vueltas) {
+          tbody.firstChild.remove()
+        }
+        if (i == vueltas && indicador == 0) {
+          indicador = 1
+
+          tbody.firstChild.remove()
+
+
+        }
+        if (i == vueltas && indicador == 1) {
+          console.log("no")
+        }
+
+      }
+    });
+
+  })
+  exchangeAltCompany.addEventListener("click", () =>{
+    let cantidadAnterior = tbody.children.length
+    console.log(awaitContacts)
+    awaitContacts.sort(function (a, b) {
+
+      if (a.company.toLowerCase() > b.company.toLowerCase()) {
+        orderName = true
+        return 1;
+      }
+      if (a.company.toLowerCase() < b.company.toLowerCase()) {
+        orderName = false
+        return -1;
+      }
+      return 0;
+
+    });
+
+    if (orderName == true) {
+      awaitContacts.reverse()
+
+    }
+    awaitContacts.forEach(element => {
+
+      a = Object.values(element)
+      contactosSelec = []
+      let tr2 = document.createElement("tr")
+
+
+      for (let i = 0; i < a.length; i++) {
+
+        if (i == 0) {
+          let tdCheckbox = document.createElement("input")
+          tdCheckbox.type = "checkbox"
+          tdCheckbox.id = element.id
+          tdCheckbox.classList = "checkbox2 check"
+          tr2.appendChild(tdCheckbox)
+
+          tdCheckbox.addEventListener("click", (e) => {
+            document.getElementById("contact-selected").removeAttribute("hidden")
+            if (e.target.checked == true) {
+
+              contactosSelec.push(element.id)
+
+              tr2.style = "background: rgb(213 235 255)"
+            } else {
+
+              contactosSelec = contactosSelec.filter(function (i) { return i !== element.id })
+
+              tr2.style = ""
+            }
+
+            document.getElementById("contact-selected").innerHTML = `${contactosSelec.length} seleccionados`
+
+            if (contactosSelec.length == 0) {
+              document.getElementById("contact-selected").toggleAttribute("hidden")
+              //tr2.classList.remove("checked")
+            }
+          })
+
+        }
+
+        if (i == 1) {
+
+          let td = document.createElement("td")
+  
+          let divContact = document.createElement("div") //al final hacer hijo al divcontact de tr2
+          divContact.className = "contact"
+          let divName = document.createElement("div")
+          divName.className = "name"
+          divContact.appendChild(divName)
+          let p1 = document.createElement("p")
+          p1.innerHTML = `${a[0]}  ${a[1]}`
+          p1.className = "pName"
+          let p = document.createElement("p")
+          p.innerHTML = a[3]
+          divName.appendChild(p1)
+          //divName.appendChild(p2)
+          divName.appendChild(p)
+          td.appendChild(divContact)
+          tr2.appendChild(td)
+        }
+  
+        if (i == 2) {
+          let td = document.createElement("td")
+          td.classListm = "delete"
+          td.innerHTML = a[10].name
+          let divContact = document.createElement("div") 
+          let divName = document.createElement("div")
+          divName.className = "name"
+          divContact.appendChild(divName)
+          let p = document.createElement("p")
+          p.innerHTML = a[9].name
+          divName.appendChild(p)
+          td.appendChild(divContact)
+          tr2.appendChild(td)
+        
+        }
+        if (i == 3) {
+          let td = document.createElement("td")
+
+          td.innerHTML = a[4]
+          tr2.appendChild(td)
+        }
+        if (i == 4) {
+          let td = document.createElement("td")
+
+          td.innerHTML = a[2]
+          tr2.appendChild(td)
+        }
+        if (i == 5) {
+
+          let td = document.createElement("td")
+
+          td.innerHTML = a[5]
+          tr2.appendChild(td)
+        }
+        /*      if (i == 7) {
+               let td = document.createElement("td")
+               td.innerHTML = a[7]
+               tr2.appendChild(td)
+             } */
+             if (i == 8) {
+              let td = document.createElement("td")
       
+              td.innerHTML = "..."
+              tr2.appendChild(td)
+              td.className = "tdActions"
+              let iconDelete = document.createElement("i")
+              let iconEdit = document.createElement("i")
+              iconDelete.className = "fas fa-trash"
+              iconDelete.id = "icon2"
+              iconEdit.className = "fas fa-pen"
+              iconEdit.id = "icon3"
+              let b = document.getElementById("section-alert")
+              let idContact;
+              let idContactEdit;
+              iconDelete.addEventListener("click", () => {
+      
+                backgroundBlack.classList.toggle("none")
+                b.classList.toggle("none")
+                idContact = element.id
+              })
+              let deleteConfirm = document.getElementById("delete-confirm")
+      
+              deleteConfirm.addEventListener("click", () => {
+      
+                deleteContact(idContact)
+      
+              })
+      
+              iconEdit.addEventListener("click", () => {
+                idContactEdit = element.id
+                document.getElementById("name2").value = element.name
+                document.getElementById("lastname2").value = element.last_name
+                document.getElementById("cargo2").value = element.position
+                document.getElementById("email2").value = element.email
+                document.getElementById("option-edit").innerHTML = element.company
+                document.getElementById("option-edit2").innerHTML = element.region.name
+                document.getElementById("option-edit3").innerHTML = element.countrie.name
+                document.getElementById("option-edit4").innerHTML = element.city.name
+      
+                awaitCompanies.forEach(element => {
+                  let optionCompanies2 = document.createElement("option")
+                  optionCompanies2.innerHTML = element.name
+                  document.getElementById("company2").addEventListener("change", (e) => {
+                    console.log(e.target.value)
+                    if (e.target.value == element.name) {
+                      companyId = element.name
+                    }
+                  })
+      
+                  document.getElementById("company2").appendChild(optionCompanies2)
+                });
+                awaitRegions.allRegions.forEach(element => {
+      
+                  let optionRegions = document.createElement("option")
+                  optionRegions.innerHTML = `${element.name}`
+      
+                  document.getElementById("region2").addEventListener("change", (e) => {
+      
+                    if (e.target.value == element.name) {
+      
+                      regionId = element.id
+                      console.log(regionId)
+      
+                      if (document.getElementById("country2").options.length > 1) {
+      
+                        for (let i = document.getElementById("country2").options.length; i >= 1; i--) {
+                          document.getElementById("country2").remove(i);
+                        }
+                      }
+      
+                      element.countries.forEach(e => {
+      
+                        document.getElementById("country2").disabled = false
+                        document.getElementById("country2").classList.remove("background-gray")
+                        let optionCountries = document.createElement("option")
+                        optionCountries.innerHTML = `${e.name}`
+                        document.getElementById("country2").appendChild(optionCountries)
+      
+                        document.getElementById("country2").addEventListener("change", (event) => {
+                          if (event.target.value == e.name) {
+                            countryId = e.id
+                            console.log(countryId)
+                            if (document.getElementById("city2").options.length > 1) {
+      
+                              for (let i = document.getElementById("city2").options.length; i >= 1; i--) {
+                                document.getElementById("city2").remove(i);
+                              }
+                            }
+                            e.cities.forEach(x => {
+                              document.getElementById("city2").disabled = false
+                              document.getElementById("city2").classList.remove("background-gray")
+                              address.classList.remove("background-gray")
+                              document.getElementById("city2").addEventListener("change", (e) => {
+                                if (e.target.value == x.name) {
+                                  cityId = x.id
+                                  console.log(cityId)
+                                }
+      
+                              })
+                              document.getElementById("city2").disabled = false
+                              let optionCities = document.createElement("option")
+                              optionCities.innerHTML = `${x.name}`
+                              document.getElementById("city2").appendChild(optionCities)
+                            })
+                          }
+      
+                        })
+      
+      
+                      });
+                    }
+      
+      
+                  })
+      
+                  document.getElementById("region2").appendChild(optionRegions)
+      
+                });
+                saveContact2.addEventListener("click", async () => {
+                  console.log("hol")
+                  putContact(idContactEdit, document.getElementById("name2").value, document.getElementById("lastname2").value, document.getElementById("cargo2").value, document.getElementById("email2").value = element.email.value, companyId, interes, regionId, countryId, cityId)
+      
+                })
+              })
+              cancel2.addEventListener("click",() => {
+                deleteContact(idContactEdit)
+              })
+              addClose(iconEdit, sectionEditContact)
+              tr2.appendChild(td)
+              tr2.appendChild(iconDelete)
+              tr2.appendChild(iconEdit)
+            }
+        tbody.appendChild(tr2)
+      }
+      let nuevaCantidad = tbody.children.length
+
+
+      let vueltas = nuevaCantidad - cantidadAnterior
+      // console.log("vueltas", vueltas)
+      parseInt(vueltas)
+
+      for (let i = 0; i <= vueltas; i++) {
+        console.log(indicador)
+        if (i < vueltas) {
+          tbody.firstChild.remove()
+        }
+        if (i == vueltas && indicador == 0) {
+          indicador = 1
+
+          tbody.firstChild.remove()
+
+
+        }
+        if (i == vueltas && indicador == 1) {
+          console.log("no")
+        }
+
+      }
     });
 
 
-  inputSearch.addEventListener("keyup", async (e)=>{
-    let v = e.target.value
-    if(e.keyCode===13) {
-      document.querySelector(".delete").remove()
+  }) 
+  exchangeAltposition.addEventListener("click", () =>{
+    let cantidadAnterior = tbody.children.length
+    console.log(awaitContacts)
+    awaitContacts.sort(function (a, b) {
+
+      if (a.position.toLowerCase() > b.position.toLowerCase()) {
+        orderName = true
+        return 1;
+      }
+      if (a.position.toLowerCase() < b.position.toLowerCase()) {
+        orderName = false
+        return -1;
+      }
+      return 0;
+
+    });
+
+    if (orderName == true) {
+      awaitContacts.reverse()
+
+    }
+    awaitContacts.forEach(element => {
+
+      a = Object.values(element)
+      contactosSelec = []
+      let tr2 = document.createElement("tr")
+
+
+      for (let i = 0; i < a.length; i++) {
+
+        if (i == 0) {
+          let tdCheckbox = document.createElement("input")
+          tdCheckbox.type = "checkbox"
+          tdCheckbox.id = element.id
+          tdCheckbox.classList = "checkbox2 check"
+          tr2.appendChild(tdCheckbox)
+
+          tdCheckbox.addEventListener("click", (e) => {
+            document.getElementById("contact-selected").removeAttribute("hidden")
+            if (e.target.checked == true) {
+
+              contactosSelec.push(element.id)
+
+              tr2.style = "background: rgb(213 235 255)"
+            } else {
+
+              contactosSelec = contactosSelec.filter(function (i) { return i !== element.id })
+
+              tr2.style = ""
+            }
+
+            document.getElementById("contact-selected").innerHTML = `${contactosSelec.length} seleccionados`
+
+            if (contactosSelec.length == 0) {
+              document.getElementById("contact-selected").toggleAttribute("hidden")
+              //tr2.classList.remove("checked")
+            }
+          })
+
+        }
+
+        if (i == 1) {
+
+          let td = document.createElement("td")
+  
+          let divContact = document.createElement("div") //al final hacer hijo al divcontact de tr2
+          divContact.className = "contact"
+          let divName = document.createElement("div")
+          divName.className = "name"
+          divContact.appendChild(divName)
+          let p1 = document.createElement("p")
+          p1.innerHTML = `${a[0]}  ${a[1]}`
+          p1.className = "pName"
+          let p = document.createElement("p")
+          p.innerHTML = a[3]
+          divName.appendChild(p1)
+          //divName.appendChild(p2)
+          divName.appendChild(p)
+          td.appendChild(divContact)
+          tr2.appendChild(td)
+        }
+  
+        if (i == 2) {
+          let td = document.createElement("td")
+          td.classListm = "delete"
+          td.innerHTML = a[10].name
+          let divContact = document.createElement("div") 
+          let divName = document.createElement("div")
+          divName.className = "name"
+          divContact.appendChild(divName)
+          let p = document.createElement("p")
+          p.innerHTML = a[9].name
+          divName.appendChild(p)
+          td.appendChild(divContact)
+          tr2.appendChild(td)
+        
+        }
+        if (i == 3) {
+          let td = document.createElement("td")
+
+          td.innerHTML = a[4]
+          tr2.appendChild(td)
+        }
+        if (i == 4) {
+          let td = document.createElement("td")
+
+          td.innerHTML = a[2]
+          tr2.appendChild(td)
+        }
+        if (i == 5) {
+
+          let td = document.createElement("td")
+
+          td.innerHTML = a[5]
+          tr2.appendChild(td)
+        }
+        /*      if (i == 7) {
+               let td = document.createElement("td")
+               td.innerHTML = a[7]
+               tr2.appendChild(td)
+             } */
+             if (i == 8) {
+              let td = document.createElement("td")
       
+              td.innerHTML = "..."
+              tr2.appendChild(td)
+              td.className = "tdActions"
+              let iconDelete = document.createElement("i")
+              let iconEdit = document.createElement("i")
+              iconDelete.className = "fas fa-trash"
+              iconDelete.id = "icon2"
+              iconEdit.className = "fas fa-pen"
+              iconEdit.id = "icon3"
+              let b = document.getElementById("section-alert")
+              let idContact;
+              let idContactEdit;
+              iconDelete.addEventListener("click", () => {
+      
+                backgroundBlack.classList.toggle("none")
+                b.classList.toggle("none")
+                idContact = element.id
+              })
+              let deleteConfirm = document.getElementById("delete-confirm")
+      
+              deleteConfirm.addEventListener("click", () => {
+      
+                deleteContact(idContact)
+      
+              })
+      
+              iconEdit.addEventListener("click", () => {
+                idContactEdit = element.id
+                document.getElementById("name2").value = element.name
+                document.getElementById("lastname2").value = element.last_name
+                document.getElementById("cargo2").value = element.position
+                document.getElementById("email2").value = element.email
+                document.getElementById("option-edit").innerHTML = element.company
+                document.getElementById("option-edit2").innerHTML = element.region.name
+                document.getElementById("option-edit3").innerHTML = element.countrie.name
+                document.getElementById("option-edit4").innerHTML = element.city.name
+      
+                awaitCompanies.forEach(element => {
+                  let optionCompanies2 = document.createElement("option")
+                  optionCompanies2.innerHTML = element.name
+                  document.getElementById("company2").addEventListener("change", (e) => {
+                    console.log(e.target.value)
+                    if (e.target.value == element.name) {
+                      companyId = element.name
+                    }
+                  })
+      
+                  document.getElementById("company2").appendChild(optionCompanies2)
+                });
+                awaitRegions.allRegions.forEach(element => {
+      
+                  let optionRegions = document.createElement("option")
+                  optionRegions.innerHTML = `${element.name}`
+      
+                  document.getElementById("region2").addEventListener("change", (e) => {
+      
+                    if (e.target.value == element.name) {
+      
+                      regionId = element.id
+                      console.log(regionId)
+      
+                      if (document.getElementById("country2").options.length > 1) {
+      
+                        for (let i = document.getElementById("country2").options.length; i >= 1; i--) {
+                          document.getElementById("country2").remove(i);
+                        }
+                      }
+      
+                      element.countries.forEach(e => {
+      
+                        document.getElementById("country2").disabled = false
+                        document.getElementById("country2").classList.remove("background-gray")
+                        let optionCountries = document.createElement("option")
+                        optionCountries.innerHTML = `${e.name}`
+                        document.getElementById("country2").appendChild(optionCountries)
+      
+                        document.getElementById("country2").addEventListener("change", (event) => {
+                          if (event.target.value == e.name) {
+                            countryId = e.id
+                            console.log(countryId)
+                            if (document.getElementById("city2").options.length > 1) {
+      
+                              for (let i = document.getElementById("city2").options.length; i >= 1; i--) {
+                                document.getElementById("city2").remove(i);
+                              }
+                            }
+                            e.cities.forEach(x => {
+                              document.getElementById("city2").disabled = false
+                              document.getElementById("city2").classList.remove("background-gray")
+                              address.classList.remove("background-gray")
+                              document.getElementById("city2").addEventListener("change", (e) => {
+                                if (e.target.value == x.name) {
+                                  cityId = x.id
+                                  console.log(cityId)
+                                }
+      
+                              })
+                              document.getElementById("city2").disabled = false
+                              let optionCities = document.createElement("option")
+                              optionCities.innerHTML = `${x.name}`
+                              document.getElementById("city2").appendChild(optionCities)
+                            })
+                          }
+      
+                        })
+      
+      
+                      });
+                    }
+      
+      
+                  })
+      
+                  document.getElementById("region2").appendChild(optionRegions)
+      
+                });
+                saveContact2.addEventListener("click", async () => {
+                  console.log("hol")
+                  putContact(idContactEdit, document.getElementById("name2").value, document.getElementById("lastname2").value, document.getElementById("cargo2").value, document.getElementById("email2").value = element.email.value, companyId, interes, regionId, countryId, cityId)
+      
+                })
+              })
+              cancel2.addEventListener("click",() => {
+                deleteContact(idContactEdit)
+              })
+              addClose(iconEdit, sectionEditContact)
+              tr2.appendChild(td)
+              tr2.appendChild(iconDelete)
+              tr2.appendChild(iconEdit)
+            }
+        tbody.appendChild(tr2)
+      }
+      let nuevaCantidad = tbody.children.length
+
+
+      let vueltas = nuevaCantidad - cantidadAnterior
+      // console.log("vueltas", vueltas)
+      parseInt(vueltas)
+
+      for (let i = 0; i <= vueltas; i++) {
+        console.log(indicador)
+        if (i < vueltas) {
+          tbody.firstChild.remove()
+        }
+        if (i == vueltas && indicador == 0) {
+          indicador = 1
+
+          tbody.firstChild.remove()
+
+
+        }
+        if (i == vueltas && indicador == 1) {
+          console.log("no")
+        }
+
+      }
+    });
+
+
+  }) 
+  exchangeAltinterest.addEventListener("click", () =>{
+    let cantidadAnterior = tbody.children.length
+    console.log(awaitContacts)
+    awaitContacts.sort(function (a, b) {
+
+      if (a.interes.toLowerCase() > b.interes.toLowerCase()) {
+        orderName = true
+        return 1;
+      }
+      if (a.interes.toLowerCase() < b.interes.toLowerCase()) {
+        orderName = false
+        return -1;
+      }
+      return 0;
+
+    });
+
+    if (orderName == true) {
+      awaitContacts.reverse()
+
+    }
+    console.log(awaitContacts)
+    awaitContacts.forEach(element => {
+
+      a = Object.values(element)
+      contactosSelec = []
+      let tr2 = document.createElement("tr")
+
+
+      for (let i = 0; i < a.length; i++) {
+
+        if (i == 0) {
+          let tdCheckbox = document.createElement("input")
+          tdCheckbox.type = "checkbox"
+          tdCheckbox.id = element.id
+          tdCheckbox.classList = "checkbox2 check"
+          tr2.appendChild(tdCheckbox)
+
+          tdCheckbox.addEventListener("click", (e) => {
+            document.getElementById("contact-selected").removeAttribute("hidden")
+            if (e.target.checked == true) {
+
+              contactosSelec.push(element.id)
+
+              tr2.style = "background: rgb(213 235 255)"
+            } else {
+
+              contactosSelec = contactosSelec.filter(function (i) { return i !== element.id })
+
+              tr2.style = ""
+            }
+
+            document.getElementById("contact-selected").innerHTML = `${contactosSelec.length} seleccionados`
+
+            if (contactosSelec.length == 0) {
+              document.getElementById("contact-selected").toggleAttribute("hidden")
+              //tr2.classList.remove("checked")
+            }
+          })
+
+        }
+
+        if (i == 1) {
+
+          let td = document.createElement("td")
+  
+          let divContact = document.createElement("div") //al final hacer hijo al divcontact de tr2
+          divContact.className = "contact"
+          let divName = document.createElement("div")
+          divName.className = "name"
+          divContact.appendChild(divName)
+          let p1 = document.createElement("p")
+          p1.innerHTML = `${a[0]}  ${a[1]}`
+          p1.className = "pName"
+          let p = document.createElement("p")
+          p.innerHTML = a[3]
+          divName.appendChild(p1)
+          //divName.appendChild(p2)
+          divName.appendChild(p)
+          td.appendChild(divContact)
+          tr2.appendChild(td)
+        }
+  
+        if (i == 2) {
+          let td = document.createElement("td")
+          td.classListm = "delete"
+          td.innerHTML = a[10].name
+          let divContact = document.createElement("div") 
+          let divName = document.createElement("div")
+          divName.className = "name"
+          divContact.appendChild(divName)
+          let p = document.createElement("p")
+          p.innerHTML = a[9].name
+          divName.appendChild(p)
+          td.appendChild(divContact)
+          tr2.appendChild(td)
+        
+        }
+        if (i == 3) {
+          let td = document.createElement("td")
+
+          td.innerHTML = a[4]
+          tr2.appendChild(td)
+        }
+        if (i == 4) {
+          let td = document.createElement("td")
+
+          td.innerHTML = a[2]
+          tr2.appendChild(td)
+        }
+        if (i == 5) {
+
+          let td = document.createElement("td")
+
+          td.innerHTML = a[5]
+          tr2.appendChild(td)
+        }
+        /*      if (i == 7) {
+               let td = document.createElement("td")
+               td.innerHTML = a[7]
+               tr2.appendChild(td)
+             } */
+             if (i == 8) {
+              let td = document.createElement("td")
+      
+              td.innerHTML = "..."
+              tr2.appendChild(td)
+              td.className = "tdActions"
+              let iconDelete = document.createElement("i")
+              let iconEdit = document.createElement("i")
+              iconDelete.className = "fas fa-trash"
+              iconDelete.id = "icon2"
+              iconEdit.className = "fas fa-pen"
+              iconEdit.id = "icon3"
+              let b = document.getElementById("section-alert")
+              let idContact;
+              let idContactEdit;
+              iconDelete.addEventListener("click", () => {
+      
+                backgroundBlack.classList.toggle("none")
+                b.classList.toggle("none")
+                idContact = element.id
+              })
+              let deleteConfirm = document.getElementById("delete-confirm")
+      
+              deleteConfirm.addEventListener("click", () => {
+      
+                deleteContact(idContact)
+      
+              })
+      
+              iconEdit.addEventListener("click", () => {
+                idContactEdit = element.id
+                document.getElementById("name2").value = element.name
+                document.getElementById("lastname2").value = element.last_name
+                document.getElementById("cargo2").value = element.position
+                document.getElementById("email2").value = element.email
+                document.getElementById("option-edit").innerHTML = element.company
+                document.getElementById("option-edit2").innerHTML = element.region.name
+                document.getElementById("option-edit3").innerHTML = element.countrie.name
+                document.getElementById("option-edit4").innerHTML = element.city.name
+      
+                awaitCompanies.forEach(element => {
+                  let optionCompanies2 = document.createElement("option")
+                  optionCompanies2.innerHTML = element.name
+                  document.getElementById("company2").addEventListener("change", (e) => {
+                    console.log(e.target.value)
+                    if (e.target.value == element.name) {
+                      companyId = element.name
+                    }
+                  })
+      
+                  document.getElementById("company2").appendChild(optionCompanies2)
+                });
+                awaitRegions.allRegions.forEach(element => {
+      
+                  let optionRegions = document.createElement("option")
+                  optionRegions.innerHTML = `${element.name}`
+      
+                  document.getElementById("region2").addEventListener("change", (e) => {
+      
+                    if (e.target.value == element.name) {
+      
+                      regionId = element.id
+                      console.log(regionId)
+      
+                      if (document.getElementById("country2").options.length > 1) {
+      
+                        for (let i = document.getElementById("country2").options.length; i >= 1; i--) {
+                          document.getElementById("country2").remove(i);
+                        }
+                      }
+      
+                      element.countries.forEach(e => {
+      
+                        document.getElementById("country2").disabled = false
+                        document.getElementById("country2").classList.remove("background-gray")
+                        let optionCountries = document.createElement("option")
+                        optionCountries.innerHTML = `${e.name}`
+                        document.getElementById("country2").appendChild(optionCountries)
+      
+                        document.getElementById("country2").addEventListener("change", (event) => {
+                          if (event.target.value == e.name) {
+                            countryId = e.id
+                            console.log(countryId)
+                            if (document.getElementById("city2").options.length > 1) {
+      
+                              for (let i = document.getElementById("city2").options.length; i >= 1; i--) {
+                                document.getElementById("city2").remove(i);
+                              }
+                            }
+                            e.cities.forEach(x => {
+                              document.getElementById("city2").disabled = false
+                              document.getElementById("city2").classList.remove("background-gray")
+                              address.classList.remove("background-gray")
+                              document.getElementById("city2").addEventListener("change", (e) => {
+                                if (e.target.value == x.name) {
+                                  cityId = x.id
+                                  console.log(cityId)
+                                }
+      
+                              })
+                              document.getElementById("city2").disabled = false
+                              let optionCities = document.createElement("option")
+                              optionCities.innerHTML = `${x.name}`
+                              document.getElementById("city2").appendChild(optionCities)
+                            })
+                          }
+      
+                        })
+      
+      
+                      });
+                    }
+      
+      
+                  })
+      
+                  document.getElementById("region2").appendChild(optionRegions)
+      
+                });
+                saveContact2.addEventListener("click", async () => {
+                  console.log("hol")
+                  putContact(idContactEdit, document.getElementById("name2").value, document.getElementById("lastname2").value, document.getElementById("cargo2").value, document.getElementById("email2").value = element.email.value, companyId, interes, regionId, countryId, cityId)
+      
+                })
+              })
+              cancel2.addEventListener("click",() => {
+                deleteContact(idContactEdit)
+              })
+              addClose(iconEdit, sectionEditContact)
+              tr2.appendChild(td)
+              tr2.appendChild(iconDelete)
+              tr2.appendChild(iconEdit)
+            }
+        tbody.appendChild(tr2)
+      }
+      let nuevaCantidad = tbody.children.length
+
+
+      let vueltas = nuevaCantidad - cantidadAnterior
+      // console.log("vueltas", vueltas)
+      parseInt(vueltas)
+
+      for (let i = 0; i <= vueltas; i++) {
+        console.log(indicador)
+        if (i < vueltas) {
+          tbody.firstChild.remove()
+        }
+        if (i == vueltas && indicador == 0) {
+          indicador = 1
+
+          tbody.firstChild.remove()
+
+
+        }
+        if (i == vueltas && indicador == 1) {
+          console.log("no")
+        }
+
+      }
+    });
+
+
+  }) 
+
+////////////no tocar!!!!!
+  awaitContacts.forEach(element => {
+    a = Object.values(element)
+
+    contactosSelec = []
+    let tr2 = document.createElement("tr")
+    tr2.classList = "delete"
+
+    for (let i = 0; i < a.length; i++) {
+      if (i == 0) {
+        let tdCheckbox = document.createElement("input")
+        tdCheckbox.type = "checkbox"
+        tdCheckbox.id = element.id
+        tdCheckbox.classList = "checkbox2 check"
+        tr2.appendChild(tdCheckbox)
+
+        tdCheckbox.addEventListener("click", (e) => {
+          document.getElementById("contact-selected").removeAttribute("hidden")
+          if (e.target.checked == true) {
+
+            contactosSelec.push(element.id)
+
+            tr2.style = "background: rgb(213 235 255)"
+          } else {
+
+            contactosSelec = contactosSelec.filter(function (i) { return i !== element.id })
+
+            tr2.style = ""
+          }
+
+          document.getElementById("contact-selected").innerHTML = `${contactosSelec.length} seleccionados`
+
+          if (contactosSelec.length == 0) {
+            document.getElementById("contact-selected").toggleAttribute("hidden")
+            //tr2.classList.remove("checked")
+          }
+        })
+
+      }
+
+      if (i == 1) {
+
+        let td = document.createElement("td")
+
+        let divContact = document.createElement("div") //al final hacer hijo al divcontact de tr2
+        divContact.className = "contact"
+        let divName = document.createElement("div")
+        divName.className = "name"
+        divContact.appendChild(divName)
+        let p1 = document.createElement("p")
+        p1.innerHTML = `${a[0]}  ${a[1]}`
+        p1.className = "pName"
+        let p = document.createElement("p")
+        p.innerHTML = a[3]
+        divName.appendChild(p1)
+        //divName.appendChild(p2)
+        divName.appendChild(p)
+        td.appendChild(divContact)
+        tr2.appendChild(td)
+      }
+
+      if (i == 2) {
+        let td = document.createElement("td")
+        td.classListm = "delete"
+        td.innerHTML = a[10].name
+        let divContact = document.createElement("div") 
+        let divName = document.createElement("div")
+        divName.className = "name"
+        divContact.appendChild(divName)
+        let p = document.createElement("p")
+        p.innerHTML = a[9].name
+        divName.appendChild(p)
+        td.appendChild(divContact)
+        tr2.appendChild(td)
+      
+      }
+      if (i == 3) {
+        let td = document.createElement("td")
+
+        td.innerHTML = a[4]
+        tr2.appendChild(td)
+      }
+      if (i == 4) {
+        let td = document.createElement("td")
+
+        td.innerHTML = a[2]
+        tr2.appendChild(td)
+      }
+      if (i == 5) {
+
+        let td = document.createElement("td")
+
+        td.innerHTML = a[5]
+        tr2.appendChild(td)
+      }
+      /*      if (i == 7) {
+            let td = document.createElement("td")
+            td.innerHTML = a[7]
+            tr2.appendChild(td)
+          } */
+      if (i == 8) {
+        let td = document.createElement("td")
+
+        td.innerHTML = "..."
+        tr2.appendChild(td)
+        td.className = "tdActions"
+        let iconDelete = document.createElement("i")
+        let iconEdit = document.createElement("i")
+        iconDelete.className = "fas fa-trash"
+        iconDelete.id = "icon2"
+        iconEdit.className = "fas fa-pen"
+        iconEdit.id = "icon3"
+        let b = document.getElementById("section-alert")
+        let idContact;
+        let idContactEdit;
+        iconDelete.addEventListener("click", () => {
+
+          backgroundBlack.classList.toggle("none")
+          b.classList.toggle("none")
+          idContact = element.id
+        })
+        let deleteConfirm = document.getElementById("delete-confirm")
+
+        deleteConfirm.addEventListener("click", () => {
+
+          deleteContact(idContact)
+
+        })
+
+        iconEdit.addEventListener("click", () => {
+          idContactEdit = element.id
+          document.getElementById("name2").value = element.name
+          document.getElementById("lastname2").value = element.last_name
+          document.getElementById("cargo2").value = element.position
+          document.getElementById("email2").value = element.email
+          document.getElementById("option-edit").innerHTML = element.company
+          document.getElementById("option-edit2").innerHTML = element.region.name
+          document.getElementById("option-edit3").innerHTML = element.countrie.name
+          document.getElementById("option-edit4").innerHTML = element.city.name
+
+          awaitCompanies.forEach(element => {
+            let optionCompanies2 = document.createElement("option")
+            optionCompanies2.innerHTML = element.name
+            document.getElementById("company2").addEventListener("change", (e) => {
+              console.log(e.target.value)
+              if (e.target.value == element.name) {
+                companyId = element.name
+              }
+            })
+
+            document.getElementById("company2").appendChild(optionCompanies2)
+          });
+          awaitRegions.allRegions.forEach(element => {
+
+            let optionRegions = document.createElement("option")
+            optionRegions.innerHTML = `${element.name}`
+
+            document.getElementById("region2").addEventListener("change", (e) => {
+
+              if (e.target.value == element.name) {
+
+                regionId = element.id
+                console.log(regionId)
+
+                if (document.getElementById("country2").options.length > 1) {
+
+                  for (let i = document.getElementById("country2").options.length; i >= 1; i--) {
+                    document.getElementById("country2").remove(i);
+                  }
+                }
+
+                element.countries.forEach(e => {
+
+                  document.getElementById("country2").disabled = false
+                  document.getElementById("country2").classList.remove("background-gray")
+                  let optionCountries = document.createElement("option")
+                  optionCountries.innerHTML = `${e.name}`
+                  document.getElementById("country2").appendChild(optionCountries)
+
+                  document.getElementById("country2").addEventListener("change", (event) => {
+                    if (event.target.value == e.name) {
+                      countryId = e.id
+                      console.log(countryId)
+                      if (document.getElementById("city2").options.length > 1) {
+
+                        for (let i = document.getElementById("city2").options.length; i >= 1; i--) {
+                          document.getElementById("city2").remove(i);
+                        }
+                      }
+                      e.cities.forEach(x => {
+                        document.getElementById("city2").disabled = false
+                        document.getElementById("city2").classList.remove("background-gray")
+                        address.classList.remove("background-gray")
+                        document.getElementById("city2").addEventListener("change", (e) => {
+                          if (e.target.value == x.name) {
+                            cityId = x.id
+                            console.log(cityId)
+                          }
+
+                        })
+                        document.getElementById("city2").disabled = false
+                        let optionCities = document.createElement("option")
+                        optionCities.innerHTML = `${x.name}`
+                        document.getElementById("city2").appendChild(optionCities)
+                      })
+                    }
+
+                  })
+
+
+                });
+              }
+
+
+            })
+
+            document.getElementById("region2").appendChild(optionRegions)
+
+          });
+          saveContact2.addEventListener("click", async () => {
+            console.log("hol")
+            putContact(idContactEdit, document.getElementById("name2").value, document.getElementById("lastname2").value, document.getElementById("cargo2").value, document.getElementById("email2").value = element.email.value, companyId, interes, regionId, countryId, cityId)
+
+          })
+        })
+        cancel2.addEventListener("click",() => {
+          deleteContact(idContactEdit)
+        })
+        addClose(iconEdit, sectionEditContact)
+        tr2.appendChild(td)
+        tr2.appendChild(iconDelete)
+        tr2.appendChild(iconEdit)
+      }
+      tbody.appendChild(tr2)
+    }
+
+  });    
+  
+
+  inputSearch.addEventListener("keyup", async (e) => {
+    let v = e.target.value
+    if (e.keyCode === 13) {
+      document.querySelector(".delete").remove()
+
       let a = await get(v)
       a.forEach(element => {
         const tbody2 = document.createElement("tbody")
@@ -627,45 +1985,45 @@ let objRegions = await callRegions();
         a = Object.values(element)
         contactosSelec = []
         let tr2 = document.createElement("tr")
-      
-   
+
+
         for (let i = 0; i < a.length; i++) {
-    
+
           if (i == 0) {
             let tdCheckbox = document.createElement("input")
             tdCheckbox.type = "checkbox"
             tdCheckbox.id = element.id
             tdCheckbox.classList = "checkbox2 check"
             tr2.appendChild(tdCheckbox)
-    
+
             tdCheckbox.addEventListener("click", (e) => {
               document.getElementById("contact-selected").removeAttribute("hidden")
               if (e.target.checked == true) {
-    
+
                 contactosSelec.push(element.id)
-          
+
                 tr2.style = "background: rgb(213 235 255)"
-              }else{
-    
-                contactosSelec = contactosSelec.filter(function(i) { return i !== element.id })
-        
+              } else {
+
+                contactosSelec = contactosSelec.filter(function (i) { return i !== element.id })
+
                 tr2.style = ""
               }
-    
+
               document.getElementById("contact-selected").innerHTML = `${contactosSelec.length} seleccionados`
-    
-                if(contactosSelec.length == 0){
-                  document.getElementById("contact-selected").toggleAttribute("hidden")
-                  //tr2.classList.remove("checked")
-                } 
+
+              if (contactosSelec.length == 0) {
+                document.getElementById("contact-selected").toggleAttribute("hidden")
+                //tr2.classList.remove("checked")
+              }
             })
-    
+
           }
-    
+
           if (i == 1) {
-    
+
             let td = document.createElement("td")
-            
+
             let divContact = document.createElement("div") //al final hacer hijo al divcontact de tr2
             divContact.className = "contact"
             let divName = document.createElement("div")
@@ -681,7 +2039,7 @@ let objRegions = await callRegions();
             td.appendChild(divContact)
             tr2.appendChild(td)
           }
-    
+
           if (i == 2) {
             let td = document.createElement("td")
             td.classListm = "delete"
@@ -690,20 +2048,20 @@ let objRegions = await callRegions();
           }
           if (i == 3) {
             let td = document.createElement("td")
-            
+
             td.innerHTML = a[4]
             tr2.appendChild(td)
           }
           if (i == 4) {
             let td = document.createElement("td")
-            
+
             td.innerHTML = a[2]
             tr2.appendChild(td)
           }
           if (i == 5) {
-            
+
             let td = document.createElement("td")
-            
+
             td.innerHTML = a[6]
             tr2.appendChild(td)
           }
@@ -714,7 +2072,7 @@ let objRegions = await callRegions();
                } */
           if (i == 8) {
             let td = document.createElement("td")
-            
+
             td.innerHTML = "..."
             tr2.appendChild(td)
             td.className = "tdActions"
@@ -725,44 +2083,44 @@ let objRegions = await callRegions();
             iconEdit.className = "fas fa-pen"
             iconEdit.id = "icon3"
             let b = document.getElementById("section-alert")
-             let idContact;
+            let idContact;
             iconDelete.addEventListener("click", () => {
-    
-           backgroundBlack.classList.toggle("none")
+
+              backgroundBlack.classList.toggle("none")
               b.classList.toggle("none")
-               idContact = element.id
+              idContact = element.id
             })
             let deleteConfirm = document.getElementById("delete-confirm")
-          
-            deleteConfirm.addEventListener("click", ()=>{
-              
+
+            deleteConfirm.addEventListener("click", () => {
+
               deleteContact(idContact)
-    
-            }) 
-    
-          addClose(iconEdit)
+
+            })
+
+            addClose(iconEdit)
             tr2.appendChild(td)
             tr2.appendChild(iconDelete)
             tr2.appendChild(iconEdit)
           }
           tbody2.appendChild(tr2)
         }
-       
+
         table.appendChild(tbody2)
       });
- 
-      
-    }
-        if( v == ""){
-          location.href = "../html/index.html"
-        }
-    
-    
-    
-  })
-  
 
- 
+
+    }
+    if (v == "") {
+      location.href = "../html/index.html"
+    }
+
+
+
+  })
+
+
+
   thead.appendChild(tr)
   table.appendChild(thead)
   thead.appendChild(tr)
@@ -775,9 +2133,9 @@ createContacts()
 
 
 
-
+///checkbox
 a.addEventListener("click", (e) => {
-let arrayIdContactos = []
+  let arrayIdContactos = []
 
   if (e.target.checked == true) {
 
@@ -800,7 +2158,7 @@ let arrayIdContactos = []
 
     for (let i = 0; i < checks.length; i++) {
       checks[i].checked = false;
-  
+
     }
     deleteContacts.classList.add("delete-contact")
   }
@@ -819,6 +2177,7 @@ saveContact.addEventListener("click", async () => {
   postContact(name.value, lastName.value, position.value, email.value, companyId, interes, regionId, countryId, cityId)
 
 })
+
 ////AGREGAR CANAL
 
 btnAddChannel.addEventListener("click", () => {
@@ -860,7 +2219,7 @@ btnAddChannel.addEventListener("click", () => {
 
 ////busqueda
 
-  const inputSearch= document.getElementById("input")
+const inputSearch = document.getElementById("input")
 
 
 /*  let search2 = document.getElementById("search")
@@ -896,6 +2255,32 @@ let postContact = async (name, last_name, position, email, company, interes, reg
   await searchApi.json()
   location.href = "../html/index.html"
 }
+let putContact = async (id, name, last_name, position, email, company, interes, regionId, countrieId, cityId) => {
+
+  var data = {
+    name,
+    last_name,
+    position,
+    email,
+    company,
+    interes,
+    regionId,
+    countrieId,
+    cityId,
+
+  }
+
+  let searchApi = await fetch(`http://localhost:3000/contacts/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+
+  await searchApi.json()
+  location.href = "../html/index.html"
+}
 
 ////DELETE CONTACTOS
 
@@ -915,6 +2300,6 @@ let deleteContact = async (id) => {
   await searchApi.json()
   location.href = "../html/index.html"
 
-} 
+}
 
 

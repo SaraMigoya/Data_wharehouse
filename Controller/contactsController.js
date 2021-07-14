@@ -69,6 +69,12 @@ router.post("/", async (req, res) => {
 
                 {
 
+                    model: models.regions,
+                    required: true,
+                    attributes: ["name"]
+                },
+                {
+
                     model: models.countries,
                     required: true,
                     attributes: ["name"]

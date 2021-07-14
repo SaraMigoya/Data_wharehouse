@@ -457,7 +457,7 @@ header .logotipo {
   margin: 0;
 }
 
-header nav a {
+header nav a, header nav p {
   color: white;
   text-decoration: none;
   margin-right: 25px;
@@ -488,10 +488,10 @@ header nav a.activo {
 }
 
 .add-new-item .container {
-  border: 3px solid #0683F9;
+  border: 3px solid #0683f9;
   border-radius: 6.5px;
-  -webkit-box-shadow: #0683F9;
-          box-shadow: #0683F9;
+  -webkit-box-shadow: #0683f9;
+          box-shadow: #0683f9;
   height: 131px;
   width: 1172px;
   top: -71px;
@@ -508,20 +508,26 @@ header nav a.activo {
           justify-content: space-evenly;
 }
 
-#section-new-region .container, #section-new-country .container {
+#section-new-region .container,
+#section-new-country .container,
+#section-new-city .container {
   width: 800px;
 }
 
-#section-new-region, #section-new-country {
+#section-new-region,
+#section-new-country {
   max-width: 850px;
 }
 
-#section-new-company, #section-new-contact, #section-edit-contact {
+#section-new-company,
+#section-new-contact,
+#section-edit-contact {
   max-width: 1215px;
   margin: 0 auto;
 }
 
-#section-new-region select, #section-new-country select {
+#section-new-region select,
+#section-new-country select {
   height: 35.5px;
   width: 190px;
   border-radius: 3.5px;
@@ -535,10 +541,12 @@ header nav a.activo {
   font-size: 1.2em;
 }
 
-.add-new-item, .form {
+.add-new-item,
+.form {
   z-index: 4;
   position: relative;
   background: white;
+  width: 800px;
   /*     height: 200px;
     width: 100%; */
 }
@@ -547,14 +555,18 @@ header nav a.activo {
   height: 200px;
 }
 
-#section-new-region, .form, #section-new-country .form, #section-new-cit form {
+#section-new-region,
+.form,
+#section-new-country .form,
+#section-new-city form {
   z-index: 4;
   position: relative;
   background: white;
   width: 100%;
 }
 
-#section-new-region .form, #section-new-country .form {
+#section-new-region .form,
+#section-new-country .form {
   height: auto;
 }
 
@@ -562,7 +574,10 @@ header nav a.activo {
   display: none;
 }
 
-#black-company, #black, #black-region, .background-black {
+#black-company,
+#black,
+#black-region,
+.background-black {
   position: absolute;
   z-index: 3;
   background-color: rgba(0, 0, 0, 0.7);
@@ -584,14 +599,17 @@ header nav a.activo {
   margin: 0;
 }
 
-#section-new-contact .container span, #section-edit-contact .container span, #section-new-company .container span, #section-new-region .container span {
-  color: #F03738;
+#section-new-contact .container span,
+#section-edit-contact .container span,
+#section-new-company .container span,
+#section-new-region .container span {
+  color: #f03738;
 }
 
 .add-new-item input {
   width: 190px;
   height: 35.5px;
-  border: 1px solid #CCCCCC;
+  border: 1px solid #cccccc;
   border-radius: 3.5px;
 }
 
@@ -604,7 +622,8 @@ header nav a.activo {
   margin: auto;
 }
 
-#section-new-contact .container-new-contact, #section-edit-contact .container-new-contact {
+#section-new-contact .container-new-contact,
+#section-edit-contact .container-new-contact {
   width: 94%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -650,11 +669,14 @@ header nav a.activo {
   margin: 0;
 }
 
-#section-new-contact #interes-new-contact, #section-edit-contact {
+#section-new-contact #interes-new-contact,
+#section-edit-contact {
   width: 70px;
 }
 
-#section-new-contact, .form-new-contact, #section-edit-contact {
+#section-new-contact,
+.form-new-contact,
+#section-edit-contact {
   z-index: 4;
   position: relative;
   background: white;
@@ -662,7 +684,8 @@ header nav a.activo {
   width: 100%;
 }
 
-.container-new-contact .flex-container-buttons, .container-new-company .flex-container-buttons {
+.container-new-contact .flex-container-buttons,
+.container-new-company .flex-container-buttons {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -676,11 +699,13 @@ header nav a.activo {
   margin-top: 100px;
 }
 
-.container-new-contact .flex-container-buttons input, .flex-container-buttons button {
+.container-new-contact .flex-container-buttons input,
+.flex-container-buttons button {
   margin: 10px;
 }
 
-.container-new-company .flex-container-buttons input, .flex-container-buttons button {
+.container-new-company .flex-container-buttons input,
+.flex-container-buttons button {
   margin: 10px;
 }
 
@@ -715,8 +740,12 @@ header nav a.activo {
 }
 
 .btn-cancel-red {
-  color: red;
+  color: #ce1a1b;
   width: 250px;
+  background: none;
+  border: none;
+  font-size: 1em;
+  font-weight: bold;
 }
 
 .add-new-item .flex-container i {
@@ -762,7 +791,7 @@ header nav a.activo {
   font-weight: bold;
   border-radius: 1.4px;
   padding: 20px;
-  background: #F03738;
+  background: #f03738;
   color: white;
   width: 130px;
   height: 41px;
@@ -779,12 +808,12 @@ header nav a.activo {
 
 .section-alert-icon {
   font-size: 100px;
-  color: #FFDBAC;
+  color: #ffdbac;
 }
 
 .section-alert-cross {
   font-size: 50px;
-  color: #DB0404;
+  color: #db0404;
 }
 
 .section-alert-div--container {
@@ -808,6 +837,21 @@ header nav a.activo {
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin: 0;
+}
+
+#div-new-country {
+  margin-left: 1038px;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  border-radius: 2px;
+  width: 173px;
+  height: 42px;
+  letter-spacing: 0;
+  text-align: center;
+  background: var(--blue);
+  border: 0;
+  cursor: pointer;
 }
 
 .body-login {

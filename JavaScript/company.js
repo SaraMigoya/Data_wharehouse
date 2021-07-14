@@ -62,10 +62,12 @@ closenewCompany.addEventListener("click", () => {
 
 
 let users = JSON.parse(localStorage.getItem("user"))
+if(users){
 
-if(users.isadmin == false){
-    document.getElementById("htmlUsuarios").style = "display: none"
-  }
+  if(users.isadmin == false){
+      document.getElementById("htmlUsuarios").style = "display: none"
+    }
+}
 
 
 const inputName = document.getElementById("name")

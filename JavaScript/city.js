@@ -1,38 +1,20 @@
 
 var toggler = document.getElementsByClassName("caret");
 var i;
-let addRegion = document.getElementById("button-new-region")
-let addCountry = document.getElementsByClassName("add-new-country")
-let addCity = document.getElementsByClassName("button-add-city")
-let sectionNewRegion = document.getElementById("section-new-region")
-let sectionNewCountry = document.getElementById("section-new-country")
-let sectionNewCity = document.getElementById("section-new-city")
-let backgroundBlack = document.getElementById("black-region")
-let closeNewRegion = document.getElementById("close-region")
-let closeNewCountry = document.getElementById("close-country")
-let sectionCity = document.getElementById("section-city")
-
-let users = JSON.parse(localStorage.getItem("user"))
-
-if(users.isadmin == false){
-    document.getElementById("htmlUsuarios").style = "display: none"
-  }
-
-////eventos para agregar nuevos items
-
-addRegion.addEventListener("click", () => {
-  sectionNewRegion.classList.toggle("none")
-  backgroundBlack.classList.toggle("none")
-})
-closeNewRegion.addEventListener("click", () => {
-  sectionNewRegion.classList.toggle("none")
-  backgroundBlack.classList.toggle("none")
-})
-
-closeNewCountry.addEventListener("click", () => {
-  sectionNewCountry.classList.toggle("none")
-  backgroundBlack.classList.toggle("none")
-})
+const addRegion = document.getElementById("button-new-region")
+const addCountry = document.getElementsByClassName("add-new-country")
+const addCity = document.getElementsByClassName("button-add-city")
+const sectionNewRegion = document.getElementById("section-new-region")
+const sectionNewCountry = document.getElementById("section-new-country")
+const sectionNewCity = document.getElementById("section-new-city")
+const backgroundBlack = document.getElementById("black-region")
+const closeNewRegion = document.getElementById("close-region")
+const closeNewCity = document.getElementById("close-city")
+const closeNewCountry = document.getElementById("close-country")
+const sectionCity = document.getElementById("section-city")
+const inputRegion = document.getElementById("region")
+const saveRegion = document.getElementById("save-region")
+const users = JSON.parse(localStorage.getItem("user"))
 
 
 //// GET REGIONES
@@ -58,6 +40,28 @@ let callRegion = async () => {
 
 callRegion()
 
+if(users.isadmin == false){
+  document.getElementById("htmlUsuarios").style = "display: none"
+}
+
+////eventos para agregar nuevos items
+
+function addClose(evento, section) {
+
+evento.addEventListener("click", () => {
+
+  section.classList.toggle("none")
+  backgroundBlack.classList.toggle("none") 
+})
+
+}
+
+addClose(closeNewCity, sectionNewCity)
+addClose(closeNewCountry, sectionNewCountry)
+addClose(addRegion, sectionNewRegion)
+
+addClose(closeNewRegion, sectionNewRegion)
+
 async function createRegions() {
 
   let awaitRegions = await callRegion()
@@ -80,12 +84,13 @@ async function createRegions() {
     let countriesUl = document.createElement("ul")
     countriesUl.className = "nested"
     let btnNewCountrie = document.createElement("button")
-    btnNewCountrie.className = "add-new-country"
-    btnNewCountrie.innerHTML = "Agregar País"
-
+    //btnNewCountrie.className = "button-add-city"
+    btnNewCountrie.id = "div-new-country"
+    btnNewCountrie.innerHTML = "Agregar país"
+    addClose(btnNewCountrie, sectionNewCountry)
     countriesUl.appendChild(btnNewCountrie)
 
-    //agregar paises nuevos
+    //agregar paises nuevo
     btnNewCountrie.addEventListener("click",() =>{
       let idRegion = element.id
 
@@ -318,9 +323,6 @@ let postCountries = async (name, regionId) =>{
   await searchApi.json()
 
 } 
- 
-const inputRegion = document.getElementById("region")
-const saveRegion = document.getElementById("save-region")
 
   async function newRegion (){
 
