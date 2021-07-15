@@ -85,7 +85,6 @@ function addClose(evento, section) {
 addClose(addContact, sectionNewContact)
 addClose(closenewContact, sectionNewContact)
 addClose(cancel, sectionNewContact)
-//addClose(cancel2, sectionEditContact)
 addClose(closeEditContact, sectionEditContact)
 let get = async (search) => {
 

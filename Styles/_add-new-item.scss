@@ -74,6 +74,9 @@
     width: 800px;
 }
 
+#section-new-company .add-new-item{
+    width: 1200px;
+}
 #section-new-company .form {
     height: 250px;
 }
@@ -196,7 +199,7 @@
 .flex-container-buttons {
     margin-top: 100px;
 }
-.container-new-company  .flex-container-buttons, #section-new-country  .flex-container-buttons, #section-new-city .flex-container-buttons, #section-edit-city  .flex-container-buttons{
+.container-new-company, .flex-container-buttons,#section-new-region .flex-container-buttons, #section-new-country  .flex-container-buttons, #section-new-city .flex-container-buttons, #section-edit-city  .flex-container-buttons, #section-new-country  .flex-container-buttons,  #section-edit-country  .flex-container-buttons{
     margin-top: 0px;
     margin-bottom: 5px;
     display: flex;

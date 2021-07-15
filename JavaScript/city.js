@@ -70,7 +70,7 @@ addClose(addRegion, sectionNewRegion)
 
 addClose(closeNewRegion, sectionNewRegion)
 
-
+addClose(document.getElementById("cancel-region"), sectionNewRegion )
 async function createRegions() {
 
   let awaitRegions = await callRegion()
@@ -95,6 +95,7 @@ async function createRegions() {
     btnNewCountrie.id = "div-new-country"
     btnNewCountrie.innerHTML = "Agregar país"
 
+    addClose (document.getElementById("cancel-country"), sectionNewCountry)
     addClose(btnNewCountrie, sectionNewCountry)
     countriesUl.appendChild(btnNewCountrie)
 
@@ -162,7 +163,12 @@ async function createRegions() {
           saveEditCountry.addEventListener("click", ()=>{
             putCountries(id, document.getElementById("edit-country2").value )
           })
+
         })
+        addClose (document.getElementById("cancel-country"), sectionNewCountry)
+        let cancel2 = document.getElementById("cancel-edit-country")
+
+        addClose(cancel2, sectionEditCountry)
         addClose(btnEdit, sectionEditCountry)
         addClose(closeNewCountry2,sectionEditCountry)
       ////post countries
@@ -221,11 +227,14 @@ async function createRegions() {
          })
          
         })
+        let cancel3 = document.getElementById("cancel-edit-city")
         const closeNewCity2 = document.getElementById("close-city2")
+        addClose(cancel3, sectionEditCity)
         addClose(iconEdit, sectionEditCity)
         addClose(closeNewCity2, sectionEditCity)
-      });  
+        addClose(document.getElementById("cancel-city"), sectionNewCity)
 
+      });  
 
       country.appendChild(citiesUl)
       countriesUl.appendChild(country)

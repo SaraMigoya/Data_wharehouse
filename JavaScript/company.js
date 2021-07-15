@@ -86,6 +86,7 @@ saveCompany.addEventListener("click", async () => {
 })
 
 let selectCity = document.getElementById("select-city")
+
  async function choseCity() {
   
   let awaitCity = await callCities()
@@ -108,7 +109,8 @@ let selectCity = document.getElementById("select-city")
     
 
       selectCity.appendChild(option)
-  }); 
+  });
+
 }
 
 choseCity()
@@ -119,6 +121,7 @@ choseCity()
 async function createCompanies() {
 
   let awaitCompanies = await callCompanies()
+  let awaitCity = await callCities()
 
   let sectionCompanies = document.getElementById("companies")
   let div = document.createElement("div")
@@ -169,17 +172,55 @@ async function createCompanies() {
         tr2.appendChild(td)
         tr2.appendChild(iconEdit)
         tr2.appendChild(iconDelete)
+        
+        iconEdit.addEventListener("click", ()=>{
+          console.log(idCompany)
+          let sectionEditCompany = document.getElementById("section-edit-company")
+          sectionEditCompany.classList.toggle("none")
+          backgroundBlack.classList.toggle("none")
 
+          console.log(awaitCity)
+          awaitCity.forEach(element => {
+            let option = document.createElement("option")
+
+            let selectCity2 = document.getElementById("select-city2")
+            option.innerHTML = `${element.name}`
+           
+              selectCity2.addEventListener("change", async(e) => {
+                 let pais = e.target.value
+                console.log(pais)
+          
+                if(pais == element.name){
+                  ciudadId = element.id 
+               }    
+             
+              })
+            
+              selectCity2.appendChild(option)
+
+              document.getElementById("edit-save-company").addEventListener("click", ()=>{
+                putCompany(idCompany, document.getElementById("name2").value,  document.getElementById("address2").value, document.getElementById("email2").value, document.getElementById("tel2").value, ciudadId )
+              })
+          });
+          
+
+  
+          
+        })
+        
       }
       //delete 
       iconDelete.addEventListener("click", () => {
          
-          deleteCompany(idCompany)
-          location.href = "../html/company.html" 
+        deleteCompany(idCompany)
+        location.href = "../html/company.html" 
       
           })  
+
+
     }
-    
+  
+   
     tbody.appendChild(tr2)
 
   });
@@ -236,6 +277,27 @@ let deleteCompany = async (id) =>{
 
   let searchApi = await fetch(`http://localhost:3000/companies/${id}`, {
       method: "DELETE" ,
+      body: JSON.stringify(data),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  })
+  await searchApi.json()
+
+} 
+
+let putCompany = async (id, name, address, email, tel, cityId) =>{
+
+  var data = {
+    name,
+    address,
+    email,
+    tel,
+    cityId
+  }
+
+  let searchApi = await fetch(`http://localhost:3000/companies/${id}`, {
+      method: "PUT" ,
       body: JSON.stringify(data),
       headers: {
           'Content-Type': 'application/json'
