@@ -173,21 +173,20 @@ name.addEventListener("keyup", () => {
 
 selectInteres.addEventListener("change", (e) => {
   num = e.target.value
-  console.log(num)
   if (num == "100%") {
     interes = "100%"
   }
   if (num == "75%") {
-    interes = "100%"
+    interes = "75%"
   }
   if (num == "50%") {
-    interes = "100%"
+    interes = "50%"
   }
   if (num == "25%") {
-    interes = "100%"
+    interes = "25%"
   }
   if (num == "0%") {
-    interes = "100%"
+    interes = "0%"
   }
 })
 
@@ -442,25 +441,19 @@ async function createContacts() {
               iconDelete.id = "icon2"
               iconEdit.className = "fas fa-pen"
               iconEdit.id = "icon3"
-              let b = document.getElementById("section-alert")
+            
               let idContact;
               let idContactEdit;
+
               iconDelete.addEventListener("click", () => {
-      
-                backgroundBlack.classList.toggle("none")
-                b.classList.toggle("none")
                 idContact = element.id
-              })
-              let deleteConfirm = document.getElementById("delete-confirm")
-      
-              deleteConfirm.addEventListener("click", () => {
-      
                 deleteContact(idContact)
-      
               })
+
       
               iconEdit.addEventListener("click", () => {
                 idContactEdit = element.id
+              
                 document.getElementById("name2").value = element.name
                 document.getElementById("lastname2").value = element.last_name
                 document.getElementById("cargo2").value = element.position
@@ -469,6 +462,8 @@ async function createContacts() {
                 document.getElementById("option-edit2").innerHTML = element.region.name
                 document.getElementById("option-edit3").innerHTML = element.countrie.name
                 document.getElementById("option-edit4").innerHTML = element.city.name
+                document.getElementById("option-edit5").innerHTML = element.interes
+
       
                 awaitCompanies.forEach(element => {
                   let optionCompanies2 = document.createElement("option")
@@ -549,9 +544,28 @@ async function createContacts() {
                   document.getElementById("region2").appendChild(optionRegions)
       
                 });
+                let interest
+                document.getElementById("interes-edit-contact").addEventListener("change", (e) => {
+                  num = e.target.value
+                  if (num == "100%") {
+                    interest = "100%"
+                  }
+                  if (num == "75%") {
+                    interest = "75%"
+                  }
+                  if (num == "50%") {
+                    interest = "50%"
+                  }
+                  if (num == "25%") {
+                    interest = "25%"
+                  }
+                  if (num == "0%") {
+                    interest = "0%"
+                  }
+                })
                 saveContact2.addEventListener("click", async () => {
                   console.log("hol")
-                  putContact(idContactEdit, document.getElementById("name2").value, document.getElementById("lastname2").value, document.getElementById("cargo2").value, document.getElementById("email2").value = element.email.value, companyId, interes, regionId, countryId, cityId)
+                  putContact(idContactEdit, document.getElementById("name2").value, document.getElementById("lastname2").value, document.getElementById("cargo2").value, document.getElementById("email2").value, element.email.value, companyId, interest, regionId, countryId, cityId)
       
                 })
               })
@@ -734,17 +748,8 @@ async function createContacts() {
               let idContact;
               let idContactEdit;
               iconDelete.addEventListener("click", () => {
-      
-                backgroundBlack.classList.toggle("none")
-                b.classList.toggle("none")
-                idContact = element.id
-              })
-              let deleteConfirm = document.getElementById("delete-confirm")
-      
-              deleteConfirm.addEventListener("click", () => {
-      
                 deleteContact(idContact)
-      
+                idContact = element.id
               })
       
               iconEdit.addEventListener("click", () => {
@@ -839,7 +844,7 @@ async function createContacts() {
                 });
                 saveContact2.addEventListener("click", async () => {
                   console.log("hol")
-                  putContact(idContactEdit, document.getElementById("name2").value, document.getElementById("lastname2").value, document.getElementById("cargo2").value, document.getElementById("email2").value = element.email.value, companyId, interes, regionId, countryId, cityId)
+                  putContact(idContactEdit, document.getElementById("name2").value, document.getElementById("lastname2").value, document.getElementById("cargo2").value, document.getElementById("email2").value, element.email.value, companyId, interes, regionId, countryId, cityId)
       
                 })
               })
@@ -1013,22 +1018,15 @@ async function createContacts() {
               iconDelete.id = "icon2"
               iconEdit.className = "fas fa-pen"
               iconEdit.id = "icon3"
-              let b = document.getElementById("section-alert")
               let idContact;
               let idContactEdit;
               iconDelete.addEventListener("click", () => {
-      
-                backgroundBlack.classList.toggle("none")
-                b.classList.toggle("none")
+
                 idContact = element.id
-              })
-              let deleteConfirm = document.getElementById("delete-confirm")
-      
-              deleteConfirm.addEventListener("click", () => {
-      
                 deleteContact(idContact)
       
               })
+
       
               iconEdit.addEventListener("click", () => {
                 idContactEdit = element.id
@@ -1122,7 +1120,7 @@ async function createContacts() {
                 });
                 saveContact2.addEventListener("click", async () => {
                   console.log("hol")
-                  putContact(idContactEdit, document.getElementById("name2").value, document.getElementById("lastname2").value, document.getElementById("cargo2").value, document.getElementById("email2").value = element.email.value, companyId, interes, regionId, countryId, cityId)
+                  putContact(idContactEdit, document.getElementById("name2").value, document.getElementById("lastname2").value, document.getElementById("cargo2").value, document.getElementById("email2").value,element.email.value, companyId, interes, regionId, countryId, cityId)
       
                 })
               })
@@ -1280,11 +1278,7 @@ async function createContacts() {
           td.innerHTML = a[5]
           tr2.appendChild(td)
         }
-        /*      if (i == 7) {
-               let td = document.createElement("td")
-               td.innerHTML = a[7]
-               tr2.appendChild(td)
-             } */
+
              if (i == 8) {
               let td = document.createElement("td")
       
@@ -1297,22 +1291,16 @@ async function createContacts() {
               iconDelete.id = "icon2"
               iconEdit.className = "fas fa-pen"
               iconEdit.id = "icon3"
-              let b = document.getElementById("section-alert")
+            
               let idContact;
               let idContactEdit;
               iconDelete.addEventListener("click", () => {
-      
-                backgroundBlack.classList.toggle("none")
-                b.classList.toggle("none")
+
                 idContact = element.id
-              })
-              let deleteConfirm = document.getElementById("delete-confirm")
-      
-              deleteConfirm.addEventListener("click", () => {
-      
+
                 deleteContact(idContact)
-      
               })
+
       
               iconEdit.addEventListener("click", () => {
                 idContactEdit = element.id
@@ -1406,7 +1394,7 @@ async function createContacts() {
                 });
                 saveContact2.addEventListener("click", async () => {
                   console.log("hol")
-                  putContact(idContactEdit, document.getElementById("name2").value, document.getElementById("lastname2").value, document.getElementById("cargo2").value, document.getElementById("email2").value = element.email.value, companyId, interes, regionId, countryId, cityId)
+                  putContact(idContactEdit, document.getElementById("name2").value, document.getElementById("lastname2").value, document.getElementById("cargo2").value, document.getElementById("email2").value, element.email.value, companyId, interes, regionId, countryId, cityId)
       
                 })
               })
@@ -1586,19 +1574,11 @@ async function createContacts() {
               let idContact;
               let idContactEdit;
               iconDelete.addEventListener("click", () => {
-      
-                backgroundBlack.classList.toggle("none")
-                b.classList.toggle("none")
+
                 idContact = element.id
-              })
-              let deleteConfirm = document.getElementById("delete-confirm")
-      
-              deleteConfirm.addEventListener("click", () => {
-      
                 deleteContact(idContact)
-      
               })
-      
+ 
               iconEdit.addEventListener("click", () => {
                 idContactEdit = element.id
                 document.getElementById("name2").value = element.name
@@ -1691,7 +1671,7 @@ async function createContacts() {
                 });
                 saveContact2.addEventListener("click", async () => {
                   console.log("hol")
-                  putContact(idContactEdit, document.getElementById("name2").value, document.getElementById("lastname2").value, document.getElementById("cargo2").value, document.getElementById("email2").value = element.email.value, companyId, interes, regionId, countryId, cityId)
+                  putContact(idContactEdit, document.getElementById("name2").value, document.getElementById("lastname2").value, document.getElementById("cargo2").value, document.getElementById("email2").value, element.email.value, companyId, interes, regionId, countryId, cityId)
       
                 })
               })
@@ -1846,22 +1826,15 @@ async function createContacts() {
         iconDelete.id = "icon2"
         iconEdit.className = "fas fa-pen"
         iconEdit.id = "icon3"
-        let b = document.getElementById("section-alert")
         let idContact;
         let idContactEdit;
         iconDelete.addEventListener("click", () => {
 
-          backgroundBlack.classList.toggle("none")
-          b.classList.toggle("none")
           idContact = element.id
-        })
-        let deleteConfirm = document.getElementById("delete-confirm")
-
-        deleteConfirm.addEventListener("click", () => {
 
           deleteContact(idContact)
-
         })
+
 
         iconEdit.addEventListener("click", () => {
           idContactEdit = element.id
@@ -1955,13 +1928,14 @@ async function createContacts() {
           });
           saveContact2.addEventListener("click", async () => {
             console.log("hol")
-            putContact(idContactEdit, document.getElementById("name2").value, document.getElementById("lastname2").value, document.getElementById("cargo2").value, document.getElementById("email2").value = element.email.value, companyId, interes, regionId, countryId, cityId)
+            putContact(idContactEdit, document.getElementById("name2").value, document.getElementById("lastname2").value, document.getElementById("cargo2").value, document.getElementById("email2").value, element.email.value, companyId, interes, regionId, countryId, cityId)
 
           })
         })
         cancel2.addEventListener("click",() => {
           deleteContact(idContactEdit)
         })
+        
         addClose(iconEdit, sectionEditContact)
         tr2.appendChild(td)
         tr2.appendChild(iconDelete)
@@ -2163,14 +2137,28 @@ a.addEventListener("click", (e) => {
     deleteContacts.classList.add("delete-contact")
   }
 
+  let b = document.getElementById("section-alert")
+  deleteContacts.addEventListener("click", () => {
+          
+    backgroundBlack.classList.toggle("none")
+    b.classList.toggle("none")
+
+
+    console.log(arrayIdContactos)
+  })
+  let deleteConfirm = document.getElementById("delete-confirm")
+      
+  deleteConfirm.addEventListener("click", () => {
+
+    arrayIdContactos.forEach(element => {
+  
+      deleteContact(element)
+    });
+
+  })
+  
 })
 
-deleteContacts.addEventListener("click", () => {
-  arrayIdContactos.forEach(element => {
-
-    deleteContact(element)
-  });
-})
 
 //GUARDAR CONTACTO
 saveContact.addEventListener("click", async () => {

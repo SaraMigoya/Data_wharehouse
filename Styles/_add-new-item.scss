@@ -21,16 +21,28 @@
     align-items: center;
     justify-content: space-evenly;
 }
-
-#section-new-region .container,
-#section-new-country .container,
-#section-new-city .container {
-    width: 800px;
+.add-new-item .container2 {
+    border: 3px solid #0683f9;
+    border-radius: 6.5px;
+    box-shadow: #0683f9;
+    height: 131px;
+    width: 500px;
+    top: -71px;
+    position: relative;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
+
+#section-new-country .container, #section-edit-city .container
+#section-new-city .container, #section-new-region .container, #section-edit-country .container {
+    width: 500px;
+}
 #section-new-region,
-#section-new-country {
-    max-width: 850px;
+#section-new-country,#section-edit-country, #section-edit-city,  #section-new-city {
+    max-width: 600px;
 }
 #section-new-company,
 #section-new-contact,
@@ -60,12 +72,10 @@
     position: relative;
     background: white;
     width: 800px;
-    /*     height: 200px;
-    width: 100%; */
 }
 
 #section-new-company .form {
-    height: 200px;
+    height: 250px;
 }
 #section-new-region,
 .form,
@@ -78,7 +88,7 @@
 }
 
 #section-new-region .form,
-#section-new-country .form {
+#section-new-country .form, #section-new-city .form {
     height: auto;
 }
 
@@ -124,13 +134,9 @@
     height: 35.5px;
     border: 1px solid #cccccc;
     border-radius: 3.5px;
+    display: block;
 }
 
-/* .container-input {
-    width: 204px;
-    margin: 0;
-}
- */
 #section-new-country .container-input {
     margin: auto;
 }
@@ -173,7 +179,7 @@
 }
 #section-new-contact,
 .form-new-contact,
-#section-edit-contact {
+#section-edit-contact, #section-new-company {
     z-index: 4;
     position: relative;
     background: white;
@@ -190,6 +196,12 @@
 .flex-container-buttons {
     margin-top: 100px;
 }
+.container-new-company  .flex-container-buttons, #section-new-country  .flex-container-buttons, #section-new-city .flex-container-buttons, #section-edit-city  .flex-container-buttons{
+    margin-top: 0px;
+    margin-bottom: 5px;
+    display: flex;
+
+}
 .container-new-contact .flex-container-buttons input,
 .flex-container-buttons button {
     margin: 10px;
@@ -200,11 +212,14 @@
 }
 .container-new-company .flex-container-buttons input {
     border-radius: 2px;
-    width: 173px;
+    border: none;
     height: 42px;
     font-weight: bold;
     color: var(--white);
-    background: rgba(0, 0, 0, 0.25);
+    background: green;
+    width: 250px;
+    margin: 0;
+    margin: 10px;
 }
 
 .inactivo {
@@ -217,6 +232,7 @@
 .verde {
     background: green;
     width: 250px;
+    margin: 0;
 }
 
 .btn-cancel {
@@ -234,6 +250,7 @@
     border: none;
     font-size: 1em;
     font-weight: bold;
+    margin: 0;
 }
 
 .add-new-item .flex-container i {

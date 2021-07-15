@@ -162,8 +162,10 @@ async function createCompanies() {
         td.innerHTML = `${a[i].name}`
         idCompany = `${a[0]}`
         iconDelete.className = "fas fa-trash"
+        iconDelete.id = "iconD"
         let iconEdit = document.createElement("i")
         iconEdit.className = "fas fa-pen"
+        iconEdit.id = "iconE"
         tr2.appendChild(td)
         tr2.appendChild(iconEdit)
         tr2.appendChild(iconDelete)

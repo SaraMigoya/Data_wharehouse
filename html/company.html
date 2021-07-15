@@ -35,6 +35,9 @@
                         <span></span>
 
                     </div>
+                    <div>
+                        <p id="log-out">Cerrar</p>
+                    </div>
                 </nav>
             </div>
         </div>
@@ -82,8 +85,57 @@
                 </div>
                 <div class="container-new-company">
                     <div class="flex-container-buttons" >
-                        <button>Cancelar</button>
-                        <input type="submit" id="save-company" value="Guardar compañía">
+                        <button class="btn-cancel-red">Cancelar</button>
+                        <input type="submit" id="save-company"  class="verde"value="Guardar compañía">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <section id="section-edit-company" class="none add-new-item ">
+
+            <div class="flex-container">
+                <h2>Editar compañía</h2>
+                <i class="fas fa-times" id="close-company"></i>
+
+            </div>
+            <div class="form">
+                <div class="container">
+                    <div class="container-input">
+                        <label for="name2">Nombre <span>* </span></label>
+                        <input id="name2" type="text" name="name2" placeholder="ingresar nombre de la compañía" required>
+                    </div>
+                    
+                    <div class="container-input">
+                        <label for="address2">Dirección <span>*</span> </label>
+                        <input id="address2" type="text" name="address2"required>
+                    </div>
+                    <div class="container-input">
+                        <div>
+                            <label for="email2">Email <span>*</span> </label>
+                        </div>
+                        <input id="email2" type="text" name="email2" required>
+                    </div>
+                    <div class="container-input">
+                        <div>
+                            <label for="tel2">Teléfono <span>*</span> </label>
+                        </div>
+                        <input id="tel2" type="text" name="tel2" required>
+                    </div>
+                    <div class="container-input">
+                        <label for="select-city2">Ciudad</label>
+                        <div>
+                            <select id="select-city2">
+                         
+                             <option id="option1"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-new-company">
+                    <div class="flex-container-buttons" >
+                        <button class="btn-cancel-red">Cancelar</button>
+                        <input type="submit" id="save-company"  class="verde"value="Guardar compañía">
                     </div>
                 </div>
             </div>

@@ -10,7 +10,9 @@ const sectionNewCity = document.getElementById("section-new-city")
 const backgroundBlack = document.getElementById("black-region")
 const closeNewRegion = document.getElementById("close-region")
 const closeNewCity = document.getElementById("close-city")
+
 const closeNewCountry = document.getElementById("close-country")
+const closeNewCountry2 = document.getElementById("close-country2")
 const sectionCity = document.getElementById("section-city")
 const inputRegion = document.getElementById("region")
 const saveRegion = document.getElementById("save-region")
@@ -40,8 +42,12 @@ let callRegion = async () => {
 
 callRegion()
 
-if(users.isadmin == false){
-  document.getElementById("htmlUsuarios").style = "display: none"
+if(users){
+
+  if(users.isadmin == false){
+    document.getElementById("htmlUsuarios").style = "display: none"
+  }
+
 }
 
 ////eventos para agregar nuevos items
@@ -57,15 +63,17 @@ evento.addEventListener("click", () => {
 }
 
 addClose(closeNewCity, sectionNewCity)
+
+
 addClose(closeNewCountry, sectionNewCountry)
 addClose(addRegion, sectionNewRegion)
 
 addClose(closeNewRegion, sectionNewRegion)
 
+
 async function createRegions() {
 
   let awaitRegions = await callRegion()
-
 
   awaitRegions.allRegions.forEach(element => {
   
@@ -79,14 +87,14 @@ async function createRegions() {
     regionsUl.appendChild(regionsLi)
     let titleRegion = document.createElement("span")
     titleRegion.className = "caret name-region"
-    regionsLi.appendChild(titleRegion) //span
+    regionsLi.appendChild(titleRegion)
     titleRegion.innerHTML = `${element.name}`
     let countriesUl = document.createElement("ul")
     countriesUl.className = "nested"
     let btnNewCountrie = document.createElement("button")
-    //btnNewCountrie.className = "button-add-city"
     btnNewCountrie.id = "div-new-country"
     btnNewCountrie.innerHTML = "Agregar país"
+
     addClose(btnNewCountrie, sectionNewCountry)
     countriesUl.appendChild(btnNewCountrie)
 
@@ -133,6 +141,7 @@ async function createRegions() {
       divButtons.appendChild(btnEdit)
       divButtons.appendChild(btnDelete)
       divButtons.appendChild(btnNewCity)
+      let sectionEditCountry = document.getElementById("section-edit-country")
 
       countryTitle.innerHTML = `${e.name}`
 
@@ -144,7 +153,18 @@ async function createRegions() {
          location.href = "../html/city.html"
   
        })  
+       
+       let saveEditCountry = document.getElementById("save-edit-country")
 
+       btnEdit.addEventListener("click", ()=>{
+          let id = e.id 
+
+          saveEditCountry.addEventListener("click", ()=>{
+            putCountries(id, document.getElementById("edit-country2").value )
+          })
+        })
+        addClose(btnEdit, sectionEditCountry)
+        addClose(closeNewCountry2,sectionEditCountry)
       ////post countries
       btnNewCity.addEventListener("click",() =>{
         let idCity = e.id
@@ -153,14 +173,12 @@ async function createRegions() {
         const inputCity = document.getElementById("city")
         
         saveCity.addEventListener ("click", async () => {
-        
           postCities (inputCity.value, idCity)
           location.href = "../html/city.html"
        
         }) 
       }) 
-
-
+      
       let citiesUl = document.createElement("ul")
       citiesUl.className = "nested city"
       
@@ -178,7 +196,6 @@ async function createRegions() {
         let iconEdit = document.createElement("i")
         iconEdit.className = "far fa-edit"
         let iconDelete = document.createElement("i")
-      
         iconDelete.className = "far fa-trash-alt"
 
         btnEdit.appendChild(iconEdit)
@@ -187,19 +204,31 @@ async function createRegions() {
         divButtons.appendChild(btnDelete)
         
         citiesUl.appendChild(divButtons)
-     
-
+        
       // delete cities
-       btnDelete.addEventListener("click", () => {
+       iconDelete.addEventListener("click", () => {
        
         deleteCity(x.id)
         location.href = "../html/city.html"
   
        })  
+       const sectionEditCity = document.getElementById("section-edit-city")
+       btnEdit.addEventListener("click", () =>{
+         let id = x.id
+         document.getElementById("save-edit-city").addEventListener("click", ()=>{
+ 
+           putCities(id, document.getElementById("input-edit-city").value )
+         })
+         
+        })
+        const closeNewCity2 = document.getElementById("close-city2")
+        addClose(iconEdit, sectionEditCity)
+        addClose(closeNewCity2, sectionEditCity)
       });  
 
-    country.appendChild(citiesUl)
-    countriesUl.appendChild(country)
+
+      country.appendChild(citiesUl)
+      countriesUl.appendChild(country)
 
 
     });
@@ -288,6 +317,44 @@ let postCountries = async (name, regionId) =>{
 
 } 
 
+let putCountries = async (id, name) =>{
+
+  var data = {
+    name
+  }
+
+  let searchApi = await fetch(`http://localhost:3000/regions/countries/${id}`, {
+      method: "PUT" ,
+      body: JSON.stringify(data),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  })
+  await searchApi.json()
+  location.href = "../html/city.html"
+
+}
+
+let putCities = async (id, name) =>{
+
+  var data = {
+    name
+  }
+
+  let searchApi = await fetch(`http://localhost:3000/regions/cities/${id}`, {
+      method: "PUT" ,
+      body: JSON.stringify(data),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  })
+  await searchApi.json()
+  location.href = "../html/city.html"
+
+}
+
+
+
 ////DELETE
 
  let deleteCountry = async (id) =>{
@@ -324,11 +391,11 @@ let postCountries = async (name, regionId) =>{
 
 } 
 
+
   async function newRegion (){
 
   saveRegion.addEventListener ("click", async () => {
 
-     
       postRegions (inputRegion.value)
       location.href = "../html/city.html"
 

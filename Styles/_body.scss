@@ -240,7 +240,14 @@ tbody tr:hover {
         display: none;
     }
 }
-
+#iconD,
+#iconE {
+    display: inline-block;
+    //margin-top: 10px;
+    font-size: 20px;
+    padding: 10px;
+    color: rgba(0, 0, 0, 0.5);
+}
 #table-contacts {
     table-layout: fixed;
     width: 96%;

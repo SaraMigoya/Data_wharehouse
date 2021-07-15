@@ -160,12 +160,12 @@ router.post("/", async (req, res) => {
 
     //PUT
 
-    .put("/:id", validateJwt, async (req, res) => {
+    .put("/:id", async (req, res) => {
 
-        if (req.user.admin == false) {
+/*         if (req.user.admin == false) {
             res.send("Sólo un administrador puede realizar altas y/o modificar regiones")
             return
-        }
+        } */
 
         const updateRegion = await models.regions.update(req.body, {
             where: { id: req.params.id }
@@ -176,12 +176,12 @@ router.post("/", async (req, res) => {
         return res.status(400).json({ message: `No se encontro la región con el ID: ${req.params.id}` })
     })
 
-    .put("/countries/:id", validateJwt, async (req, res) => {
+    .put("/countries/:id", async (req, res) => {
 
-        if (req.user.admin == false) {
+    /*     if (req.user.admin == false) {
             res.send("Sólo un administrador puede realizar altas y/o modificar países")
             return
-        }
+        } */
 
         const updateCountry = await models.countries.update(req.body, {
             where: { id: req.params.id }
@@ -192,12 +192,12 @@ router.post("/", async (req, res) => {
         return res.status(400).json({ message: `No se encontro el país con el ID: ${req.params.id}` })
     })
 
-    .put("/cities/:id", validateJwt, async (req, res) => {
+    .put("/cities/:id", async (req, res) => {
 
-        if (req.user.admin == false) {
+/*         if (req.user.admin == false) {
             res.send("Sólo un administrador puede realizar altas y/o modificar ciudades")
             return
-        }
+        } */
 
         const updateCity = await models.cities.update(req.body, {
             where: { id: req.params.id }

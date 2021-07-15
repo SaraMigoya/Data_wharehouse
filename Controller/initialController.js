@@ -33,7 +33,7 @@ router.post("/initialUsers", async (req,res) => {
 
 //REGIONS
 
-    .post("/initialRegions", async (req,res) => {
+/*     .post("/initialRegions", async (req,res) => {
     const newsRegions = [
         {
             name: "Sudamérica",
@@ -154,6 +154,6 @@ router.post("/initialUsers", async (req,res) => {
 
     res.status(200).json({ message: "Ciudad creada con éxito!" })
 
-})
+}) */
 
 module.exports = router
