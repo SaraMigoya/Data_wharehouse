@@ -6,13 +6,7 @@ const { dataCompanie} = require("../middlewares");
 
 //POST
 router.post("/", dataCompanie, async (req, res) => {
-/* 
-    if (req.user.admin == false) {
-           res.send("no estás autorizado para crear un nuevo usuario")
-           return
-   
-       } */
-   
+
        const { name, address, email, tel, cityId} = req.body;
 
        const newCompany = {
@@ -27,9 +21,6 @@ router.post("/", dataCompanie, async (req, res) => {
        
        const company = await models.companies.create(newCompany)
      
-   /*     await models.companies.update({cityId: city_id}, {
-           where: {cityId: null}
-       }) */
 
        if (company) return res.status(200).json(company);
    
@@ -42,12 +33,6 @@ router.post("/", dataCompanie, async (req, res) => {
 //// GET
    .get ("/", async (req, res) =>{
 
-  /*   if (req.user.admin == false) {
-        res.send("no estás autorizado para crear un nuevo usuario")
-        return
-
-    }
- */
         const companies = await models.companies.findAll({
             attributes: ["id","name", "address", "email", "tel"],
             include: [
@@ -73,12 +58,6 @@ router.post("/", dataCompanie, async (req, res) => {
 
 
     .put('/:id', async (req, res) => {
-          /*   if (req.user.admin == false) {
-        res.send("no estás autorizado para crear un nuevo usuario")
-        return
-
-    }
- */
 
         const updateCompany = await models.companies.update(req.body, {
             where: { id: req.params.id }

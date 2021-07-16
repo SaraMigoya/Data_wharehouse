@@ -14,7 +14,7 @@ const contactsController = require("./Controller/contactsController")
 app.use(express.json())
 app.use(cors());
 app.use(helmet());
-app.use("/init", initialController);
+app.use("/start", initialController);
 app.use("/users", usersController);
 app.use ("/regions", regionsController);
 app.use ("/companies", companiesController)
